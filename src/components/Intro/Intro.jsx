@@ -38,6 +38,7 @@ export default function Intro() {
   const onTouchStart = (e) => {
     setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
     setTouchStart(e.targetTouches[0].clientX);
+    console.log('working');
   };
 
   const onTouchEnd = () => {
@@ -46,7 +47,6 @@ export default function Intro() {
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
     if (isLeftSwipe || isRightSwipe) isLeftSwipe ? nextSlide() : prevSlide();
-    console.log(current);
   };
 
   const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
@@ -91,7 +91,7 @@ export default function Intro() {
                       onClick={() => moveDot(index)}
                       w='20px'
                       h='20px'
-                      bgColor='brand.100'
+                      bgColor='brand.primary'
                       opacity={current === index ? '1' : '.5'}
                       shadow={current === index ? 'base' : 'none'}
                       borderRadius='full'

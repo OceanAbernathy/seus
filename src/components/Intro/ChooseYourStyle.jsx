@@ -16,6 +16,7 @@ export default function ChooseYourStyle() {
       flexDirection='column'
       justifyContent='center'
       letterSpacing='widest'
+      pt={4}
     >
       <Flex
         width='100vw'
@@ -44,9 +45,10 @@ export default function ChooseYourStyle() {
         >
           {StyleData.map((item) => (
             <Checkbox
-              key={item.id}
+              key={item.type}
               onChange={() => {
-                const index = checkedList.indexOf(item.id);
+                const index = checkedList.indexOf(item.type);
+                console.log(checkedList);
 
                 if (index > -1) {
                   setCheckedList([
@@ -54,11 +56,11 @@ export default function ChooseYourStyle() {
                     ...checkedList.slice(index + 1),
                   ]);
                 } else {
-                  setCheckedList([...checkedList, item.id]);
+                  setCheckedList([...checkedList, item.type]);
                 }
               }}
               variant={`${
-                checkedList.includes(item.id) ? 'selected' : 'unselected'
+                checkedList.includes(item.type) ? 'selected' : 'unselected'
               }`}
             >
               <Text>{item.type}</Text>
@@ -66,15 +68,15 @@ export default function ChooseYourStyle() {
           ))}
         </Grid>
         <Flex h='50px' alignItems='center' justifyContent='center'>
-          <Link to='/'>
+          <Link to='/Dashboard'>
             <Flex
               display={checkedList.length > 0 ? 'flex' : 'none'}
               alignItems='center'
               justifyContent='center'
               gap='2'
             >
-              <Text fontWeight='semibold'>Next</Text>
-              <ArrowRight size={32} color='#454545' />
+              <Text fontWeight='semibold'>Begin</Text>
+              <ArrowRight size={28} color='#454545' />
             </Flex>
           </Link>
         </Flex>

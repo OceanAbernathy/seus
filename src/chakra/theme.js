@@ -9,10 +9,10 @@ import { Checkbox } from './Checkbox';
 export const theme = extendTheme({
   colors: {
     brand: {
-      100: '#8656CD',
-      200: '#00C996',
-      300: '#454545',
-      400: '#D9D9D9',
+      primary: '#8656CD',
+      secondary: '#00C996',
+      lightGrey: '#D9D9D9',
+      darkGrey: '#454545',
     },
   },
   fonts: {

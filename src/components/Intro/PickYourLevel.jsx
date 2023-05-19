@@ -35,6 +35,7 @@ export default function Welcome() {
             onClick={() => setSelected(type)}
             variant={selected === type ? 'solid1' : 'solid3'}
             fontWeight='medium'
+            letterSpacing='widest'
             h='5rem'
           >
             {type}
@@ -49,7 +50,7 @@ export default function Welcome() {
               gap='2'
             >
               <Text fontWeight='semibold'>Next</Text>
-              <ArrowRight size={32} color='#454545' />
+              <ArrowRight size={28} color='#454545' />
             </Flex>
           </Link>
         </Flex>

@@ -9,20 +9,24 @@ import CreateNewPassword from './PasswordReset/CreateNewPassword';
 import Intro from './Intro/Intro';
 import PickYourLevel from './Intro/PickYourLevel';
 import ChooseYourStyle from './Intro/ChooseYourStyle';
+import Dashboard from './Dashboard/Dashboard';
 
 export default function SeusRouter() {
   return (
-    <Routes>
-      <Route exact path='/' element={<Root />} />
-      <Route path='/Welcome' element={<Welcome />} />
-      <Route path='/SignUp' element={<SignUp />} />
-      <Route path='/SignIn' element={<SignIn />} />
-      <Route path='/ResetPassword' element={<ResetPassword />} />
-      <Route path='/CheckEmail' element={<CheckEmail />} />
-      <Route path='/CreateNewPassword' element={<CreateNewPassword />} />
-      <Route path='/Intro' element={<Intro />} />
-      <Route path='/PickYourLevel' element={<PickYourLevel />} />
-      <Route path='/ChooseYourStyle' element={<ChooseYourStyle />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route exact path='/' element={<Root />} />
+        <Route path='/Welcome' element={<Welcome />} />
+        <Route path='/SignUp' element={<SignUp />} />
+        <Route path='/SignIn' element={<SignIn />} />
+        <Route path='/ResetPassword' element={<ResetPassword />} />
+        <Route path='/CheckEmail' element={<CheckEmail />} />
+        <Route path='/CreateNewPassword' element={<CreateNewPassword />} />
+        <Route path='/Intro' element={<Intro />} />
+        <Route path='/PickYourLevel' element={<PickYourLevel />} />
+        <Route path='/ChooseYourStyle' element={<ChooseYourStyle />} />
+        <Route path='/Dashboard/*' element={<Dashboard />} />
+      </Routes>
+    </>
   );
 }

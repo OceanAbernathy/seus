@@ -30,7 +30,7 @@ export default function Root() {
         <Text
           fontSize='7xl'
           fontWeight={300}
-          textColor='brand.100'
+          textColor='brand.primary'
           textShadow='0 4px 4px rgba(0, 0, 0, .25)'
           letterSpacing='wide'
         >
@@ -46,7 +46,7 @@ export default function Root() {
       </Flex>
 
       <Flex flexDirection='column' m='0 25px' gap='50px'>
-        <Text fontSize='2xl' fontWeight={300} color='brand.300' px='10px'>
+        <Text fontSize='2xl' fontWeight={300} color='brand.darkGrey' px='10px'>
           Online guitar courses made simple and affordable. The stage awaits!
         </Text>
         <Link to='/Welcome'>

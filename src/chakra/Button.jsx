@@ -12,21 +12,33 @@ export const Button = defineStyleConfig({
 
   variants: {
     solid1: {
-      bgColor: 'brand.100',
+      bgColor: 'brand.primary',
       color: 'white',
       fontSize: '2xl',
     },
     solid2: {
-      bgColor: 'brand.200',
+      bgColor: 'brand.secondary',
       color: 'white',
       fontSize: '2xl',
       fontWeight: 'semibold',
     },
     solid3: {
-      bgColor: 'brand.400',
+      bgColor: 'brand.lightGrey',
       color: 'black',
       fontSize: '2xl',
       fontWeight: 'semibold',
+    },
+    ghost: {
+      width: 'fit-content',
+      fontSize: '4xl',
+      fontWeight: 'normal',
+    },
+    close: {
+      width: '60px',
+      height: '60px',
+      color: 'white',
+      fontSize: '3xl',
+      bgColor: 'brand.primary',
     },
   },
   defaultProps: {
