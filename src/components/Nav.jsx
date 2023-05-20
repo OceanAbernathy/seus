@@ -10,21 +10,28 @@ import {
 
 export default function Nav() {
   return (
-    <Flex width='100vw' alignItems='end' justifyContent='center'>
-      <Link to='home'>
-        <IconButton as={House} variant='close' />
+    <Flex
+      position='absolute'
+      width='100%'
+      justifyContent='space-evenly'
+      pt={6}
+      pb={10}
+      bgColor='brand.primary'
+    >
+      <Link to='/Dashboard'>
+        <IconButton icon={<House />} variant='nav' />
       </Link>
-      <Link to='lessons'>
-        <IconButton as={ClipboardText} variant='close' />
+      <Link to='Lessons'>
+        <IconButton icon={<ClipboardText />} variant='nav' />
       </Link>
-      <Link to='challenges'>
-        <IconButton as={Guitar} variant='close' />
+      <Link to='Challenges'>
+        <IconButton icon={<Guitar />} variant='nav' />
       </Link>
-      <Link to='explore'>
-        <IconButton as={Globe} variant='close' />
+      <Link to='Explore'>
+        <IconButton icon={<Globe />} variant='nav' />
       </Link>
-      <Link to='profile'>
-        <IconButton as={User} variant='close' />
+      <Link to='Profile'>
+        <IconButton icon={<User />} variant='nav' />
       </Link>
     </Flex>
   );

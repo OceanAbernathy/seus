@@ -40,6 +40,11 @@ export const Button = defineStyleConfig({
       fontSize: '3xl',
       bgColor: 'brand.primary',
     },
+    nav: {
+      color: 'white',
+      fontSize: '3xl',
+      px: '0',
+    },
   },
   defaultProps: {
     variant: 'solid1',

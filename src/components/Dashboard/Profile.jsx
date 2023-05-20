@@ -4,7 +4,7 @@ export default function Lessons() {
   return (
     <Flex justifyContent='center' mt={10}>
       <Text fontSize='2xl' fontWeight='medium'>
-        Dashboard
+        Profile
       </Text>
     </Flex>
   );

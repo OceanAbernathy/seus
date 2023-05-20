@@ -44,19 +44,29 @@ export default function HamburgerMenu() {
           }}
         >
           <Flex flexDirection='column' gap={20} alignItems='center'>
-            <Link to='home' onClick={onToggle}>
+            <Link to='/Dashboard' onClick={onToggle}>
               <Button variant='ghost' aria-label='Home' p={5}>
                 Home
               </Button>
             </Link>
-            <Link>
+            <Link to='Lessons' onClick={onToggle}>
               <Button variant='ghost' aria-label='About' p={5}>
-                About
+                Lessons
               </Button>
             </Link>
-            <Link>
+            <Link to='Challenges' onClick={onToggle}>
               <Button variant='ghost' aria-label='Contact' p={5}>
-                Contact
+                Challenges
+              </Button>
+            </Link>
+            <Link to='Explore' onClick={onToggle}>
+              <Button variant='ghost' aria-label='Contact' p={5}>
+                Explore
+              </Button>
+            </Link>
+            <Link to='Profile' onClick={onToggle}>
+              <Button variant='ghost' aria-label='Contact' p={5}>
+                Profile
               </Button>
             </Link>
           </Flex>
