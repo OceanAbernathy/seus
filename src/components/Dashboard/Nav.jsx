@@ -5,24 +5,15 @@ import { Context } from '../../Context';
 import HamburgerMenu from './HamburgerMenu';
 import { NavData } from './NavData';
 
-import {
-  ClipboardText,
-  Globe,
-  Guitar,
-  House,
-  User,
-} from '@phosphor-icons/react';
-
 export default function Nav() {
-  const { items, setItems } = useContext(Context);
+  const { setItems } = useContext(Context);
 
   return (
     <Flex
       position='absolute'
       width='100%'
       justifyContent='space-evenly'
-      pt={6}
-      pb={10}
+      pb={7}
       bgColor='brand.secondaryLight'
     >
       {NavData.map((item) => (
