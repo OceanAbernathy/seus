@@ -1,16 +1,25 @@
 import {
   Button,
-  IconButton,
-  useDisclosure,
   Flex,
+  IconButton,
   Slide,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { List, X } from '@phosphor-icons/react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Background from '../images/Background2.png';
+import { Context } from '../../Context';
+import Background from '../../images/Background2.png';
+import { NavData } from './NavData';
 
 export default function HamburgerMenu() {
   const { isOpen, onToggle } = useDisclosure();
+  const { setItems } = useContext(Context);
+
+  const toggle = (item) => {
+    setItems(item);
+    onToggle();
+  };
 
   return (
     <>
@@ -44,33 +53,20 @@ export default function HamburgerMenu() {
             opacity: 0.9,
           }}
         >
-          <Flex flexDirection='column' gap={20} alignItems='center'>
-            <Link to='/Dashboard' onClick={onToggle}>
-              <Button variant='ghost' aria-label='Home' p={5}>
-                Home
-              </Button>
-            </Link>
-            <Link to='Lessons' onClick={onToggle}>
-              <Button variant='ghost' aria-label='About' p={5}>
-                Lessons
-              </Button>
-            </Link>
-            <Link to='Challenges' onClick={onToggle}>
-              <Button variant='ghost' aria-label='Contact' p={5}>
-                Challenges
-              </Button>
-            </Link>
-            <Link to='Explore' onClick={onToggle}>
-              <Button variant='ghost' aria-label='Contact' p={5}>
-                Explore
-              </Button>
-            </Link>
-            <Link to='Profile' onClick={onToggle}>
-              <Button variant='ghost' aria-label='Contact' p={5}>
-                Profile
-              </Button>
-            </Link>
-          </Flex>
+          {NavData.map((item) => (
+            <Flex
+              key={item.id}
+              flexDirection='column'
+              gap={20}
+              alignItems='center'
+            >
+              <Link to={item.path} onClick={() => toggle(item)}>
+                <Button aria-label={item.label} variant='ghost' p={5}>
+                  {item.label}
+                </Button>
+              </Link>
+            </Flex>
+          ))}
           <IconButton icon={<X />} onClick={onToggle} variant='close' />
         </Flex>
       </Slide>

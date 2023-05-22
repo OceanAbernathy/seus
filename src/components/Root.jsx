@@ -1,8 +1,8 @@
 import { Button, Flex, Image, Text } from '@chakra-ui/react';
-import Background from '../images/Background.png';
-import Logo from '../images/Logo.svg';
-import GuitarVector from '../images/GuitarVector1.svg';
 import { Link } from 'react-router-dom';
+import Background from '../images/Background.png';
+import GuitarVector from '../images/GuitarVector1.svg';
+import Logo from '../images/Logo.svg';
 
 export default function Root() {
   return (

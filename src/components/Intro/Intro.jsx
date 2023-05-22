@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
-import { SliderData as slides } from './SliderData';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SliderData as slides } from './SliderData';
 
 export default function Intro() {
   const [current, setCurrent] = useState(0);

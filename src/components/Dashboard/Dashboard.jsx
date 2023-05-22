@@ -1,11 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
-import HamburgerMenu from '../HamburgerMenu';
-import Nav from '../Nav';
 import { Flex } from '@chakra-ui/react';
-import Home from './Home';
-import Lessons from './Lessons';
+import { Route, Routes } from 'react-router-dom';
 import Challenges from './Challenges';
 import Explore from './Explore';
+import Home from './Home';
+import Lessons from './Lessons';
+import Nav from './Nav';
 import Profile from './Profile';
 
 import Background from '../../images/Background2.png';
@@ -17,12 +16,9 @@ export default function Dashboard() {
       height='100vh'
       position='relative'
       flexDirection='column'
-      zIndex={1}
       bgImage={Background}
       bgSize='cover'
     >
-      <HamburgerMenu />
-
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='Lessons' element={<Lessons />} />
@@ -31,7 +27,7 @@ export default function Dashboard() {
         <Route path='Profile' element={<Profile />} />
       </Routes>
 
-      <Flex height='100vh' alignItems='end' zIndex={-1}>
+      <Flex height='100vh' alignItems='end'>
         <Nav />
       </Flex>
     </Flex>

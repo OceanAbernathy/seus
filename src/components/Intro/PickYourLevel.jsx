@@ -1,8 +1,8 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
+import { ArrowRight } from '@phosphor-icons/react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Background from '../../images/Background.png';
-import { ArrowRight } from '@phosphor-icons/react';
 
 export default function Welcome() {
   const types = ['Beginner', 'Intermediate', 'Advanced'];
@@ -29,7 +29,7 @@ export default function Welcome() {
       </Flex>
 
       <Flex flexDirection='column' m='0 35px' gap='25'>
-        {types.map((type, index) => (
+        {types.map((type) => (
           <Button
             key={type}
             onClick={() => setSelected(type)}
