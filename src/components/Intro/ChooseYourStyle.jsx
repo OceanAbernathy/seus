@@ -48,7 +48,6 @@ export default function ChooseYourStyle() {
               key={item.type}
               onChange={() => {
                 const index = checkedList.indexOf(item.type);
-                console.log(checkedList);
 
                 if (index > -1) {
                   setCheckedList([

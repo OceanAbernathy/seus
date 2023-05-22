@@ -38,7 +38,6 @@ export default function Intro() {
   const onTouchStart = (e) => {
     setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
     setTouchStart(e.targetTouches[0].clientX);
-    console.log('working');
   };
 
   const onTouchEnd = () => {

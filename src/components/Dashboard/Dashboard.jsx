@@ -8,6 +8,8 @@ import Challenges from './Challenges';
 import Explore from './Explore';
 import Profile from './Profile';
 
+import Background from '../../images/Background2.png';
+
 export default function Dashboard() {
   return (
     <Flex
@@ -16,6 +18,8 @@ export default function Dashboard() {
       position='relative'
       flexDirection='column'
       zIndex={1}
+      bgImage={Background}
+      bgSize='cover'
     >
       <HamburgerMenu />
 

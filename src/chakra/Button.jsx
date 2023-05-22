@@ -40,10 +40,20 @@ export const Button = defineStyleConfig({
       fontSize: '3xl',
       bgColor: 'brand.primary',
     },
+    hamburger: {
+      bgColor: 'brand.lightGrey',
+      fontSize: '2xl',
+    },
     nav: {
       color: 'white',
       fontSize: '3xl',
       px: '0',
+    },
+    activeNav: {
+      color: 'white',
+      fontSize: '3xl',
+      px: '0',
+      bgColor: 'red',
     },
   },
   defaultProps: {

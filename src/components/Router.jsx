@@ -15,7 +15,7 @@ export default function SeusRouter() {
   return (
     <>
       <Routes>
-        <Route exact path='/' element={<Root />} />
+        <Route exact path='/' end element={<Root />} />
         <Route path='/Welcome' element={<Welcome />} />
         <Route path='/SignUp' element={<SignUp />} />
         <Route path='/SignIn' element={<SignIn />} />

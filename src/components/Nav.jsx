@@ -1,14 +1,11 @@
 import { Flex, IconButton } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import {
-  House,
-  ClipboardText,
-  Globe,
-  Guitar,
-  User,
-} from '@phosphor-icons/react';
+import { useState } from 'react';
+import { NavData } from './NavData';
 
 export default function Nav() {
+  const [active, setActive] = useState('');
+
   return (
     <Flex
       position='absolute'
@@ -16,23 +13,16 @@ export default function Nav() {
       justifyContent='space-evenly'
       pt={6}
       pb={10}
-      bgColor='brand.primary'
+      bgColor='brand.secondaryLight'
     >
-      <Link to='/Dashboard'>
-        <IconButton icon={<House />} variant='nav' />
-      </Link>
-      <Link to='Lessons'>
-        <IconButton icon={<ClipboardText />} variant='nav' />
-      </Link>
-      <Link to='Challenges'>
-        <IconButton icon={<Guitar />} variant='nav' />
-      </Link>
-      <Link to='Explore'>
-        <IconButton icon={<Globe />} variant='nav' />
-      </Link>
-      <Link to='Profile'>
-        <IconButton icon={<User />} variant='nav' />
-      </Link>
+      {NavData.map((item) => (
+        <Link key={item.id} to={item.path} onClick={() => setActive(item)}>
+          <IconButton
+            icon={item.icon}
+            variant={active === item ? 'activeNav' : 'nav'}
+          />
+        </Link>
+      ))}
     </Flex>
   );
 }

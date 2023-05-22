@@ -19,6 +19,7 @@ export default function HamburgerMenu() {
           aria-label='Open Menu'
           size='lg'
           icon={<List />}
+          variant='hamburger'
           onClick={onToggle}
         />
       </Flex>
