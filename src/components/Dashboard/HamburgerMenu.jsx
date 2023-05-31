@@ -40,7 +40,7 @@ export default function HamburgerMenu() {
           flexDirection='column'
           py={20}
           position='relative'
-          bgColor='brand.lightGrey'
+          bgColor='brand.lightGray'
           _before={{
             content: `''`,
             bgImage: `${Background}`,

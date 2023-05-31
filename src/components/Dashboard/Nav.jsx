@@ -14,7 +14,7 @@ export default function Nav() {
       width='100%'
       justifyContent='space-evenly'
       pb={7}
-      bgColor='brand.secondaryLight'
+      bgColor='brand.darkGray'
     >
       {NavData.map((item) => (
         <NavLink

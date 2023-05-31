@@ -11,12 +11,16 @@ export const theme = extendTheme({
     brand: {
       primary: '#8656CD',
       primaryLight: '#B199D5',
+      primaryLightMuted: '#E3D1FF',
       primaryDark: '#644099',
+      primaryGrayscale: '#F2EBFF',
       secondary: '#00C996',
       secondaryLight: '#3FD2AE',
+      secondaryLightMuted: '#82D9C3',
       secondaryDark: '#009671',
-      lightGrey: '#D9D9D9',
-      darkGrey: '#454545',
+      secondaryGrayscale: '#E6FFF9',
+      lightGray: '#D9D9D9',
+      darkGray: '#454545',
     },
   },
   fonts: {

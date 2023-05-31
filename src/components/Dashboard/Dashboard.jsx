@@ -1,11 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
-import Challenges from './Challenges';
-import Explore from './Explore';
-import Home from './Home';
-import Lessons from './Lessons';
 import Nav from './Nav';
-import Profile from './Profile';
+import { Pages } from './Pages/Pages';
 
 import Background from '../../images/Background2.png';
 
@@ -20,11 +16,9 @@ export default function Dashboard() {
       bgSize='cover'
     >
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='Lessons' element={<Lessons />} />
-        <Route path='Challenges' element={<Challenges />} />
-        <Route path='Explore' element={<Explore />} />
-        <Route path='Profile' element={<Profile />} />
+        {Pages.map((page) => (
+          <Route key={page.path} path={page.path} element={page.element} />
+        ))}
       </Routes>
 
       <Flex height='100vh' alignItems='end'>

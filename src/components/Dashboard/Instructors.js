@@ -1,0 +1,98 @@
+export const Instructors = [
+  {
+    name: 'Alberto Bigoni',
+    image: 'images/Avatars/alberto-bigoni-7-bK8ueaU88-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Metal, Rock',
+  },
+  {
+    name: 'Alex Blajan',
+    image: 'images/Avatars/alex-blajan-QQgynUCd45I-unsplash.jpg',
+    level: 'Easy, Intermediate',
+    style: 'Fingerstyle, Bluegrass, Country',
+  },
+  {
+    name: 'Alexander Hipp',
+    image: '../../images/Avatars/alexander-hipp-iEEBWgY_6lA-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Metal, Rock',
+  },
+  {
+    name: 'Alexander Krivitskiy',
+    image: '../../images/Avatars/alexander-krivitskiy-1-KWZCuxbF0-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Metal, Rock',
+  },
+  {
+    name: 'Brianna Fairhurst',
+    image: '../../images/Avatars/brianna-fairhurst-FMQ68kgZFfQ-unsplash.jpg',
+    level: 'Easy, Intermediate',
+    style: 'Metal, Rock',
+  },
+  {
+    name: 'Caleb Shaver',
+    image: '../../images/Avatars/caleb-shaver-ovJJZc0NUcE-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Blues, Fingerstyle, Folk, Jazz, Bluegrass, Country',
+  },
+  {
+    name: 'Diego Ornelas',
+    image: '../../images/Avatars/diego-ornelas-tapia-KazZtMYsPGs-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Metal',
+  },
+  {
+    name: 'Hailey Reed',
+    image: '../../images/Avatars/hailey-reed-31_TLC92A4U-unsplash.jpg',
+    level: 'Easy, Intermediate',
+    style: 'Fusion, Funk, Pop',
+  },
+  {
+    name: 'Isaac Macdonald',
+    image: '../../images/Avatars/isaac-macdonald-ACQXBGDiRo0-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Fusion, Funk',
+  },
+  {
+    name: 'Josiah Weiss',
+    image: '../../images/Avatars/josiah-weiss-vV87bMVdk04-unsplash.jpg',
+    level: 'Easy, Intermediate',
+    style: 'Rock, Reggae, Pop',
+  },
+  {
+    name: 'Jyotirmoy Gupta',
+    image: '../../images/Avatars/jyotirmoy-gupta-4SBxuJ9VH6s-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Fingerstyle, Reggae',
+  },
+  {
+    name: 'Kenny Eliason',
+    image: '../../images/Avatars/kenny-eliason-P4gXe-RsEXI-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Metal, Rock',
+  },
+  {
+    name: 'Leonardo Zorzi',
+    image: '../../images/Avatars/leonardo-zorzi-vVtkT4ny8hM-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Fingerstyle, Blues, Jazz',
+  },
+  {
+    name: 'Muhammad Renaldi',
+    image: '../../images/Avatars/muhammad-renaldi-kczL2FRinBA-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Fingerstyle, Jazz, Fusion',
+  },
+  {
+    name: 'Radu Florin',
+    image: '../../images/Avatars/radu-florin-V8H6hXhmoqI-unsplash.jpg',
+    level: 'Easy, Intermediate, Expert',
+    style: 'Fingerstyle, Folk, Bluegrass, Country',
+  },
+  {
+    name: 'Roihan Haidar',
+    image: '../../images/Avatars/roihan-haidar-NP2WA90FdP8-unsplash.jpg',
+    level: 'Easy, Intermediate',
+    style: 'Blues, Country',
+  },
+];

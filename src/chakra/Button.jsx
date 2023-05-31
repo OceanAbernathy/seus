@@ -23,7 +23,7 @@ export const Button = defineStyleConfig({
       fontWeight: 'semibold',
     },
     solid3: {
-      bgColor: 'brand.lightGrey',
+      bgColor: 'brand.lightGray',
       color: 'black',
       fontSize: '2xl',
       fontWeight: 'semibold',
@@ -41,25 +41,24 @@ export const Button = defineStyleConfig({
       bgColor: 'brand.primary',
     },
     hamburger: {
-      bgColor: 'brand.lightGrey',
+      bgColor: 'brand.secondary',
       fontSize: '2xl',
     },
     nav: {
       height: '80px',
       borderTopRadius: '0',
-      color: 'white',
       fontSize: '3xl',
+      color: 'white',
       py: '25px',
       px: '10px',
     },
     activeNav: {
       height: '80px',
       borderTopRadius: '0',
-      color: 'white',
       fontSize: '3xl',
       py: '25px',
       px: '10px',
-      bgColor: 'brand.primary',
+      bgColor: 'brand.secondary',
     },
   },
   defaultProps: {

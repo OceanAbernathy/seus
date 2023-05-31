@@ -9,7 +9,7 @@ const baseStyle = definePartsStyle({
     display: 'none',
   },
   container: {
-    bgColor: 'brand.lightGrey',
+    bgColor: 'brand.lightGray',
     rounded: 'full',
     width: '100%',
     justifyContent: 'center',
@@ -23,7 +23,7 @@ const baseStyle = definePartsStyle({
 
 const unSelected = definePartsStyle({
   container: {
-    bgColor: 'brand.lightGrey',
+    bgColor: 'brand.lightGray',
   },
   label: defineStyle({
     color: 'black',
