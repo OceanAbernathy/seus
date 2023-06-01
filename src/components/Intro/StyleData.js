@@ -4,7 +4,7 @@ export const StyleData = [
     id: '0',
   },
   {
-    type: 'Fingerstyle',
+    type: 'Classical',
     id: '1',
   },
   {

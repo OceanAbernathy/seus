@@ -4,6 +4,7 @@ import { extendTheme } from '@chakra-ui/react';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Checkbox } from './Checkbox';
+import { Tag } from './Tag';
 
 // 2. Call `extendTheme` and pass your custom values
 export const theme = extendTheme({
@@ -92,5 +93,6 @@ export const theme = extendTheme({
     Button,
     Input,
     Checkbox: Checkbox,
+    Tag,
   },
 });
