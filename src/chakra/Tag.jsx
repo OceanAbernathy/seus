@@ -15,6 +15,7 @@ export const Tag = defineStyleConfig({
     container: {
       fontSize: '11px',
       bgColor: { getBackgroundColor },
+      color: 'black',
     },
   },
 
