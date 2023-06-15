@@ -1,11 +1,11 @@
 export function getLevelBackgroundColor(type) {
-  if (type === 'Easy') {
-    return 'yellow.200';
+  if (type === 'Beginner') {
+    return 'green.300';
   }
   if (type === 'Intermediate') {
-    return 'orange.300';
+    return 'yellow.200';
   }
-  return 'red.300';
+  return 'red.200';
 }
 
 export function getStyleBackgroundColor(type) {

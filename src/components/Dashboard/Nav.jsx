@@ -1,7 +1,7 @@
 import { Flex, IconButton } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Context } from '../../Context';
+import { Context } from '../../Helper/Context';
 import HamburgerMenu from './HamburgerMenu';
 import { NavData } from './NavData';
 

@@ -42,7 +42,7 @@ export default function SignIn() {
 
       <Flex flexDirection='column' m='0 25px' gap='60px'>
         <Flex flexDirection='column' align='center' gap='20px'>
-          <Link to='/'>
+          <Link to='/Dashboard'>
             <Button
               variant='solid2'
               width='340px'

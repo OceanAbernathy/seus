@@ -8,7 +8,7 @@ import {
 import { List, X } from '@phosphor-icons/react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../../Context';
+import { Context } from '../../Helper/Context';
 import Background from '../../images/Background2.png';
 import { NavData } from './NavData';
 
