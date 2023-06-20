@@ -6,10 +6,11 @@ import {
   SimpleGrid,
   GridItem,
   Icon,
+  Tag,
 } from '@chakra-ui/react';
-import { Users } from '../Users';
+import { Users } from '../UsersData';
 import { auth } from '../../../config/firebase';
-import { getLevelBackgroundColor } from './TagStyles';
+import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
 import { BookOpenText, Star } from '@phosphor-icons/react';
 
 export default function Home() {
@@ -33,17 +34,17 @@ export default function Home() {
         gap={3}
       >
         <Flex flexDirection='column' bgColor='blackAlpha.300' py={2} px={3}>
-          <Flex alignItems='center' gap={1}>
+          <Flex alignItems='center' gap={2} mb={1} pt={2} pb={3}>
             <Icon
-              boxSize={10}
+              boxSize={8}
               as={BookOpenText}
               color='brand.primary'
               weight='bold'
               bgColor='whiteAlpha.600'
               borderRadius='full'
-              p='6px'
+              p='5px'
             />
-            <Text fontWeight='semibold' fontSize='3xl' my={1}>
+            <Text fontWeight='semibold' fontSize='2xl'>
               Your Lessons
             </Text>
           </Flex>
@@ -68,15 +69,27 @@ export default function Home() {
                     <Text ml={1} fontWeight='semibold' noOfLines={1}>
                       {lesson.title}
                     </Text>
-                    <Text
-                      width='fit-content'
-                      fontSize='sm'
-                      borderRadius='lg'
-                      px={1}
-                      bgColor={getLevelBackgroundColor(lesson.level)}
-                    >
-                      {lesson.level}
-                    </Text>
+                    <Flex flexWrap='wrap' width='150px' pr={1}>
+                      <Flex noOfLines={1}>
+                        <Tag
+                          size='sm'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          mr={1}
+                        >
+                          {lesson.level}
+                        </Tag>
+                        {lesson.style.map((item, index) => (
+                          <Tag
+                            key={index}
+                            size='sm'
+                            bgColor={getStyleBackgroundColor(item)}
+                            mr={1}
+                          >
+                            {item}
+                          </Tag>
+                        ))}
+                      </Flex>
+                    </Flex>
                     <Text ml={1} noOfLines={2}>
                       {lesson.description}
                     </Text>
@@ -95,17 +108,17 @@ export default function Home() {
           ))}
         </Flex>
         <Flex flexDirection='column' bgColor='blackAlpha.300' py={2} px={3}>
-          <Flex alignItems='center' gap={1}>
+          <Flex alignItems='center' gap={2} mb={1} pt={2} pb={3}>
             <Icon
-              boxSize={10}
+              boxSize={8}
               as={Star}
               color='goldenrod'
               weight='fill'
               bgColor='whiteAlpha.600'
               borderRadius='full'
-              p='6px'
+              p='5px'
             />
-            <Text fontWeight='semibold' fontSize='3xl' my={1}>
+            <Text fontWeight='semibold' fontSize='2xl' my={1}>
               Your Achievements
             </Text>
           </Flex>
@@ -122,15 +135,13 @@ export default function Home() {
                     <Text ml={1} fontWeight='semibold' noOfLines={1}>
                       {item.title}
                     </Text>
-                    <Text
-                      width='fit-content'
-                      fontSize='sm'
-                      borderRadius='lg'
-                      px={1}
+                    <Tag
+                      size='sm'
                       bgColor={getLevelBackgroundColor(item.level)}
+                      width='fit-content'
                     >
                       {item.level}
-                    </Text>
+                    </Tag>
                     <Text ml={1} noOfLines={2}>
                       {item.description}
                     </Text>

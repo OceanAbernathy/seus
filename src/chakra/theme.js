@@ -22,6 +22,9 @@ export const theme = extendTheme({
       secondaryGrayscale: '#E6FFF9',
       lightGray: '#D9D9D9',
       darkGray: '#454545',
+      beginner: '#b5da9e',
+      intermediate: '#faaa5c',
+      advanced: '#f15f5a',
     },
   },
   fonts: {

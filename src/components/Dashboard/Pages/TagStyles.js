@@ -1,11 +1,11 @@
 export function getLevelBackgroundColor(type) {
   if (type === 'Beginner') {
-    return 'green.300';
+    return 'green.200';
   }
   if (type === 'Intermediate') {
-    return 'yellow.200';
+    return 'orange.300';
   }
-  return 'red.200';
+  return 'red.400';
 }
 
 export function getStyleBackgroundColor(type) {
@@ -13,7 +13,7 @@ export function getStyleBackgroundColor(type) {
     return 'blue.300';
   }
   if (type === 'Classical') {
-    return 'gray.300';
+    return 'gray.400';
   }
   if (type === 'Metal') {
     return 'gray.500';
@@ -45,5 +45,5 @@ export function getStyleBackgroundColor(type) {
   if (type === 'Pop') {
     return 'pink.300';
   }
-  return 'gray.300';
+  return 'gray.400';
 }
