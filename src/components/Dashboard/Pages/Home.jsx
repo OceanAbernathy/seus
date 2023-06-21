@@ -11,7 +11,8 @@ import {
 import { Users } from '../UsersData';
 import { auth } from '../../../config/firebase';
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
-import { BookOpenText, Star } from '@phosphor-icons/react';
+import { BookOpenText, CaretDown, Star } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -50,7 +51,7 @@ export default function Home() {
           </Flex>
           {Users.map((user, index) => (
             <Flex key={index} flexDirection='column'>
-              {user.lessons.map((lesson, index) => (
+              {user.lessons.slice(0, 2).map((lesson, index) => (
                 <Flex
                   key={index}
                   my={1}
@@ -104,6 +105,28 @@ export default function Home() {
                   </Flex>
                 </Flex>
               ))}
+              <Flex
+                alignItems='center'
+                flexDirection='column'
+                gap={0}
+                position='relative'
+                pt={1}
+                pb={3}
+              >
+                <Link to='./Lessons'>
+                  <Text fontSize='sm'>Show More</Text>
+
+                  <Icon
+                    as={CaretDown}
+                    color='brand.darkGray'
+                    boxSize={4}
+                    position='absolute'
+                    left='50%'
+                    top='5'
+                    transform='translate(-50%)'
+                  />
+                </Link>
+              </Flex>
             </Flex>
           ))}
         </Flex>

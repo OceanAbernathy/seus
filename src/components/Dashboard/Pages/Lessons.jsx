@@ -64,7 +64,7 @@ export default function Lessons() {
                     height='200px'
                     justifyContent='space-around'
                   >
-                    <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                    <Text ml={1} fontWeight='semibold'>
                       {lesson.title}
                     </Text>
                     <Flex flexWrap='wrap' width='150px' pr={1} gap={1}>
