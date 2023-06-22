@@ -4,8 +4,10 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Avatar,
   Divider,
   Flex,
+  Icon,
   Image,
   Tag,
   Text,
@@ -32,11 +34,37 @@ import ReggaeLogo from '../../../images/Icons/Reggae.png';
 import FusionLogo from '../../../images/Icons/Fusion.png';
 import FunkLogo from '../../../images/Icons/Funk.png';
 import PopLogo from '../../../images/Icons/Pop.png';
+import Slider from 'react-slick';
+import { Instructors } from '../InstructorsData';
+import { Ruler } from '@phosphor-icons/react';
 
 export default function Explore() {
+  const settings = {
+    arrows: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    speed: 500,
+    slidesToShow: 1.5,
+    slidesToScroll: 1,
+  };
+
   return (
     <Flex height='100vh' flexDirection='column'>
-      <Flex pt={9} pb={7} justifyContent='center' bgColor='brand.darkGray'>
+      <Flex
+        pt={9}
+        pb={7}
+        justifyContent='center'
+        bgColor='brand.darkGray'
+        position='relative'
+      >
+        <Avatar
+          position='absolute'
+          left={4}
+          name='Ocean Abernathy'
+          bgColor='brand.lightGray'
+          color='brand.primary'
+        />
         <Text fontSize='3xl' fontWeight='medium' color='white'>
           Explore
         </Text>
@@ -290,6 +318,123 @@ export default function Explore() {
               <Divider borderWidth='2px' />
             </Flex>
 
+            {/* INSTRUCTORS */}
+
+            <AccordionItem
+              flexDirection='column'
+              bgColor='blackAlpha.300'
+              py={2}
+              border='none'
+            >
+              <AccordionButton gap={3} px={7}>
+                <Icon
+                  as={Ruler}
+                  boxSize={8}
+                  weight='bold'
+                  bgColor='whiteAlpha.600'
+                  color='brand.primary'
+                  borderRadius='full'
+                  p='4px'
+                  ml='5px'
+                />
+                <Text
+                  flex='1'
+                  textAlign='left'
+                  fontWeight='semibold'
+                  fontSize='2xl'
+                >
+                  Instructors
+                </Text>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel px={6}>
+                <Slider {...settings}>
+                  {Instructors.map((user, index) => (
+                    <Flex key={index}>
+                      <Flex
+                        flexDirection='column'
+                        bgColor='rgba(225, 225, 225, .4)'
+                        boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px'
+                        pt={2}
+                        pb={1}
+                        mx={28}
+                        width='170px'
+                        alignItems='center'
+                      >
+                        <Flex position='relative' height='200px' width='150px'>
+                          <Flex
+                            bgGradient='linear(to-t, rgba(0, 0, 0, .8), transparent)'
+                            position='absolute'
+                            bottom='0'
+                            left='0'
+                            width='150px'
+                            px={2}
+                            zIndex={2}
+                            flexDirection='column'
+                          >
+                            <Flex
+                              width='150px'
+                              pr={1}
+                              py={1}
+                              gap={1}
+                              flexWrap='wrap'
+                            >
+                              {user.level.map((type, index) => (
+                                <Tag
+                                  key={index}
+                                  size='sm'
+                                  bgColor={getLevelBackgroundColor(type)}
+                                >
+                                  {type === 'Intermediate' ? 'Inter.' : type}
+                                </Tag>
+                              ))}
+                            </Flex>
+                            <Flex
+                              flexWrap='wrap'
+                              width='150px'
+                              pr={1}
+                              pb={2}
+                              gap={1}
+                            >
+                              {user.style.map((type, index) => (
+                                <Tag
+                                  key={index}
+                                  size='sm'
+                                  bgColor={getStyleBackgroundColor(type)}
+                                >
+                                  {type}
+                                </Tag>
+                              ))}
+                            </Flex>
+                          </Flex>
+
+                          <Image
+                            src={user.image}
+                            width='150px'
+                            height='200px'
+                            objectPosition='bottom'
+                            objectFit='cover'
+                            position='absolute'
+                            top='0'
+                            left='0'
+                            right='0'
+                            bottom='0'
+                          />
+                        </Flex>
+                        <Text fontSize='md' fontWeight='semibold'>
+                          {user.name}
+                        </Text>
+                      </Flex>
+                    </Flex>
+                  ))}
+                </Slider>
+              </AccordionPanel>
+            </AccordionItem>
+
+            <Flex py={1}>
+              <Divider borderWidth='2px' />
+            </Flex>
+
             {/* BLUES */}
 
             <AccordionItem
@@ -305,8 +450,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -393,8 +536,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -481,8 +622,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -569,8 +708,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -657,8 +794,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -745,8 +880,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -833,8 +966,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -921,8 +1052,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -1009,8 +1138,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -1097,8 +1224,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -1185,8 +1310,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'
@@ -1273,8 +1396,6 @@ export default function Explore() {
                   boxSize={8}
                   weight='fill'
                   bgColor='whiteAlpha.600'
-                  stroke='red'
-                  fill='red'
                   borderRadius='full'
                   p='4px'
                   ml='5px'

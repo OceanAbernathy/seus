@@ -7,6 +7,7 @@ import {
   GridItem,
   Icon,
   Tag,
+  Avatar,
 } from '@chakra-ui/react';
 import { Users } from '../UsersData';
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
@@ -15,7 +16,20 @@ import { BookOpenText } from '@phosphor-icons/react';
 export default function Lessons() {
   return (
     <Flex height='100vh' flexDirection='column'>
-      <Flex pt={9} pb={7} justifyContent='center' bgColor='brand.darkGray'>
+      <Flex
+        pt={9}
+        pb={7}
+        justifyContent='center'
+        bgColor='brand.darkGray'
+        position='relative'
+      >
+        <Avatar
+          position='absolute'
+          left={4}
+          name='Ocean Abernathy'
+          bgColor='brand.lightGray'
+          color='brand.primary'
+        />
         <Text fontSize='3xl' fontWeight='medium' color='white'>
           Lessons
         </Text>

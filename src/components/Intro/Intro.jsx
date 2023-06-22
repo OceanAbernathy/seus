@@ -1,7 +1,8 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Icon, Image, Text } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SliderData as slides } from './SliderData';
+import { ArrowRight } from '@phosphor-icons/react';
 
 export default function Intro() {
   const [current, setCurrent] = useState(0);
@@ -59,8 +60,8 @@ export default function Intro() {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {slides.map((slide, index) => {
-        return (
+      {slides.map((slide, index) =>
+        index <= 1 ? (
           <Flex key={index}>
             {index === current && (
               <Flex
@@ -68,8 +69,8 @@ export default function Intro() {
                 w='100vw'
                 justifyContent='center'
                 alignItems='center'
-                gap='75'
-                mt='70'
+                gap={75}
+                mt={42}
               >
                 <Image src={slide.image} w='max-content' h='auto' />
                 <Flex
@@ -83,7 +84,7 @@ export default function Intro() {
                     {slide.description}
                   </Text>
                 </Flex>
-                <Flex gap='25'>
+                <Flex gap={25}>
                   {slides.map((slide, index) => (
                     <Box
                       key={index}
@@ -101,8 +102,64 @@ export default function Intro() {
               </Flex>
             )}
           </Flex>
-        );
-      })}
+        ) : (
+          <Flex key={index}>
+            {index === current && (
+              <Flex
+                flexDirection='column'
+                w='100vw'
+                justifyContent='center'
+                alignItems='center'
+                gap={75}
+                mt={42}
+              >
+                <Image src={slide.image} w='max-content' h='auto' />
+                <Flex
+                  flexDirection='column'
+                  alignItems='center'
+                  px='30'
+                  gap='5'
+                >
+                  <Text fontSize='3xl'>{slide.heading}</Text>
+                  <Text fontSize='md' fontWeight='medium' px='30px'>
+                    {slide.description}
+                  </Text>
+                </Flex>
+                <Flex gap={25} position='relative'>
+                  {slides.map((slide, index) => (
+                    <Box
+                      key={index}
+                      onClick={() => moveDot(index)}
+                      w='20px'
+                      h='20px'
+                      bgColor='brand.primary'
+                      opacity={current === index ? '1' : '.5'}
+                      shadow={current === index ? 'base' : 'none'}
+                      borderRadius='full'
+                      filter='drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25))'
+                    />
+                  ))}
+                  <Flex
+                    position='absolute'
+                    bottom={-10}
+                    left='50%'
+                    transform='translate(-50%)'
+                  >
+                    <Link to='/PickYourLevel'>
+                      <Flex alignItems='center'>
+                        <Text fontWeight='medium' mr={1}>
+                          Next
+                        </Text>
+                        <Icon mt='1px' as={ArrowRight} />
+                      </Flex>
+                    </Link>
+                  </Flex>
+                </Flex>
+              </Flex>
+            )}
+          </Flex>
+        )
+      )}
     </Flex>
   );
 }

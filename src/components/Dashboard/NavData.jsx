@@ -1,10 +1,4 @@
-import {
-  ClipboardText,
-  Globe,
-  Guitar,
-  House,
-  User,
-} from '@phosphor-icons/react';
+import { ClipboardText, Globe, House, User } from '@phosphor-icons/react';
 
 export const NavData = [
   {
@@ -21,18 +15,12 @@ export const NavData = [
   },
   {
     id: 3,
-    label: 'Challenges',
-    path: 'Challenges',
-    icon: <Guitar />,
-  },
-  {
-    id: 4,
     label: 'Explore',
     path: 'Explore',
     icon: <Globe />,
   },
   {
-    id: 5,
+    id: 4,
     label: 'Profile',
     path: 'Profile',
     icon: <User />,

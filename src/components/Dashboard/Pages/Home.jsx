@@ -7,6 +7,7 @@ import {
   GridItem,
   Icon,
   Tag,
+  Avatar,
 } from '@chakra-ui/react';
 import { Users } from '../UsersData';
 import { auth } from '../../../config/firebase';
@@ -17,7 +18,20 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <Flex height='100vh' flexDirection='column'>
-      <Flex pt={9} pb={7} justifyContent='center' bgColor='brand.darkGray'>
+      <Flex
+        pt={9}
+        pb={7}
+        justifyContent='center'
+        bgColor='brand.darkGray'
+        position='relative'
+      >
+        <Avatar
+          position='absolute'
+          left={4}
+          name='Ocean Abernathy'
+          bgColor='brand.lightGray'
+          color='brand.primary'
+        />
         <Text fontSize='3xl' fontWeight='medium' color='white'>
           Dashboard
         </Text>
@@ -105,26 +119,11 @@ export default function Home() {
                   </Flex>
                 </Flex>
               ))}
-              <Flex
-                alignItems='center'
-                flexDirection='column'
-                gap={0}
-                position='relative'
-                pt={1}
-                pb={3}
-              >
+              <Flex alignItems='center' flexDirection='column' mb={1} mt={2}>
                 <Link to='./Lessons'>
-                  <Text fontSize='sm'>Show More</Text>
-
-                  <Icon
-                    as={CaretDown}
-                    color='brand.darkGray'
-                    boxSize={4}
-                    position='absolute'
-                    left='50%'
-                    top='5'
-                    transform='translate(-50%)'
-                  />
+                  <Text fontSize='sm' fontWeight='medium'>
+                    Show More
+                  </Text>
                 </Link>
               </Flex>
             </Flex>
