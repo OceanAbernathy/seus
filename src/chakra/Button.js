@@ -60,6 +60,11 @@ export const Button = defineStyleConfig({
       px: '10px',
       bgColor: 'brand.secondary',
     },
+    profileEdit: {
+      color: 'brand.darkGray',
+      bgColor: 'brand.lightGray',
+      filter: 'drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25))',
+    },
   },
   defaultProps: {
     variant: 'solid1',

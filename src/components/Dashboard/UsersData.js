@@ -1,8 +1,7 @@
 export const Users = [
   {
     personalInfo: {
-      firstName: 'Ocean',
-      lastName: 'Abernathy',
+      fullName: 'Ocean Abernathy',
     },
     preferences: {
       level: 2,

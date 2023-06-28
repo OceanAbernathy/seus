@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Icon, Image, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SliderData as slides } from './SliderData';
@@ -141,17 +141,26 @@ export default function Intro() {
                   ))}
                   <Flex
                     position='absolute'
-                    bottom={-10}
+                    bottom='-20px'
                     left='50%'
                     transform='translate(-50%)'
                   >
                     <Link to='/PickYourLevel'>
-                      <Flex alignItems='center'>
-                        <Text fontWeight='medium' mr={1}>
-                          Next
-                        </Text>
-                        <Icon mt='1px' as={ArrowRight} />
-                      </Flex>
+                      <Button
+                        bgColor='brand.secondary'
+                        color='brand.darkGray'
+                        fontSize='lg'
+                        fontWeight='semibold'
+                        p={6}
+                      >
+                        <Text>Next</Text>
+                        <Icon
+                          boxSize={5}
+                          ml={1}
+                          as={ArrowRight}
+                          weight='bold'
+                        />
+                      </Button>
                     </Link>
                   </Flex>
                 </Flex>

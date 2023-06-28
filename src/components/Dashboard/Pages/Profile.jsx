@@ -1,4 +1,12 @@
-import { Avatar, Flex, Icon, Image, Text } from '@chakra-ui/react';
+import {
+  Avatar,
+  Button,
+  Flex,
+  Icon,
+  IconButton,
+  Image,
+  Text,
+} from '@chakra-ui/react';
 import { Auth } from '../../auth';
 import { db } from '../../../config/firebase';
 import { useEffect, useState } from 'react';
@@ -6,7 +14,9 @@ import { doc, getDocs, collection, updateDoc } from 'firebase/firestore';
 import { auth } from '../../../config/firebase';
 
 import ProfileBackground from '../../../images/ProfileBackground.png';
-import { User } from '@phosphor-icons/react';
+
+import { Users } from '../UsersData';
+import { Check, PencilLine, X } from '@phosphor-icons/react';
 
 export default function Profile() {
   // const [userList, setUserList] = useState([]);
@@ -36,6 +46,12 @@ export default function Profile() {
   //   await updateDoc(nameDoc, { name: updatedName });
   // };
 
+  const [editing, setEditing] = useState(false);
+
+  const handleClick = () => {
+    setEditing(!editing);
+  };
+
   return (
     <Flex height='100vh' flexDirection='column'>
       <Flex
@@ -56,6 +72,7 @@ export default function Profile() {
           Profile
         </Text>
       </Flex>
+
       {/* <Text fontSize='2xl' color='green'>
         {auth?.currentUser?.email}
       </Text> */}
@@ -73,6 +90,7 @@ export default function Profile() {
           </div>
         ))}
       </div> */}
+
       <Flex flexDirection='column' overflow='scroll' height='82.5%'>
         <Flex position='relative'>
           <Image src={ProfileBackground} objectFit='cover' />
@@ -87,7 +105,62 @@ export default function Profile() {
             left='50%'
             transform='translate(-50%)'
           />
+          <Button
+            onClick={handleClick}
+            width='fit-content'
+            alignSelf='end'
+            position='absolute'
+            top='5'
+            right='5'
+            p={3}
+            gap={1}
+            variant='profileEdit'
+            display={editing ? 'none' : 'flex'}
+          >
+            <Text fontSize='sm' letterSpacing='normal'>
+              Edit
+            </Text>
+            <Icon weight='fill' boxSize={3} as={PencilLine} />
+          </Button>
         </Flex>
+
+        {editing ? (
+          <Flex flexDirection='column'>
+            <Text>Editing</Text>
+            <Flex>
+              <Button
+                onClick={handleClick}
+                width='fit-content'
+                p={3}
+                gap={1}
+                variant='profileEdit'
+                display={!editing ? 'none' : 'flex'}
+              >
+                <Text fontSize='sm' letterSpacing='normal'>
+                  Cancel
+                </Text>
+                <Icon weight='bold' boxSize={3} as={X} />
+              </Button>
+              <Button
+                onClick={handleClick}
+                width='fit-content'
+                p={3}
+                gap={1}
+                variant='profileEdit'
+                display={!editing ? 'none' : 'flex'}
+              >
+                <Text fontSize='sm' letterSpacing='normal'>
+                  Save
+                </Text>
+                <Icon weight='bold' boxSize={3} as={Check} />
+              </Button>
+            </Flex>
+          </Flex>
+        ) : (
+          <Flex flexDirection='column' width='100%'>
+            <Text>Normal</Text>
+          </Flex>
+        )}
       </Flex>
     </Flex>
   );
