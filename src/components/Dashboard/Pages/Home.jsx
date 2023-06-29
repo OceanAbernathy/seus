@@ -12,7 +12,7 @@ import {
 import { Users } from '../UsersData';
 import { auth } from '../../../config/firebase';
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
-import { BookOpenText, CaretDown, Star } from '@phosphor-icons/react';
+import { BookOpenText, Star } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -25,13 +25,13 @@ export default function Home() {
         bgColor='brand.darkGray'
         position='relative'
       >
-        <Avatar
+        {/* <Avatar
           position='absolute'
           left={4}
           name='Ocean Abernathy'
           bgColor='brand.lightGray'
           color='brand.primary'
-        />
+        /> */}
         <Text fontSize='3xl' fontWeight='medium' color='white'>
           Dashboard
         </Text>

@@ -7,6 +7,7 @@ import { Checkbox } from './Checkbox';
 import { Tag } from './Tag';
 import { Radio } from './Radio';
 import { FormLabel } from './FormLabel';
+import { Avatar } from './Avatar';
 
 // 2. Call `extendTheme` and pass your custom values
 export const theme = extendTheme({
@@ -102,5 +103,6 @@ export const theme = extendTheme({
     Tag,
     Radio: Radio,
     FormLabel,
+    Avatar,
   },
 });

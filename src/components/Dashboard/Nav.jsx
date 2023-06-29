@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Context } from '../../Helper/Context';
 import HamburgerMenu from './HamburgerMenu';
 import { NavData } from './NavData';
+import AvatarMenu from './AvatarMenu';
 
 export default function Nav() {
   const { setItems } = useContext(Context);
@@ -32,6 +33,7 @@ export default function Nav() {
           )}
         </NavLink>
       ))}
+      <AvatarMenu />
       <HamburgerMenu />
     </Flex>
   );

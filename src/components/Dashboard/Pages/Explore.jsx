@@ -58,13 +58,13 @@ export default function Explore() {
         bgColor='brand.darkGray'
         position='relative'
       >
-        <Avatar
+        {/* <Avatar
           position='absolute'
           left={4}
           name='Ocean Abernathy'
           bgColor='brand.lightGray'
           color='brand.primary'
-        />
+        /> */}
         <Text fontSize='3xl' fontWeight='medium' color='white'>
           Explore
         </Text>
