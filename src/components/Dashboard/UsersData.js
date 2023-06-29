@@ -4,7 +4,7 @@ export const Users = [
       fullName: 'Ocean Abernathy',
     },
     preferences: {
-      level: 2,
+      level: 'Intermediate',
       style: ['Rock', 'Metal'],
     },
     lessons: [

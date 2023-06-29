@@ -21,7 +21,7 @@ export default function Dashboard() {
         ))}
       </Routes>
 
-      <Flex height='100vh' alignItems='end'>
+      <Flex alignItems='end'>
         <Nav />
       </Flex>
     </Flex>

@@ -5,6 +5,8 @@ import { Button } from './Button';
 import { Input } from './Input';
 import { Checkbox } from './Checkbox';
 import { Tag } from './Tag';
+import { Radio } from './Radio';
+import { FormLabel } from './FormLabel';
 
 // 2. Call `extendTheme` and pass your custom values
 export const theme = extendTheme({
@@ -21,6 +23,7 @@ export const theme = extendTheme({
       secondaryDark: '#009671',
       secondaryGrayscale: '#E6FFF9',
       lightGray: '#D9D9D9',
+      mediumGray: '#8A8A8A',
       darkGray: '#454545',
       beginner: '#b5da9e',
       intermediate: '#faaa5c',
@@ -97,5 +100,7 @@ export const theme = extendTheme({
     Input,
     Checkbox: Checkbox,
     Tag,
+    Radio: Radio,
+    FormLabel,
   },
 });

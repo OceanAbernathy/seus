@@ -5,9 +5,6 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(checkboxAnatomy.keys);
 
 const baseStyle = definePartsStyle({
-  control: {
-    display: 'none',
-  },
   container: {
     bgColor: 'brand.lightGray',
     rounded: 'full',
@@ -22,6 +19,9 @@ const baseStyle = definePartsStyle({
 });
 
 const unSelected = definePartsStyle({
+  control: {
+    display: 'none',
+  },
   container: {
     bgColor: 'brand.lightGray',
   },
@@ -31,6 +31,9 @@ const unSelected = definePartsStyle({
 });
 
 const selected = definePartsStyle({
+  control: {
+    display: 'none',
+  },
   container: {
     bgColor: 'brand.primary',
   },
@@ -39,9 +42,39 @@ const selected = definePartsStyle({
   }),
 });
 
+const profile = definePartsStyle({
+  control: {
+    display: 'block',
+    _checked: { bgColor: 'brand.primary', borderColor: 'brand.primary' },
+    _disabled: {
+      bgColor: 'transparent',
+      borderColor: '#E2E8F0',
+      _checked: {
+        color: 'white',
+        bgColor: 'brand.primary',
+        borderColor: 'brand.primary',
+      },
+    },
+  },
+  icon: {
+    //happens after fade
+    bgColor: 'brand.primary',
+  },
+  container: {
+    bgColor: 'none',
+    width: 'fit-content',
+  },
+  label: {
+    color: 'brand.darkGray',
+    fontWeight: 'normal',
+    padding: '0',
+    _disabled: { opacity: '1' },
+  },
+});
+
 export const Checkbox = defineMultiStyleConfig({
   baseStyle,
   unSelected,
   selected,
-  variants: { unSelected, selected },
+  variants: { unSelected, selected, profile },
 });

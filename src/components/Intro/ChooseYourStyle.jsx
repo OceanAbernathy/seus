@@ -59,7 +59,7 @@ export default function ChooseYourStyle() {
                 }
               }}
               variant={`${
-                checkedList.includes(item.type) ? 'selected' : 'unselected'
+                checkedList.includes(item.type) ? 'selected' : 'unSelected'
               }`}
             >
               <Text>{item.type}</Text>
