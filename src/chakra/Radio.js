@@ -22,7 +22,9 @@ const baseStyle = definePartsStyle({
     },
   },
   label: {
-    _disabled: { opacity: 1 },
+    _checked: {
+      _disabled: { opacity: 1 },
+    },
   },
 });
 

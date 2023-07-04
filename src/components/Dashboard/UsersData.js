@@ -35,7 +35,7 @@ export const Users = [
         title: 'Play Guitar Without A Pick',
         image: '/images/Acoustic1.png',
         level: 'Beginner',
-        style: ['Fingerstyle', 'Country'],
+        style: ['Country'],
         description:
           'Dolore non et irure aliqua eiusmod sint ipsum qui exercitation voluptate.',
         duration: '8:58',

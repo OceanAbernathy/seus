@@ -2,7 +2,8 @@ export const Lessons = [
   {
     id: '1',
     title: 'Power Rock Riffs For Beginners',
-    image: '/images/Strat.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FStrat.png?alt=media&token=144cb702-f07c-4966-bbca-9193541e545f',
     level: 'Beginner',
     style: ['Rock'],
     description:
@@ -12,7 +13,8 @@ export const Lessons = [
   {
     id: '2',
     title: 'Intermediate Arpeggiated Leads',
-    image: '/images/Explorer.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FExplorer.png?alt=media&token=21980f44-b3f3-45f9-a4c8-c89f015c0cd6',
     level: 'Intermediate',
     style: ['Metal'],
     description:
@@ -22,7 +24,8 @@ export const Lessons = [
   {
     id: '3',
     title: 'Hybrid Picking & Sweeping',
-    image: '/images/Explorer.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FExplorer.png?alt=media&token=21980f44-b3f3-45f9-a4c8-c89f015c0cd6',
     level: 'Advanced',
     style: ['Metal'],
     description:
@@ -32,7 +35,8 @@ export const Lessons = [
   {
     id: '4',
     title: 'Classical Rhythm For Beginners',
-    image: '/images/Acoustic1.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FAcoustic1.png?alt=media&token=9ebbb443-2101-456e-b16c-bd7ed08850b4',
     level: 'Beginner',
     style: ['Classical'],
     description:
@@ -42,7 +46,8 @@ export const Lessons = [
   {
     id: '5',
     title: "Chick'n Pick'n",
-    image: '/images/Acoustic2.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FAcoustic2.png?alt=media&token=6875e40e-66fc-42ea-b2db-5dc0e2ac97eb',
     level: 'Intermediate',
     style: ['Folk'],
     description:
@@ -52,7 +57,8 @@ export const Lessons = [
   {
     id: '6',
     title: 'Advanced Jazz Chords',
-    image: '/images/LesPaul.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FLesPaul.png?alt=media&token=3008d6f1-186d-49aa-922a-e7534590cf87',
     level: 'Advanced',
     style: ['Jazz'],
     description:
@@ -62,7 +68,8 @@ export const Lessons = [
   {
     id: '7',
     title: 'Blues Phrasing & Expression',
-    image: '/images/LesPaul.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FLesPaul.png?alt=media&token=3008d6f1-186d-49aa-922a-e7534590cf87',
     level: 'Intermediate',
     style: ['Blues'],
     description:
@@ -72,9 +79,10 @@ export const Lessons = [
   {
     id: '8',
     title: 'Play Guitar Without A Pick',
-    image: '/images/Acoustic1.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FAcoustic1.png?alt=media&token=9ebbb443-2101-456e-b16c-bd7ed08850b4',
     level: 'Beginner',
-    style: ['Fingerstyle', 'Country'],
+    style: ['Country'],
     description:
       'Dolore non et irure aliqua eiusmod sint ipsum qui exercitation voluptate.',
     duration: '8:58',
@@ -82,181 +90,120 @@ export const Lessons = [
   {
     id: '9',
     title: 'Essential Reggae Strumming Patters',
-    image: '/images/Strat.png',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FStrat.png?alt=media&token=144cb702-f07c-4966-bbca-9193541e545f',
     level: 'Beginner',
     style: ['Reggae'],
     description:
       'Enim amet fugiat excepteur sint adipisicing laboris laboris do consequat magna velit Lorem ea et.',
     duration: '6:34',
   },
-  // {
-  //   id: '10',
-  //   title: 'Hybrid Picking and Sweeping',
-  //   image: '/images/Explorer.png',
-  //   level: 'Advanced',
-  //   style: 'Metal',
-  //   description:
-  //     'In irure enim velit aute officia quis eiusmod cupidatat minim. Sit aliqua sit esse commodo voluptate non velit ipsum velit officia.',
-  //   duration: '12:28',
-  // },
-  // {
-  //   id: '11',
-  //   title: 'Power Rock Riffs for Beginners',
-  //   image: '/images/Strat.png',
-  //   level: 'Beginner',
-  //   style: 'Rock',
-  //   description:
-  //     'Non aute eiusmod veniam esse sunt. Fugiat adipisicing ut voluptate laborum fugiat labore adipisicing do.',
-  //   duration: '5:03',
-  // },
-  // {
-  //   id: '12',
-  //   title: 'Intermediate Arpeggiated Leads',
-  //   image: '/images/Explorer.png',
-  //   level: 'Intermediate',
-  //   style: 'Metal',
-  //   description:
-  //     'Consequat velit sint deserunt excepteur adipisicing sit anim aute veniam.',
-  //   duration: '8:14',
-  // },
-  // {
-  //   id: '13',
-  //   title: 'Hybrid Picking and Sweeping',
-  //   image: '/images/Explorer.png',
-  //   level: 'Advanced',
-  //   style: 'Metal',
-  //   description:
-  //     'In irure enim velit aute officia quis eiusmod cupidatat minim. Sit aliqua sit esse commodo voluptate non velit ipsum velit officia.',
-  //   duration: '12:28',
-  // },
-  // {
-  //   id: '14',
-  //   title: 'Power Rock Riffs for Beginners',
-  //   image: '/images/Strat.png',
-  //   level: 'Beginner',
-  //   style: 'Rock',
-  //   description:
-  //     'Non aute eiusmod veniam esse sunt. Fugiat adipisicing ut voluptate laborum fugiat labore adipisicing do.',
-  //   duration: '5:03',
-  // },
-  // {
-  //   id: '15',
-  //   title: 'Intermediate Arpeggiated Leads',
-  //   image: '/images/Explorer.png',
-  //   level: 'Intermediate',
-  //   style: 'Metal',
-  //   description:
-  //     'Consequat velit sint deserunt excepteur adipisicing sit anim aute veniam.',
-  //   duration: '8:14',
-  // },
-  // {
-  //   id: '16',
-  //   title: 'Hybrid Picking and Sweeping',
-  //   image: '/images/Explorer.png',
-  //   level: 'Advanced',
-  //   style: 'Metal',
-  //   description:
-  //     'In irure enim velit aute officia quis eiusmod cupidatat minim. Sit aliqua sit esse commodo voluptate non velit ipsum velit officia.',
-  //   duration: '12:28',
-  // },
-  // {
-  //   id: '17',
-  //   title: 'Power Rock Riffs for Beginners',
-  //   image: '/images/Strat.png',
-  //   level: 'Beginner',
-  //   style: 'Rock',
-  //   description:
-  //     'Non aute eiusmod veniam esse sunt. Fugiat adipisicing ut voluptate laborum fugiat labore adipisicing do.',
-  //   duration: '5:03',
-  // },
-  // {
-  //   id: '18',
-  //   title: 'Intermediate Arpeggiated Leads',
-  //   image: '/images/Explorer.png',
-  //   level: 'Intermediate',
-  //   style: 'Metal',
-  //   description:
-  //     'Consequat velit sint deserunt excepteur adipisicing sit anim aute veniam.',
-  //   duration: '8:14',
-  // },
-  // {
-  //   id: '19',
-  //   title: 'Hybrid Picking and Sweeping',
-  //   image: '/images/Explorer.png',
-  //   level: 'Advanced',
-  //   style: 'Metal',
-  //   description:
-  //     'In irure enim velit aute officia quis eiusmod cupidatat minim. Sit aliqua sit esse commodo voluptate non velit ipsum velit officia.',
-  //   duration: '12:28',
-  // },
-  // {
-  //   id: '20',
-  //   title: 'Hybrid Picking and Sweeping',
-  //   image: '/images/Explorer.png',
-  //   level: 'Advanced',
-  //   style: 'Metal',
-  //   description:
-  //     'In irure enim velit aute officia quis eiusmod cupidatat minim. Sit aliqua sit esse commodo voluptate non velit ipsum velit officia.',
-  //   duration: '12:28',
-  // },
-  // {
-  //   id: '21',
-  //   title: 'Power Rock Riffs for Beginners',
-  //   image: '/images/Strat.png',
-  //   level: 'Beginner',
-  //   style: 'Rock',
-  //   description:
-  //     'Non aute eiusmod veniam esse sunt. Fugiat adipisicing ut voluptate laborum fugiat labore adipisicing do.',
-  //   duration: '5:03',
-  // },
-  // {
-  //   id: '22',
-  //   title: 'Intermediate Arpeggiated Leads',
-  //   image: '/images/Explorer.png',
-  //   level: 'Intermediate',
-  //   style: 'Metal',
-  //   description:
-  //     'Consequat velit sint deserunt excepteur adipisicing sit anim aute veniam.',
-  //   duration: '8:14',
-  // },
-  // {
-  //   id: '23',
-  //   title: 'Hybrid Picking and Sweeping',
-  //   image: '/images/Explorer.png',
-  //   level: 'Advanced',
-  //   style: 'Metal',
-  //   description:
-  //     'In irure enim velit aute officia quis eiusmod cupidatat minim. Sit aliqua sit esse commodo voluptate non velit ipsum velit officia.',
-  //   duration: '12:28',
-  // },
-  // {
-  //   id: '24',
-  //   title: 'Power Rock Riffs for Beginners',
-  //   image: '/images/Strat.png',
-  //   level: 'Beginner',
-  //   style: 'Rock',
-  //   description:
-  //     'Non aute eiusmod veniam esse sunt. Fugiat adipisicing ut voluptate laborum fugiat labore adipisicing do.',
-  //   duration: '5:03',
-  // },
-  // {
-  //   id: '25',
-  //   title: 'Intermediate Arpeggiated Leads',
-  //   image: '/images/Explorer.png',
-  //   level: 'Intermediate',
-  //   style: 'Metal',
-  //   description:
-  //     'Consequat velit sint deserunt excepteur adipisicing sit anim aute veniam.',
-  //   duration: '8:14',
-  // },
-  // {
-  //   id: '26',
-  //   title: 'Hybrid Picking and Sweeping',
-  //   image: '/images/Explorer.png',
-  //   level: 'Advanced',
-  //   style: 'Metal',
-  //   description:
-  //     'In irure enim velit aute officia quis eiusmod cupidatat minim. Sit aliqua sit esse commodo voluptate non velit ipsum velit officia.',
-  //   duration: '12:28',
-  // },
+  {
+    id: '10',
+    title: 'Unlocking The Pentatonic Scale',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FStrat.png?alt=media&token=144cb702-f07c-4966-bbca-9193541e545f',
+    level: 'Advanced',
+    style: ['Fusion'],
+    description:
+      'Non mollit aliqua proident adipisicing sunt velit officia consectetur cupidatat fugiat incididunt occaecat esse ut.',
+    duration: '22:54',
+  },
+  {
+    id: '11',
+    title: 'Dynamic Strumming Techniques',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FStrat.png?alt=media&token=144cb702-f07c-4966-bbca-9193541e545f',
+    level: 'Intermediate',
+    style: ['Funk'],
+    description:
+      'Incididunt et nostrud id commodo laborum duis ea nisi qui quis aliquip excepteur non pariatur. Incididunt amet ex qui irure tempor et voluptate et.',
+    duration: '8:08',
+  },
+  {
+    id: '12',
+    title: 'How To Play Open Chords',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FStrat.png?alt=media&token=144cb702-f07c-4966-bbca-9193541e545f',
+    level: 'Beginner',
+    style: ['Pop'],
+    description:
+      'Cupidatat nisi fugiat laboris exercitation ipsum consectetur laboris duis commodo. Irure sit id ipsum ut consectetur culpa ullamco aliqua aliqua proident fugiat.',
+    duration: '11:34',
+  },
+  {
+    id: '13',
+    title: 'Soloing With The Minor Pentatonic Scale',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FLesPaul.png?alt=media&token=3008d6f1-186d-49aa-922a-e7534590cf87',
+    level: 'Advanced',
+    style: ['Blues'],
+    description:
+      'Aliqua anim irure est ex dolore ea aute in. Sint ex irure mollit id ipsum commodo sunt ad ut consequat.',
+    duration: '19:40',
+  },
+  {
+    id: '14',
+    title: 'Advanced Double Stops',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FAcoustic1.png?alt=media&token=9ebbb443-2101-456e-b16c-bd7ed08850b4',
+    level: 'Advanced',
+    style: ['Classical'],
+    description:
+      'Quis eu enim dolor anim pariatur officia consectetur minim elit ipsum. In aliqua excepteur sunt culpa labore.',
+    duration: '11:16',
+  },
+  {
+    id: '15',
+    title: 'Developing Timing And Feel',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FLesPaul.png?alt=media&token=3008d6f1-186d-49aa-922a-e7534590cf87',
+    level: 'Beginner',
+    style: ['Jazz'],
+    description:
+      'Aute dolore minim consectetur mollit ad adipisicing. Commodo fugiat aliquip exercitation consequat quis ea proident velit ullamco.',
+    duration: '9:42',
+  },
+  {
+    id: '16',
+    title: 'Reggae Strumming Patters',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FStrat.png?alt=media&token=144cb702-f07c-4966-bbca-9193541e545f',
+    level: 'Intermediate',
+    style: ['Reggae'],
+    description:
+      'Duis consequat nostrud consequat enim nostrud. Eiusmod sunt aliquip id anim laboris laborum nostrud pariatur.',
+    duration: '7:50',
+  },
+  {
+    id: '17',
+    title: 'Mastering Time For Solid Rythm',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FExplorer.png?alt=media&token=21980f44-b3f3-45f9-a4c8-c89f015c0cd6',
+    level: 'Intermediate',
+    style: ['Rock'],
+    description: 'Ullamco deserunt nostrud veniam tempor fugiat adipisicing.',
+    duration: '9:47',
+  },
+  {
+    id: '18',
+    title: 'Bluegrass Note Bending',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FAcoustic1.png?alt=media&token=9ebbb443-2101-456e-b16c-bd7ed08850b4',
+    level: 'Intermediate',
+    style: ['Bluegrass'],
+    description:
+      'Veniam excepteur eiusmod esse sit ad occaecat irure commodo et pariatur ut qui ea.',
+    duration: '11:04',
+  },
+  {
+    id: '19',
+    title: 'County Slides',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/seus-d5904.appspot.com/o/Icons%2FAcoustic1.png?alt=media&token=9ebbb443-2101-456e-b16c-bd7ed08850b4',
+    level: 'Intermediate',
+    style: ['Country'],
+    description: 'Aute esse enim ea eiusmod aute enim non occaecat.',
+    duration: '6:32',
+  },
 ];

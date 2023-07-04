@@ -68,7 +68,9 @@ const profile = definePartsStyle({
     color: 'brand.darkGray',
     fontWeight: 'normal',
     padding: '0',
-    _disabled: { opacity: '1' },
+    _checked: {
+      _disabled: { opacity: '1' },
+    },
   },
 });
 
