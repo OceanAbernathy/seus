@@ -57,7 +57,6 @@ const profile = definePartsStyle({
     },
   },
   icon: {
-    //happens after fade
     bgColor: 'brand.primary',
   },
   container: {

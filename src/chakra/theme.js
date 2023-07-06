@@ -1,4 +1,3 @@
-// 1. Import `extendTheme`
 import { extendTheme } from '@chakra-ui/react';
 
 import { Button } from './Button';
@@ -9,7 +8,6 @@ import { Radio } from './Radio';
 import { FormLabel } from './FormLabel';
 import { Avatar } from './Avatar';
 
-// 2. Call `extendTheme` and pass your custom values
 export const theme = extendTheme({
   colors: {
     brand: {

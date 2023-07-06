@@ -11,8 +11,13 @@ import {
 import { Users } from '../UsersData';
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
 import { BookOpenText } from '@phosphor-icons/react';
+import { useEffect } from 'react';
 
 export default function Lessons() {
+  useEffect(() => {
+    document.title = 'Lessons - SEUS';
+  }, []);
+
   return (
     <Flex height='100vh' flexDirection='column'>
       <Flex

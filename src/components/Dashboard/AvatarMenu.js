@@ -10,8 +10,21 @@ import {
 } from '@chakra-ui/react';
 
 import { SignOut, X } from '@phosphor-icons/react';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../config/firebase';
+import { useNavigate } from 'react-router-dom';
 
 export default function AvatarMenu() {
+  const navigate = useNavigate();
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/Welcome');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <Flex position='fixed' top={9} left={6} align='center'>
       <Menu position='absolute'>
@@ -33,7 +46,7 @@ export default function AvatarMenu() {
               )}
             </MenuButton>
             <MenuList>
-              <MenuItem fontWeight='medium'>
+              <MenuItem onClick={logout} fontWeight='medium'>
                 <Icon as={SignOut} weight='bold' mr={2} />
                 Logout
               </MenuItem>

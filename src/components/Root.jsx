@@ -4,7 +4,23 @@ import Background from '../images/Background.png';
 import GuitarVector from '../images/GuitarVector1.svg';
 import Logo from '../images/Logo.svg';
 
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../config/firebase';
+import { useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 export default function Root() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate('/Dashboard');
+      }
+    });
+  });
+
   return (
     <Flex
       h='100vh'

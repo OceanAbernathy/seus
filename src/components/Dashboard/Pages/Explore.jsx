@@ -36,6 +36,7 @@ import PopLogo from '../../../images/Icons/Pop.png';
 import Slider from 'react-slick';
 import { Instructors } from '../InstructorsData';
 import { Ruler } from '@phosphor-icons/react';
+import { useEffect } from 'react';
 
 export default function Explore() {
   const settings = {
@@ -47,6 +48,10 @@ export default function Explore() {
     slidesToShow: 1.5,
     slidesToScroll: 1,
   };
+
+  useEffect(() => {
+    document.title = 'Explore - SEUS';
+  }, []);
 
   return (
     <Flex height='100vh' flexDirection='column'>

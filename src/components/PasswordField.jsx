@@ -10,10 +10,12 @@ import {
   useDisclosure,
   useMergeRefs,
 } from '@chakra-ui/react';
-import { forwardRef, useRef } from 'react';
+import { forwardRef, useContext, useRef } from 'react';
 import { Eye, EyeClosed } from '@phosphor-icons/react';
+import { Context } from '../Helper/Context';
 
 export const SinglePasswordField = forwardRef((props, ref) => {
+  const { setPassword } = useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
 
@@ -41,6 +43,7 @@ export const SinglePasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
+            onChange={({ target }) => setPassword(target.value)}
             id='password'
             ref={mergeRef}
             name='password'
@@ -58,6 +61,7 @@ export const SinglePasswordField = forwardRef((props, ref) => {
 });
 
 export const DoublePasswordField = forwardRef((props, ref) => {
+  const { setPassword, setConfirmPassword } = useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
 
@@ -85,6 +89,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
+            onChange={({ target }) => setPassword(target.value)}
             id='password'
             ref={mergeRef}
             name='password'
@@ -111,6 +116,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
+            onChange={({ target }) => setConfirmPassword(target.value)}
             id='password-confirm'
             ref={mergeRef}
             name='password-confirm'

@@ -12,8 +12,13 @@ import { Users } from '../UsersData';
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
 import { BookOpenText, Star } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    document.title = 'Dashboard - SEUS';
+  }, []);
+
   return (
     <Flex height='100vh' flexDirection='column'>
       <Flex
