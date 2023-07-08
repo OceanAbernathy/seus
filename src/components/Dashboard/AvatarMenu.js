@@ -11,7 +11,7 @@ import {
 
 import { SignOut, X } from '@phosphor-icons/react';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../config/firebase';
+import { auth } from '../../config/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
 export default function AvatarMenu() {

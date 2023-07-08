@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Background from '../images/Background3.png';
 import { DoublePasswordField as PasswordField } from './PasswordField';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import { auth } from '../config/firebaseConfig';
 import { useContext, useEffect } from 'react';
 import { Context } from '../Helper/Context';
 
@@ -21,9 +21,7 @@ export default function SingUp() {
     email,
     setEmail,
     password,
-    setPassword,
     confirmPassword,
-    setConfirmPassword,
     error,
     setError,
   } = useContext(Context);
@@ -52,10 +50,6 @@ export default function SingUp() {
     } catch (err) {
       console.error(err);
       validateForm();
-      setFullName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
     }
   };
 

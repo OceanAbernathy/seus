@@ -12,11 +12,10 @@ import { SinglePasswordField as PasswordField } from './PasswordField';
 import { useContext, useEffect } from 'react';
 import { Context } from '../Helper/Context';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../config/firebase';
+import { auth } from '../config/firebaseConfig';
 
 export default function SignIn() {
-  const { email, setEmail, password, setPassword, error, setError } =
-    useContext(Context);
+  const { email, setEmail, password, error, setError } = useContext(Context);
 
   const isInvalid = email === '' || password.length < 6;
 
@@ -39,8 +38,6 @@ export default function SignIn() {
     } catch (err) {
       console.error(err);
       validateForm();
-      setEmail('');
-      setPassword('');
     }
   };
 
