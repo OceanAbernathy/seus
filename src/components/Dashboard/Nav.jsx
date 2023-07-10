@@ -7,7 +7,7 @@ import { NavData } from './NavData';
 import AvatarMenu from './AvatarMenu';
 
 export default function Nav() {
-  const { setItems } = useContext(Context);
+  const { setNavItems } = useContext(Context);
 
   return (
     <Flex
@@ -22,7 +22,7 @@ export default function Nav() {
           key={item.id}
           to={item.path}
           end
-          onClick={() => setItems(item)}
+          onClick={() => setNavItems(item)}
         >
           {({ isActive }) => (
             <IconButton

@@ -14,10 +14,10 @@ import { NavData } from './NavData';
 
 export default function HamburgerMenu() {
   const { isOpen, onToggle } = useDisclosure();
-  const { setItems } = useContext(Context);
+  const { setNavItems } = useContext(Context);
 
   const toggle = (item) => {
-    setItems(item);
+    setNavItems(item);
     onToggle();
   };
 

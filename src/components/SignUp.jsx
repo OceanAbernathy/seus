@@ -14,6 +14,8 @@ import { auth } from '../config/firebaseConfig';
 import { useContext, useEffect } from 'react';
 import { Context } from '../Helper/Context';
 
+import { validEmail, validPassword } from './Regex';
+
 export default function SingUp() {
   const {
     fullName,
@@ -21,27 +23,33 @@ export default function SingUp() {
     email,
     setEmail,
     password,
+    setPassword,
     confirmPassword,
-    error,
-    setError,
+    setConfirmPassword,
+    emailError,
+    setEmailError,
+    passwordError,
+    setPasswordError,
   } = useContext(Context);
+
+  const navigate = useNavigate();
 
   const isInvalid =
     fullName === '' ||
     email === '' ||
     password.length < 6 ||
-    confirmPassword.length < 6;
+    confirmPassword.length < 6 ||
+    password !== confirmPassword;
 
-  const navigate = useNavigate();
-
-  function validateForm() {
-    if (password !== confirmPassword) {
-      setError('Error: both passwords must match!');
+  const validateForm = () => {
+    if (!validEmail.test(email)) {
+      setEmailError(true);
     }
-    if (email.indexOf('@') === -1 || email.length < 8) {
-      setError('Error: invalid email!');
+    if (!validPassword.test(password)) {
+      setPasswordError(true);
     }
-  }
+    signUp();
+  };
 
   const signUp = async () => {
     try {
@@ -49,7 +57,10 @@ export default function SingUp() {
       navigate('/Intro');
     } catch (err) {
       console.error(err);
-      validateForm();
+      setFullName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
     }
   };
 
@@ -77,11 +88,22 @@ export default function SingUp() {
         </Text>
       </Flex>
 
-      <Flex flexDirection='column' w='90vw' m='0 auto' gap='15px'>
+      <Flex
+        position='relative'
+        flexDirection='column'
+        w='90vw'
+        m='0 auto'
+        gap='15px'
+      >
         <FormControl>
           <FormLabel htmlFor='name' />
           <Input
-            onChange={({ target }) => setFullName(target.value)}
+            onChange={({ target }) =>
+              setFullName(target.value) ||
+              setEmailError('') ||
+              setPasswordError('')
+            }
+            value={fullName}
             id='name'
             type='name'
             placeholder='Full Name'
@@ -90,31 +112,48 @@ export default function SingUp() {
         <FormControl>
           <FormLabel htmlFor='email' />
           <Input
-            onChange={({ target }) => setEmail(target.value)}
+            onChange={({ target }) =>
+              setEmail(target.value) ||
+              setEmailError('') ||
+              setPasswordError('')
+            }
+            value={email}
             id='email'
             type='email'
             placeholder='Email'
           />
         </FormControl>
         <PasswordField />
-        {error && (
-          <Text
-            fontSize='sm'
-            fontWeight='medium'
-            letterSpacing={0.25}
-            color='red'
-            ml={4}
-          >
-            {error}
-          </Text>
-        )}
-        <Text></Text>
+        <Flex position='absolute' bottom={-12} flexDirection='column'>
+          {emailError && (
+            <Text
+              fontSize='sm'
+              fontWeight='medium'
+              letterSpacing={0.25}
+              color='red'
+              ml={4}
+            >
+              Your email is invalid
+            </Text>
+          )}
+          {passwordError && (
+            <Text
+              fontSize='sm'
+              fontWeight='medium'
+              letterSpacing={0.25}
+              color='red'
+              ml={4}
+            >
+              Your password is invalid
+            </Text>
+          )}
+        </Flex>
       </Flex>
 
       <Flex flexDirection='column' m='0 25px' gap='40px'>
         <Button
           isDisabled={isInvalid}
-          onClick={signUp}
+          onClick={validateForm}
           variant='solid1'
           _hover={{ bgColor: '#6B44A4' }}
         >

@@ -14,22 +14,33 @@ import { Context } from '../Helper/Context';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 
-export default function SignIn() {
-  const { email, setEmail, password, error, setError } = useContext(Context);
+import { validEmail, validPassword } from './Regex';
 
-  const isInvalid = email === '' || password.length < 6;
+export default function SignIn() {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    emailError,
+    setEmailError,
+    passwordError,
+    setPasswordError,
+  } = useContext(Context);
 
   const navigate = useNavigate();
 
-  function validateForm() {
-    if (email.indexOf('@') === -1 || email.length < 8) {
-      setError('Error: invalid email!');
-    } else {
-      setError(
-        'Error: email or password is incorrect. Please try again or sign up below.'
-      );
+  const isInvalid = email === '' || password.length < 6;
+
+  const validateForm = () => {
+    if (!validEmail.test(email)) {
+      setEmailError(true);
     }
-  }
+    if (!validPassword.test(password)) {
+      setPasswordError(true);
+    }
+    signIn();
+  };
 
   const signIn = async () => {
     try {
@@ -37,7 +48,8 @@ export default function SignIn() {
       navigate('/Dashboard');
     } catch (err) {
       console.error(err);
-      validateForm();
+      setEmail('');
+      setPassword('');
     }
   };
 
@@ -66,35 +78,59 @@ export default function SignIn() {
         </Text>
       </Flex>
 
-      <Flex flexDirection='column' w='90vw' m='0 auto' gap='15px'>
+      <Flex
+        position='relative'
+        flexDirection='column'
+        w='90vw'
+        m='0 auto'
+        gap='15px'
+      >
         <FormControl>
           <FormLabel htmlFor='email' />
           <Input
-            onChange={({ target }) => setEmail(target.value)}
+            onChange={({ target }) =>
+              setEmail(target.value) ||
+              setEmailError('') ||
+              setPasswordError('')
+            }
+            value={email}
             id='email'
             type='email'
             placeholder='Email'
           />
         </FormControl>
         <PasswordField />
-        {error && (
-          <Text
-            fontSize='sm'
-            fontWeight='medium'
-            letterSpacing={0.25}
-            color='red'
-            ml={4}
-          >
-            {error}
-          </Text>
-        )}
+        <Flex position='absolute' bottom={-12} flexDirection='column'>
+          {emailError && (
+            <Text
+              fontSize='sm'
+              fontWeight='medium'
+              letterSpacing={0.25}
+              color='red'
+              ml={4}
+            >
+              Your email is invalid
+            </Text>
+          )}
+          {passwordError && (
+            <Text
+              fontSize='sm'
+              fontWeight='medium'
+              letterSpacing={0.25}
+              color='red'
+              ml={4}
+            >
+              Your password is invalid
+            </Text>
+          )}
+        </Flex>
       </Flex>
 
       <Flex flexDirection='column' m='0 25px' gap='60px'>
         <Flex flexDirection='column' align='center' gap='20px'>
           <Button
             isDisabled={isInvalid}
-            onClick={signIn}
+            onClick={validateForm}
             variant='solid2'
             _hover={{ bgColor: '#00a078' }}
           >

@@ -15,7 +15,8 @@ import { Eye, EyeClosed } from '@phosphor-icons/react';
 import { Context } from '../Helper/Context';
 
 export const SinglePasswordField = forwardRef((props, ref) => {
-  const { setPassword } = useContext(Context);
+  const { password, setPassword, setEmailError, setPasswordError } =
+    useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
 
@@ -43,7 +44,12 @@ export const SinglePasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
-            onChange={({ target }) => setPassword(target.value)}
+            onChange={({ target }) =>
+              setPassword(target.value) ||
+              setEmailError('') ||
+              setPasswordError('')
+            }
+            value={password}
             id='password'
             ref={mergeRef}
             name='password'
@@ -61,7 +67,14 @@ export const SinglePasswordField = forwardRef((props, ref) => {
 });
 
 export const DoublePasswordField = forwardRef((props, ref) => {
-  const { setPassword, setConfirmPassword } = useContext(Context);
+  const {
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    setEmailError,
+    setPasswordError,
+  } = useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
 
@@ -89,7 +102,12 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
-            onChange={({ target }) => setPassword(target.value)}
+            onChange={({ target }) =>
+              setPassword(target.value) ||
+              setEmailError('') ||
+              setPasswordError('')
+            }
+            value={password}
             id='password'
             ref={mergeRef}
             name='password'
@@ -116,7 +134,12 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
-            onChange={({ target }) => setConfirmPassword(target.value)}
+            onChange={({ target }) =>
+              setConfirmPassword(target.value) ||
+              setEmailError('') ||
+              setPasswordError('')
+            }
+            value={confirmPassword}
             id='password-confirm'
             ref={mergeRef}
             name='password-confirm'
