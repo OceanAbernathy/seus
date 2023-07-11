@@ -66,6 +66,10 @@ export default function SingUp() {
 
   useEffect(() => {
     document.title = 'Sign Up - SEUS';
+    setFullName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
   }, []);
 
   return (

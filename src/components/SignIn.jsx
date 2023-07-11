@@ -55,6 +55,8 @@ export default function SignIn() {
 
   useEffect(() => {
     document.title = 'Sign In - SEUS';
+    setEmail('');
+    setPassword('');
   }, []);
 
   return (
