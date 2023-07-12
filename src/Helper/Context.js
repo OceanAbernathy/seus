@@ -10,6 +10,8 @@ export const ContextProvider = ({ children }) => {
 
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const [error, setError] = useState('');
+
   const [emailError, setEmailError] = useState('');
 
   const [passwordError, setPasswordError] = useState('');
@@ -27,6 +29,8 @@ export const ContextProvider = ({ children }) => {
         setPassword,
         confirmPassword,
         setConfirmPassword,
+        error,
+        setError,
         emailError,
         setEmailError,
         passwordError,

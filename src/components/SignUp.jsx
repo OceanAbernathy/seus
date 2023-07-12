@@ -26,6 +26,8 @@ export default function SingUp() {
     setPassword,
     confirmPassword,
     setConfirmPassword,
+    error,
+    setError,
     emailError,
     setEmailError,
     passwordError,
@@ -47,8 +49,9 @@ export default function SingUp() {
     }
     if (!validPassword.test(password)) {
       setPasswordError(true);
+    } else {
+      signUp();
     }
-    signUp();
   };
 
   const signUp = async () => {
@@ -57,6 +60,7 @@ export default function SingUp() {
       navigate('/Intro');
     } catch (err) {
       console.error(err);
+      setError(err.message);
       setFullName('');
       setEmail('');
       setPassword('');
@@ -66,6 +70,7 @@ export default function SingUp() {
 
   useEffect(() => {
     document.title = 'Sign Up - SEUS';
+    setError('');
     setFullName('');
     setEmail('');
     setPassword('');
@@ -105,7 +110,8 @@ export default function SingUp() {
             onChange={({ target }) =>
               setFullName(target.value) ||
               setEmailError('') ||
-              setPasswordError('')
+              setPasswordError('') ||
+              setError('')
             }
             value={fullName}
             id='name'
@@ -119,7 +125,8 @@ export default function SingUp() {
             onChange={({ target }) =>
               setEmail(target.value) ||
               setEmailError('') ||
-              setPasswordError('')
+              setPasswordError('') ||
+              setError('')
             }
             value={email}
             id='email'
@@ -128,7 +135,7 @@ export default function SingUp() {
           />
         </FormControl>
         <PasswordField />
-        <Flex position='absolute' bottom={-12} flexDirection='column'>
+        <Flex position='absolute' bottom={-12} flexWrap='wrap'>
           {emailError && (
             <Text
               fontSize='sm'
@@ -137,7 +144,7 @@ export default function SingUp() {
               color='red'
               ml={4}
             >
-              Your email is invalid
+              Your email is invalid.
             </Text>
           )}
           {passwordError && (
@@ -148,7 +155,18 @@ export default function SingUp() {
               color='red'
               ml={4}
             >
-              Your password is invalid
+              Your password is invalid.
+            </Text>
+          )}
+          {error && (
+            <Text
+              fontSize='sm'
+              fontWeight='medium'
+              letterSpacing={0.25}
+              color='red'
+              ml={4}
+            >
+              {error}
             </Text>
           )}
         </Flex>

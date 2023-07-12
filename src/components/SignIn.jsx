@@ -22,6 +22,8 @@ export default function SignIn() {
     setEmail,
     password,
     setPassword,
+    error,
+    setError,
     emailError,
     setEmailError,
     passwordError,
@@ -38,8 +40,9 @@ export default function SignIn() {
     }
     if (!validPassword.test(password)) {
       setPasswordError(true);
+    } else {
+      signIn();
     }
-    signIn();
   };
 
   const signIn = async () => {
@@ -48,6 +51,7 @@ export default function SignIn() {
       navigate('/Dashboard');
     } catch (err) {
       console.error(err);
+      setError(err.message);
       setEmail('');
       setPassword('');
     }
@@ -55,6 +59,7 @@ export default function SignIn() {
 
   useEffect(() => {
     document.title = 'Sign In - SEUS';
+    setError('');
     setEmail('');
     setPassword('');
   }, []);
@@ -93,7 +98,8 @@ export default function SignIn() {
             onChange={({ target }) =>
               setEmail(target.value) ||
               setEmailError('') ||
-              setPasswordError('')
+              setPasswordError('') ||
+              setError('')
             }
             value={email}
             id='email'
@@ -102,7 +108,7 @@ export default function SignIn() {
           />
         </FormControl>
         <PasswordField />
-        <Flex position='absolute' bottom={-12} flexDirection='column'>
+        <Flex position='absolute' bottom={-12} flexWrap='wrap'>
           {emailError && (
             <Text
               fontSize='sm'
@@ -111,7 +117,7 @@ export default function SignIn() {
               color='red'
               ml={4}
             >
-              Your email is invalid
+              Your email is invalid.
             </Text>
           )}
           {passwordError && (
@@ -122,7 +128,18 @@ export default function SignIn() {
               color='red'
               ml={4}
             >
-              Your password is invalid
+              Your password is invalid.
+            </Text>
+          )}
+          {error && (
+            <Text
+              fontSize='sm'
+              fontWeight='medium'
+              letterSpacing={0.25}
+              color='red'
+              ml={4}
+            >
+              {error}
             </Text>
           )}
         </Flex>

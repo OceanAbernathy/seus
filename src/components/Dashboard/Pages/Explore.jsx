@@ -12,8 +12,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-import { Lessons as LessonsData } from '../LessonsData';
-
 import { getLevelBackgroundColor } from './TagStyles';
 import { getStyleBackgroundColor } from './TagStyles';
 
@@ -34,11 +32,32 @@ import FusionLogo from '../../../images/Icons/Fusion.png';
 import FunkLogo from '../../../images/Icons/Funk.png';
 import PopLogo from '../../../images/Icons/Pop.png';
 import Slider from 'react-slick';
-import { Instructors } from '../InstructorsData';
 import { Ruler } from '@phosphor-icons/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 export default function Explore() {
+  const db = getFirestore();
+  const [lessons, setLessons] = useState([]);
+  const [instructors, setInstructors] = useState([]);
+
+  const getLessons = async () => {
+    try {
+      const lessonsList = await getDocs(collection(db, 'lessons'));
+      const instructorList = await getDocs(collection(db, 'instructors'));
+
+      lessonsList.forEach((doc) => {
+        setLessons((prevState) => [...prevState, doc.data()]);
+      });
+
+      instructorList.forEach((doc) => {
+        setInstructors((prevState) => [...prevState, doc.data()]);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const settings = {
     arrows: false,
     infinite: true,
@@ -49,8 +68,11 @@ export default function Explore() {
     slidesToScroll: 1,
   };
 
+  console.log(lessons);
+
   useEffect(() => {
     document.title = 'Explore - SEUS';
+    getLessons();
   }, []);
 
   return (
@@ -99,59 +121,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel px={0}>
-                {LessonsData.filter(
-                  (lesson) => lesson.level === 'Beginner'
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.level === 'Beginner')
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -177,59 +199,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.level === 'Intermediate'
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.level === 'Intermediate')
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -255,59 +277,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.level === 'Advanced'
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.level === 'Advanced')
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -346,7 +368,7 @@ export default function Explore() {
               </AccordionButton>
               <AccordionPanel px={6}>
                 <Slider {...settings}>
-                  {Instructors.map((user, index) => (
+                  {instructors.map((user, index) => (
                     <Flex key={index}>
                       <Flex
                         flexDirection='column'
@@ -462,59 +484,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Blues') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Blues') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -548,59 +570,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Classical') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Classical') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -634,59 +656,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Metal') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Metal') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -720,59 +742,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Folk') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Folk') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -806,59 +828,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Jazz') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Jazz') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -892,59 +914,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Bluegrass') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Bluegrass') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -978,59 +1000,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Rock') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Rock') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -1064,59 +1086,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Country') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Country') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -1150,59 +1172,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Reggae') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Reggae') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -1236,59 +1258,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Fusion') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Fusion') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -1322,59 +1344,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Funk') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Funk') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
 
@@ -1408,59 +1430,59 @@ export default function Explore() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                {LessonsData.filter(
-                  (lesson) => lesson.style.indexOf('Pop') > -1
-                ).map((lesson, index) => (
-                  <Flex key={index} flexDirection='column'>
-                    <Flex my={1} bgColor='whiteAlpha.600'>
-                      <Image
-                        src={lesson.image}
-                        boxSize='24'
-                        py={2}
-                        objectFit='contain'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
-                        height='125px'
-                      />
-                      <Flex
-                        flexDirection='column'
-                        width='70%'
-                        ml={2}
-                        mr={1}
-                        justifyContent='space-evenly'
-                      >
-                        <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                          {lesson.title}
-                        </Text>
+                {lessons
+                  .filter((lesson) => lesson.style.indexOf('Pop') > -1)
+                  .map((lesson, index) => (
+                    <Flex key={index} flexDirection='column'>
+                      <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Image
+                          src={lesson.image}
+                          boxSize='24'
+                          py={2}
+                          objectFit='contain'
+                          bgColor={getLevelBackgroundColor(lesson.level)}
+                          height='125px'
+                        />
                         <Flex
-                          flexWrap='wrap'
-                          width='150px'
-                          pr={1}
-                          pb={2}
-                          gap={1}
+                          flexDirection='column'
+                          width='70%'
+                          ml={2}
+                          mr={1}
+                          justifyContent='space-evenly'
                         >
-                          <Tag
-                            size='sm'
-                            bgColor={getLevelBackgroundColor(lesson.level)}
+                          <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                            {lesson.title}
+                          </Text>
+                          <Flex
+                            flexWrap='wrap'
+                            width='150px'
+                            pr={1}
+                            pb={2}
+                            gap={1}
                           >
-                            {lesson.level}
-                          </Tag>
-                          {lesson.style.map((item, index) => (
                             <Tag
-                              key={index}
                               size='sm'
-                              bgColor={getStyleBackgroundColor(item)}
+                              bgColor={getLevelBackgroundColor(lesson.level)}
                             >
-                              {item}
+                              {lesson.level}
                             </Tag>
-                          ))}
+                            {lesson.style.map((item, index) => (
+                              <Tag
+                                key={index}
+                                size='sm'
+                                bgColor={getStyleBackgroundColor(item)}
+                              >
+                                {item}
+                              </Tag>
+                            ))}
+                          </Flex>
+                          <Text ml={1} noOfLines={2}>
+                            {lesson.description}
+                          </Text>
                         </Flex>
-                        <Text ml={1} noOfLines={2}>
-                          {lesson.description}
-                        </Text>
                       </Flex>
                     </Flex>
-                  </Flex>
-                ))}
+                  ))}
               </AccordionPanel>
             </AccordionItem>
           </Flex>

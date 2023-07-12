@@ -15,7 +15,7 @@ import { Eye, EyeClosed } from '@phosphor-icons/react';
 import { Context } from '../Helper/Context';
 
 export const SinglePasswordField = forwardRef((props, ref) => {
-  const { password, setPassword, setEmailError, setPasswordError } =
+  const { password, setPassword, setError, setEmailError, setPasswordError } =
     useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
@@ -47,7 +47,8 @@ export const SinglePasswordField = forwardRef((props, ref) => {
             onChange={({ target }) =>
               setPassword(target.value) ||
               setEmailError('') ||
-              setPasswordError('')
+              setPasswordError('') ||
+              setError('')
             }
             value={password}
             id='password'
@@ -72,6 +73,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
     setPassword,
     confirmPassword,
     setConfirmPassword,
+    setError,
     setEmailError,
     setPasswordError,
   } = useContext(Context);
@@ -105,7 +107,8 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             onChange={({ target }) =>
               setPassword(target.value) ||
               setEmailError('') ||
-              setPasswordError('')
+              setPasswordError('') ||
+              setError('')
             }
             value={password}
             id='password'
@@ -137,7 +140,8 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             onChange={({ target }) =>
               setConfirmPassword(target.value) ||
               setEmailError('') ||
-              setPasswordError('')
+              setPasswordError('') ||
+              setError('')
             }
             value={confirmPassword}
             id='password-confirm'
