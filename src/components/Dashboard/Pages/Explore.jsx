@@ -4,6 +4,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Button,
   Divider,
   Flex,
   Icon,
@@ -32,7 +33,7 @@ import FusionLogo from '../../../images/Icons/Fusion.png';
 import FunkLogo from '../../../images/Icons/Funk.png';
 import PopLogo from '../../../images/Icons/Pop.png';
 import Slider from 'react-slick';
-import { Ruler } from '@phosphor-icons/react';
+import { PlusCircle, Ruler } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
@@ -67,8 +68,6 @@ export default function Explore() {
     slidesToShow: 1.5,
     slidesToScroll: 1,
   };
-
-  console.log(lessons);
 
   useEffect(() => {
     document.title = 'Explore - SEUS';
@@ -125,7 +124,10 @@ export default function Explore() {
                   .filter((lesson) => lesson.level === 'Beginner')
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -198,12 +200,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.level === 'Intermediate')
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -276,12 +281,19 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.level === 'Advanced')
                   .map((lesson, index) => (
-                    <Flex key={index} flexDirection='column'>
+                    <Flex
+                      key={index}
+                      flexDirection='column'
+                      position='relative'
+                    >
                       <Flex my={1} bgColor='whiteAlpha.600'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -483,12 +495,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Blues') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -569,12 +584,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Classical') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -655,12 +673,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Metal') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -741,12 +762,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Folk') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -827,12 +851,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Jazz') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -913,12 +940,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Bluegrass') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -999,12 +1029,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Rock') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -1085,12 +1118,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Country') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -1171,12 +1207,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Reggae') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -1257,12 +1296,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Fusion') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -1343,12 +1385,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Funk') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'
@@ -1429,12 +1474,15 @@ export default function Explore() {
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
-              <AccordionPanel>
+              <AccordionPanel px={0}>
                 {lessons
                   .filter((lesson) => lesson.style.indexOf('Pop') > -1)
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
-                      <Flex my={1} bgColor='whiteAlpha.600'>
+                      <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
+                        <Button variant='add' position='absolute'>
+                          <Icon as={PlusCircle} />
+                        </Button>
                         <Image
                           src={lesson.image}
                           boxSize='24'

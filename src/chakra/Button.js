@@ -65,6 +65,18 @@ export const Button = defineStyleConfig({
       bgColor: 'brand.lightGray',
       filter: 'drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25))',
     },
+    add: {
+      width: 'fit-content',
+      minWidth: 'fit-content',
+      height: 'fit-content',
+      fontSize: 'xl',
+      fontWeight: 'normal',
+      filter: 'none',
+      pl: '1',
+      pr: '2',
+      pt: '1',
+      pb: '2',
+    },
   },
   defaultProps: {
     variant: 'solid1',
