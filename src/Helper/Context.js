@@ -2,33 +2,34 @@ import { createContext, useState } from 'react';
 
 export const Context = createContext();
 export const ContextProvider = ({ children }) => {
-  const [fullName, setFullName] = useState('');
-
+  const [user, setUser] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
-
   const [password, setPassword] = useState('');
-
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [level, setLevel] = useState('');
+  const [style, setStyle] = useState('');
   const [error, setError] = useState('');
-
   const [emailError, setEmailError] = useState('');
-
   const [passwordError, setPasswordError] = useState('');
-
   const [navItems, setNavItems] = useState(0);
-
   return (
     <Context.Provider
       value={{
-        fullName,
-        setFullName,
+        user,
+        setUser,
+        displayName,
+        setDisplayName,
         email,
         setEmail,
         password,
         setPassword,
         confirmPassword,
         setConfirmPassword,
+        level,
+        setLevel,
+        style,
+        setStyle,
         error,
         setError,
         emailError,

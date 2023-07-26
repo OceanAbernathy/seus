@@ -35,10 +35,10 @@ import PopLogo from '../../../images/Icons/Pop.png';
 import Slider from 'react-slick';
 import { PlusCircle, Ruler } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../../config/firebaseConfig';
 
 export default function Explore() {
-  const db = getFirestore();
   const [lessons, setLessons] = useState([]);
   const [instructors, setInstructors] = useState([]);
 

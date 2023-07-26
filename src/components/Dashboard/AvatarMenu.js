@@ -11,10 +11,14 @@ import {
 
 import { SignOut, X } from '@phosphor-icons/react';
 import { signOut } from 'firebase/auth';
-import { auth } from '../../config/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../../config/firebaseConfig';
+import { useContext } from 'react';
+import { Context } from '../../Helper/Context';
 
 export default function AvatarMenu() {
+  const { user } = useContext(Context);
+
   const navigate = useNavigate();
   const logout = async () => {
     try {
@@ -26,34 +30,36 @@ export default function AvatarMenu() {
   };
 
   return (
-    <Flex position='fixed' top={9} left={6} align='center'>
-      <Menu position='absolute'>
-        {({ isOpen }) => (
-          <>
-            <MenuButton>
-              {isOpen ? (
-                <IconButton
-                  as={X}
-                  width='70px'
-                  height='48px'
-                  p={2}
-                  bgColor='brand.lightGray'
-                  color='brand.darkGray'
-                  cursor='pointer'
-                />
-              ) : (
-                <Avatar name='Ocean Abernathy' size='profile' />
-              )}
-            </MenuButton>
-            <MenuList>
-              <MenuItem onClick={logout} fontWeight='medium'>
-                <Icon as={SignOut} weight='bold' mr={2} />
-                Logout
-              </MenuItem>
-            </MenuList>
-          </>
-        )}
-      </Menu>
-    </Flex>
+    user && (
+      <Flex position='fixed' top={9} left={6} align='center'>
+        <Menu position='absolute'>
+          {({ isOpen }) => (
+            <>
+              <MenuButton>
+                {isOpen ? (
+                  <IconButton
+                    as={X}
+                    width='70px'
+                    height='48px'
+                    p={2}
+                    bgColor='brand.lightGray'
+                    color='brand.darkGray'
+                    cursor='pointer'
+                  />
+                ) : (
+                  <Avatar name={user.personalInfo.displayName} size='profile' />
+                )}
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={logout} fontWeight='medium'>
+                  <Icon as={SignOut} weight='bold' mr={2} />
+                  Logout
+                </MenuItem>
+              </MenuList>
+            </>
+          )}
+        </Menu>
+      </Flex>
+    )
   );
 }
