@@ -18,8 +18,8 @@ import { validEmail, validPassword } from './Regex';
 
 export default function SingUp() {
   const {
-    fullName,
-    setFullName,
+    displayName,
+    setDisplayName,
     email,
     setEmail,
     password,
@@ -37,7 +37,7 @@ export default function SingUp() {
   const navigate = useNavigate();
 
   const isInvalid =
-    fullName === '' ||
+    displayName === '' ||
     email === '' ||
     password.length < 6 ||
     confirmPassword.length < 6 ||
@@ -61,7 +61,7 @@ export default function SingUp() {
     } catch (err) {
       console.error(err);
       setError(err.message);
-      setFullName('');
+      setDisplayName('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
@@ -71,7 +71,7 @@ export default function SingUp() {
   useEffect(() => {
     document.title = 'Sign Up - SEUS';
     setError('');
-    setFullName('');
+    setDisplayName('');
     setEmail('');
     setPassword('');
     setConfirmPassword('');
@@ -108,12 +108,12 @@ export default function SingUp() {
           <FormLabel htmlFor='name' />
           <Input
             onChange={({ target }) =>
-              setFullName(target.value) ||
+              setDisplayName(target.value) ||
               setEmailError('') ||
               setPasswordError('') ||
               setError('')
             }
-            value={fullName}
+            value={displayName}
             id='name'
             type='name'
             placeholder='Full Name'

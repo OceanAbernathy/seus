@@ -1,12 +1,31 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
 import { ArrowRight } from '@phosphor-icons/react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Background from '../../images/Background.png';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../config/firebaseConfig';
+import { useContext } from 'react';
+import { Context } from '../../Helper/Context';
 
 export default function Welcome() {
+  const navigate = useNavigate();
+  const { user, selected, setSelected } = useContext(Context);
   const types = ['Beginner', 'Intermediate', 'Advanced'];
-  const [selected, setSelected] = useState('');
+  const userRef = doc(db, 'users', user.uid);
+
+  console.log(userRef);
+
+  const updateProfile = async () => {
+    try {
+      await updateDoc(userRef, {
+        level: selected,
+      });
+      // setProfile(user.data());
+      navigate('/ChooseYourStyle');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Flex
@@ -42,7 +61,7 @@ export default function Welcome() {
           </Button>
         ))}
         <Flex h='50px' alignItems='center' justifyContent='center' mt='30'>
-          <Link to='/ChooseYourStyle'>
+          <Button onClick={updateProfile}>
             <Flex
               display={selected ? 'flex' : 'none'}
               alignItems='center'
@@ -52,7 +71,7 @@ export default function Welcome() {
               <Text fontWeight='semibold'>Next</Text>
               <ArrowRight size={28} color='#454545' />
             </Flex>
-          </Link>
+          </Button>
         </Flex>
       </Flex>
     </Flex>

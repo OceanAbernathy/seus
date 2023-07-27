@@ -13,6 +13,8 @@ export const ContextProvider = ({ children }) => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [navItems, setNavItems] = useState(0);
+  const [selected, setSelected] = useState('');
+  const [profile, setProfile] = useState('');
   return (
     <Context.Provider
       value={{
@@ -38,6 +40,10 @@ export const ContextProvider = ({ children }) => {
         setPasswordError,
         navItems,
         setNavItems,
+        selected,
+        setSelected,
+        profile,
+        setProfile,
       }}
     >
       {children}
