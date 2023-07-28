@@ -1,12 +1,29 @@
-import { Checkbox, Flex, Grid, Text } from '@chakra-ui/react';
+import { Button, Checkbox, Flex, Grid, Text } from '@chakra-ui/react';
 import { ArrowRight } from '@phosphor-icons/react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Background from '../../images/Background2.png';
 import { StyleData } from './StyleData';
+import { Context } from '../../Helper/Context';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../config/firebaseConfig';
 
 export default function ChooseYourStyle() {
-  const [checkedList, setCheckedList] = useState([]);
+  const navigate = useNavigate();
+  const { user } = useContext(Context);
+  const [checkedList, setCheckedList] = useState('');
+
+  const updateProfile = async () => {
+    const userRef = doc(db, 'users', user.uid);
+    try {
+      await updateDoc(userRef, {
+        'preferences.style': checkedList,
+      });
+      navigate('/Dashboard');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Flex
@@ -67,7 +84,7 @@ export default function ChooseYourStyle() {
           ))}
         </Grid>
         <Flex h='50px' alignItems='center' justifyContent='center'>
-          <Link to='/Dashboard'>
+          <Button onClick={updateProfile}>
             <Flex
               display={checkedList.length > 0 ? 'flex' : 'none'}
               alignItems='center'
@@ -77,7 +94,7 @@ export default function ChooseYourStyle() {
               <Text fontWeight='semibold'>Begin</Text>
               <ArrowRight size={28} color='#454545' />
             </Flex>
-          </Link>
+          </Button>
         </Flex>
       </Flex>
     </Flex>

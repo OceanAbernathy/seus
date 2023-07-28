@@ -4,23 +4,21 @@ import { useNavigate } from 'react-router-dom';
 import Background from '../../images/Background.png';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../config/firebaseConfig';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../../Helper/Context';
 
 export default function Welcome() {
   const navigate = useNavigate();
-  const { user, selected, setSelected } = useContext(Context);
+  const { user } = useContext(Context);
+  const [selected, setSelected] = useState('');
   const types = ['Beginner', 'Intermediate', 'Advanced'];
-  const userRef = doc(db, 'users', user.uid);
-
-  console.log(userRef);
 
   const updateProfile = async () => {
+    const userRef = doc(db, 'users', user.uid);
     try {
       await updateDoc(userRef, {
-        level: selected,
+        'preferences.level': selected,
       });
-      // setProfile(user.data());
       navigate('/ChooseYourStyle');
     } catch (error) {
       console.log(error);
