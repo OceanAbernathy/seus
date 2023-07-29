@@ -11,17 +11,13 @@ import Background from '../images/Background3.png';
 import { DoublePasswordField as PasswordField } from './PasswordField';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Context } from '../Helper/Context';
 
 import { validEmail, validPassword } from './Regex';
 
-export default function SingUp() {
+export default function SignUp() {
   const {
-    displayName,
-    setDisplayName,
-    email,
-    setEmail,
     password,
     setPassword,
     confirmPassword,
@@ -33,6 +29,9 @@ export default function SingUp() {
     passwordError,
     setPasswordError,
   } = useContext(Context);
+
+  const [displayName, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
 
   const navigate = useNavigate();
 

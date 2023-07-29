@@ -10,7 +10,7 @@ import {
   useDisclosure,
   useMergeRefs,
 } from '@chakra-ui/react';
-import { forwardRef, useContext, useRef } from 'react';
+import { forwardRef, useContext, useEffect, useRef } from 'react';
 import { Eye, EyeClosed } from '@phosphor-icons/react';
 import { Context } from '../Helper/Context';
 
@@ -87,6 +87,11 @@ export const DoublePasswordField = forwardRef((props, ref) => {
       inputRef.current.focus({ preventScroll: true });
     }
   };
+
+  useEffect(() => {
+    setPassword('');
+    setConfirmPassword('');
+  }, []);
 
   return (
     <Flex flexDirection='column' gap='15px'>
