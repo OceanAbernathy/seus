@@ -28,18 +28,62 @@ import {
 import { useContext, useEffect, useState } from 'react';
 import ProfileBackground from '../../../images/ProfileBackground.png';
 import { Context } from '../../../Helper/Context';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../../../config/firebaseConfig';
 
 export default function Profile() {
   const { user } = useContext(Context);
   const [editing, setEditing] = useState(false);
+  const [displayName, setDisplayName] = useState('');
+  const [level, setLevel] = useState('');
+  const [style, setStyle] = useState([]);
 
   const handleClick = () => {
     setEditing(!editing);
   };
 
+  const handleChange = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setStyle((style) => [...style, value]);
+    } else {
+      setStyle(style.filter((e) => e !== value));
+    }
+  };
+
+  const getProfile = async () => {
+    try {
+      const dataRef = doc(db, 'users', user.uid);
+      const data = await getDoc(dataRef);
+      setDisplayName(data.data().personalInfo.displayName);
+      setLevel(data.data().preferences.level);
+      setStyle(data.data().preferences.style);
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+
+  console.log(style);
+
+  const updateProfile = async () => {
+    const userRef = doc(db, 'users', user.uid);
+    try {
+      await updateDoc(userRef, {
+        'personalInfo.displayName': displayName,
+        'preferences.level': level,
+        'preferences.style': style,
+      });
+      setEditing(!editing);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    getProfile();
     document.title = 'Profile - SEUS';
-  }, []);
+  }, [user]);
 
   return (
     user && (
@@ -61,7 +105,7 @@ export default function Profile() {
             <Image src={ProfileBackground} objectFit='cover' />
             <Avatar
               // as={User}
-              name='Ocean Abernathy'
+              name={user.personalInfo.displayName}
               bgColor='brand.lightGray'
               color='brand.primary'
               size='xl'
@@ -104,6 +148,8 @@ export default function Profile() {
                   </FormLabel>
                   <Input
                     placeholder={user.personalInfo.displayName}
+                    onChange={({ target }) => setDisplayName(target.value)}
+                    value={displayName}
                     variant='text3'
                     ml={4}
                     width='auto'
@@ -125,7 +171,10 @@ export default function Profile() {
                   <FormLabel my={0} mx={6}>
                     Skill Level
                   </FormLabel>
-                  <RadioGroup defaultValue={user.preferences.level}>
+                  <RadioGroup
+                    defaultValue={user.preferences.level}
+                    onChange={setLevel}
+                  >
                     <Stack ml={6} spacing={2}>
                       <Radio value='Beginner'>Beginner</Radio>
                       <Radio value='Intermediate'>Intermediate</Radio>
@@ -155,40 +204,88 @@ export default function Profile() {
                       columnGap={5}
                       gridTemplateColumns='1fr 1fr 1fr'
                     >
-                      <Checkbox variant='profile' value='Blues'>
+                      <Checkbox
+                        variant='profile'
+                        value='Blues'
+                        onChange={handleChange}
+                      >
                         Blues
                       </Checkbox>
-                      <Checkbox variant='profile' value='Classical'>
+                      <Checkbox
+                        variant='profile'
+                        value='Classical'
+                        onChange={handleChange}
+                      >
                         Classical
                       </Checkbox>
-                      <Checkbox variant='profile' value='Metal'>
+                      <Checkbox
+                        variant='profile'
+                        value='Metal'
+                        onChange={handleChange}
+                      >
                         Metal
                       </Checkbox>
-                      <Checkbox variant='profile' value='Folk'>
+                      <Checkbox
+                        variant='profile'
+                        value='Folk'
+                        onChange={handleChange}
+                      >
                         Folk
                       </Checkbox>
-                      <Checkbox variant='profile' value='Jazz'>
+                      <Checkbox
+                        variant='profile'
+                        value='Jazz'
+                        onChange={handleChange}
+                      >
                         Jazz
                       </Checkbox>
-                      <Checkbox variant='profile' value='Bluegrass'>
+                      <Checkbox
+                        variant='profile'
+                        value='Bluegrass'
+                        onChange={handleChange}
+                      >
                         Bluegrass
                       </Checkbox>
-                      <Checkbox variant='profile' value='Rock'>
+                      <Checkbox
+                        variant='profile'
+                        value='Rock'
+                        onChange={handleChange}
+                      >
                         Rock
                       </Checkbox>
-                      <Checkbox variant='profile' value='Country'>
+                      <Checkbox
+                        variant='profile'
+                        value='Country'
+                        onChange={handleChange}
+                      >
                         Country
                       </Checkbox>
-                      <Checkbox variant='profile' value='Reggae'>
+                      <Checkbox
+                        variant='profile'
+                        value='Reggae'
+                        onChange={handleChange}
+                      >
                         Reggae
                       </Checkbox>
-                      <Checkbox variant='profile' value='Fusion'>
+                      <Checkbox
+                        variant='profile'
+                        value='Fusion'
+                        onChange={handleChange}
+                      >
                         Fusion
                       </Checkbox>
-                      <Checkbox variant='profile' value='Funk'>
+                      <Checkbox
+                        variant='profile'
+                        value='Funk'
+                        onChange={handleChange}
+                      >
                         Funk
                       </Checkbox>
-                      <Checkbox variant='profile' value='Pop'>
+                      <Checkbox
+                        variant='profile'
+                        value='Pop'
+                        onChange={handleChange}
+                      >
                         Pop
                       </Checkbox>
                     </Grid>
@@ -208,7 +305,7 @@ export default function Profile() {
                 />
                 <IconButton
                   as={Check}
-                  onClick={handleClick}
+                  onClick={updateProfile}
                   display={!editing ? 'none' : 'flex'}
                   weight='bold'
                   boxSize={12}
@@ -238,6 +335,7 @@ export default function Profile() {
                   </FormLabel>
                   <Input
                     placeholder={user.personalInfo.displayName}
+                    value={displayName}
                     variant='text2'
                     ml={4}
                     width='auto'
@@ -329,34 +427,6 @@ export default function Profile() {
                   </CheckboxGroup>
                 </Flex>
               </FormControl>
-              <Flex>
-                <Button
-                  onClick={handleClick}
-                  width='fit-content'
-                  p={3}
-                  gap={1}
-                  variant='profileEdit'
-                  display={!editing ? 'none' : 'flex'}
-                >
-                  <Text fontSize='sm' letterSpacing='normal'>
-                    Cancel
-                  </Text>
-                  <Icon weight='bold' boxSize={3} as={X} />
-                </Button>
-                <Button
-                  onClick={handleClick}
-                  width='fit-content'
-                  p={3}
-                  gap={1}
-                  variant='profileEdit'
-                  display={!editing ? 'none' : 'flex'}
-                >
-                  <Text fontSize='sm' letterSpacing='normal'>
-                    Save
-                  </Text>
-                  <Icon weight='bold' boxSize={3} as={Check} />
-                </Button>
-              </Flex>
             </Flex>
           )}
         </Flex>
