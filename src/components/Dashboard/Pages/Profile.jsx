@@ -32,9 +32,8 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
 
 export default function Profile() {
-  const { user } = useContext(Context);
+  const { user, displayName, setDisplayName } = useContext(Context);
   const [editing, setEditing] = useState(false);
-  const [displayName, setDisplayName] = useState('');
   const [level, setLevel] = useState('');
   const [style, setStyle] = useState([]);
 
@@ -63,8 +62,6 @@ export default function Profile() {
       // console.log(error);
     }
   };
-
-  console.log(style);
 
   const updateProfile = async () => {
     const userRef = doc(db, 'users', user.uid);
