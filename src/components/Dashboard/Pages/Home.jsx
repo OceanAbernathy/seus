@@ -12,16 +12,21 @@ import { Users } from '../UsersData';
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
 import { BookOpenText, Star } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Context } from '../../../Helper/Context';
 import { db } from '../../../config/firebaseConfig';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 
 export default function Home() {
-  const { user } = useContext(Context);
-
-  const [lessons, setLessons] = useState([]);
-  const [userLessons, setUserLessons] = useState([]);
+  const {
+    user,
+    lessons,
+    setLessons,
+    userLessons,
+    setUserLessons,
+    achievements,
+    setAchievements,
+  } = useContext(Context);
 
   const getLessons = async () => {
     try {
@@ -35,7 +40,7 @@ export default function Home() {
           .map((lesson, index) => {
             return {
               ...lesson,
-              progress: user.lessons[index].progress,
+              progress: user.lessons[index]?.progress,
             };
           })
       );
@@ -44,10 +49,19 @@ export default function Home() {
     }
   };
 
-  console.log(userLessons);
+  const getAchievements = async () => {
+    const userRef = doc(db, 'users', user.uid);
+    try {
+      const achievementsList = await getDoc(userRef, 'achievements');
+      setAchievements(achievementsList.data().achievements);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getLessons();
+    getAchievements();
     document.title = 'Dashboard - SEUS';
   }, [user]);
 
@@ -167,34 +181,32 @@ export default function Home() {
               Your Achievements
             </Text>
           </Flex>
-          {Users.map((user, index) => (
-            <Flex key={index} flexDirection='column'>
-              {user.achievements.map((item, index) => (
-                <Flex
-                  key={index}
-                  my={1}
-                  alignItems='center'
-                  bgColor='whiteAlpha.600'
-                >
-                  <Flex flexDirection='column' ml={2} mr={1}>
-                    <Text ml={1} fontWeight='semibold' noOfLines={1}>
-                      {item.title}
-                    </Text>
-                    <Tag
-                      size='sm'
-                      bgColor={getLevelBackgroundColor(item.level)}
-                      width='fit-content'
-                    >
-                      {item.level}
-                    </Tag>
-                    <Text ml={1} noOfLines={2}>
-                      {item.description}
-                    </Text>
-                  </Flex>
+          <Flex flexDirection='column'>
+            {achievements.map((item, index) => (
+              <Flex
+                key={index}
+                my={1}
+                alignItems='center'
+                bgColor='whiteAlpha.600'
+              >
+                <Flex flexDirection='column' ml={2} mr={1}>
+                  <Text ml={1} fontWeight='semibold' noOfLines={1}>
+                    {item.title}
+                  </Text>
+                  <Tag
+                    size='sm'
+                    bgColor={getLevelBackgroundColor(item.level)}
+                    width='fit-content'
+                  >
+                    {item.level}
+                  </Tag>
+                  <Text ml={1} noOfLines={2}>
+                    {item.description}
+                  </Text>
                 </Flex>
-              ))}
-            </Flex>
-          ))}
+              </Flex>
+            ))}
+          </Flex>
         </Flex>
       </Flex>
     </Flex>

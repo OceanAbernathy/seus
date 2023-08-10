@@ -11,12 +11,40 @@ import {
 import { Users } from '../UsersData';
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
 import { BookOpenText } from '@phosphor-icons/react';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { Context } from '../../../Helper/Context';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../../config/firebaseConfig';
 
 export default function Lessons() {
+  const { user, lessons, setLessons, userLessons, setUserLessons } =
+    useContext(Context);
+
+  const getLessons = async () => {
+    try {
+      const lessonsList = await getDocs(collection(db, 'lessons'));
+      lessonsList.forEach((doc) => {
+        setLessons((prevState) => [...prevState, doc.data()]);
+      });
+      setUserLessons(
+        lessons
+          .filter(({ id }) => user.lessons.some((e) => e.id === id))
+          .map((lesson, index) => {
+            return {
+              ...lesson,
+              progress: user.lessons[index]?.progress,
+            };
+          })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     document.title = 'Lessons - SEUS';
-  }, []);
+    getLessons();
+  }, [user]);
 
   return (
     <Flex height='100vh' flexDirection='column'>
@@ -55,60 +83,58 @@ export default function Lessons() {
               Your Lessons
             </Text>
           </Flex>
-          {Users.map((user, index) => (
-            <Flex key={index} flexDirection='column'>
-              {user.lessons.map((lesson, index) => (
-                <Flex key={index} my={1} bgColor='whiteAlpha.600'>
-                  <Image
-                    src={lesson.image}
-                    boxSize='24'
-                    py={2}
-                    objectFit='contain'
-                    bgColor={getLevelBackgroundColor(lesson.level)}
-                    height='200px'
-                  />
-                  <Flex
-                    flexDirection='column'
-                    width='70%'
-                    ml={2}
-                    mr={1}
-                    height='200px'
-                    justifyContent='space-around'
-                  >
-                    <Text ml={1} fontWeight='semibold'>
-                      {lesson.title}
-                    </Text>
-                    <Flex flexWrap='wrap' width='150px' pr={1} gap={1}>
+          <Flex flexDirection='column'>
+            {userLessons.map((lesson, index) => (
+              <Flex key={index} my={1} bgColor='whiteAlpha.600'>
+                <Image
+                  src={lesson.image}
+                  boxSize='24'
+                  py={2}
+                  objectFit='contain'
+                  bgColor={getLevelBackgroundColor(lesson.level)}
+                  height='200px'
+                />
+                <Flex
+                  flexDirection='column'
+                  width='70%'
+                  ml={2}
+                  mr={1}
+                  height='200px'
+                  justifyContent='space-around'
+                >
+                  <Text ml={1} fontWeight='semibold'>
+                    {lesson.title}
+                  </Text>
+                  <Flex flexWrap='wrap' width='150px' pr={1} gap={1}>
+                    <Tag
+                      size='sm'
+                      bgColor={getLevelBackgroundColor(lesson.level)}
+                    >
+                      {lesson.level}
+                    </Tag>
+                    {lesson.style.map((item, index) => (
                       <Tag
+                        key={index}
                         size='sm'
-                        bgColor={getLevelBackgroundColor(lesson.level)}
+                        bgColor={getStyleBackgroundColor(item)}
                       >
-                        {lesson.level}
+                        {item}
                       </Tag>
-                      {lesson.style.map((item, index) => (
-                        <Tag
-                          key={index}
-                          size='sm'
-                          bgColor={getStyleBackgroundColor(item)}
-                        >
-                          {item}
-                        </Tag>
-                      ))}
-                    </Flex>
-                    <Text ml={1}>{lesson.description}</Text>
-                    <SimpleGrid columns={4} alignItems='center'>
-                      <GridItem colSpan={3}>
-                        <Progress size='xs' value={lesson.progress} />
-                      </GridItem>
-                      <GridItem>
-                        <Text ml={3}>{lesson.progress}%</Text>
-                      </GridItem>
-                    </SimpleGrid>
+                    ))}
                   </Flex>
+                  <Text ml={1}>{lesson.description}</Text>
+                  <SimpleGrid columns={4} alignItems='center'>
+                    <GridItem colSpan={3}>
+                      <Progress size='xs' value={lesson.progress} />
+                    </GridItem>
+                    <GridItem>
+                      <Text ml={3}>{lesson.progress}%</Text>
+                    </GridItem>
+                  </SimpleGrid>
                 </Flex>
-              ))}
-            </Flex>
-          ))}
+              </Flex>
+            ))}
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
