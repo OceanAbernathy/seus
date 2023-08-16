@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Spinner from './Spinner';
 
 const Root = lazy(() => import('./Root'));
 const Welcome = lazy(() => import('./Welcome'));
@@ -17,7 +18,7 @@ const NotFound = lazy(() => import('./NotFound'));
 export default function SeusRouter() {
   return (
     <>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Spinner />}>
         <Routes>
           <Route exact path='/' end element={<Root />} />
           <Route path='/Welcome' element={<Welcome />} />
