@@ -11,21 +11,17 @@ import {
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
 import { BookOpenText, Star } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../../Helper/Context';
 import { db } from '../../../config/firebaseConfig';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 
 export default function Home() {
-  const {
-    user,
-    lessons,
-    setLessons,
-    userLessons,
-    setUserLessons,
-    achievements,
-    setAchievements,
-  } = useContext(Context);
+  const { user } = useContext(Context);
+
+  const [lessons, setLessons] = useState([]);
+  const [userLessons, setUserLessons] = useState([]);
+  const [achievements, setAchievements] = useState([]);
 
   const getLessons = async () => {
     try {
@@ -103,7 +99,7 @@ export default function Home() {
               </Text>
             </Flex>
             <Flex flexDirection='column'>
-              {userLessons.map((lesson, index) => (
+              {userLessons.slice(0, 2).map((lesson, index) => (
                 <Flex
                   key={index}
                   my={1}

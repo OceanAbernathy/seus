@@ -6,7 +6,7 @@ import {
   SimpleGrid,
   GridItem,
   Icon,
-  Tag
+  Tag,
 } from '@chakra-ui/react';
 import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
 import { BookOpenText } from '@phosphor-icons/react';
@@ -16,10 +16,10 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
 
 export default function Lessons() {
-  const { user, lessons, setLessons, userLessons, setUserLessons } =
-    useContext(Context);
+  const { user } = useContext(Context);
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [lessons, setLessons] = useState([]);
+  const [userLessons, setUserLessons] = useState([]);
 
   const getLessons = async () => {
     try {
@@ -37,7 +37,6 @@ export default function Lessons() {
             };
           })
       );
-      setIsLoaded(true);
     } catch (error) {
       console.log(error);
     }

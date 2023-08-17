@@ -32,7 +32,9 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
 
 export default function Profile() {
-  const { user, displayName, setDisplayName } = useContext(Context);
+  const { user } = useContext(Context);
+
+  const [displayName, setDisplayName] = useState('');
   const [editing, setEditing] = useState(false);
   const [level, setLevel] = useState('');
   const [style, setStyle] = useState([]);

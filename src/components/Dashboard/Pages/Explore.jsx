@@ -34,13 +34,12 @@ import FunkLogo from '../../../images/Icons/Funk.png';
 import PopLogo from '../../../images/Icons/Pop.png';
 import Slider from 'react-slick';
 import { PlusCircle, Ruler } from '@phosphor-icons/react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
-import { Context } from '../../../Helper/Context';
 
 export default function Explore() {
-  const { lessons, setLessons } = useContext(Context);
+  const [lessons, setLessons] = useState([]);
   const [instructors, setInstructors] = useState([]);
 
   const getLessons = async () => {

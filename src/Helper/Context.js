@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 
 export const Context = createContext();
 export const ContextProvider = ({ children }) => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(null);
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,9 +10,6 @@ export const ContextProvider = ({ children }) => {
   const [error, setError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [lessons, setLessons] = useState([]);
-  const [userLessons, setUserLessons] = useState([]);
-  const [achievements, setAchievements] = useState([]);
   const [navItems, setNavItems] = useState(0);
 
   return (
@@ -34,12 +31,6 @@ export const ContextProvider = ({ children }) => {
         setEmailError,
         passwordError,
         setPasswordError,
-        lessons,
-        setLessons,
-        userLessons,
-        setUserLessons,
-        achievements,
-        setAchievements,
         navItems,
         setNavItems,
       }}
