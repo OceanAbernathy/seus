@@ -12,8 +12,7 @@ import { getLevelBackgroundColor, getStyleBackgroundColor } from './TagStyles';
 import { BookOpenText } from '@phosphor-icons/react';
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../../Helper/Context';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../../config/firebaseConfig';
+import { getLessons } from '../../../services/firebase';
 
 export default function Lessons() {
   const { user } = useContext(Context);
@@ -21,14 +20,11 @@ export default function Lessons() {
   const [lessons, setLessons] = useState([]);
   const [userLessons, setUserLessons] = useState([]);
 
-  const getLessons = async () => {
-    try {
-      const lessonsList = await getDocs(collection(db, 'lessons'));
-      lessonsList.forEach((doc) => {
-        setLessons((prevState) => [...prevState, doc.data()]);
-      });
+  const getUserLessons = () => {
+    getLessons().then((response) => {
+      setLessons(response);
       setUserLessons(
-        lessons
+        response
           .filter(({ id }) => user.lessons.some((e) => e.id === id))
           .map((lesson, index) => {
             return {
@@ -37,14 +33,12 @@ export default function Lessons() {
             };
           })
       );
-    } catch (error) {
-      console.log(error);
-    }
+    });
   };
 
   useEffect(() => {
+    getUserLessons();
     document.title = 'Lessons - SEUS';
-    getLessons();
   }, [user]);
 
   return (

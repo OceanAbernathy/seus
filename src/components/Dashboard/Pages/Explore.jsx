@@ -37,26 +37,19 @@ import { PlusCircle, Ruler } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
+import { getInstructors, getLessons } from '../../../services/firebase';
 
 export default function Explore() {
   const [lessons, setLessons] = useState([]);
   const [instructors, setInstructors] = useState([]);
 
-  const getLessons = async () => {
-    try {
-      const lessonsList = await getDocs(collection(db, 'lessons'));
-      const instructorList = await getDocs(collection(db, 'instructors'));
-
-      lessonsList.forEach((doc) => {
-        setLessons((prevState) => [...prevState, doc.data()]);
-      });
-
-      instructorList.forEach((doc) => {
-        setInstructors((prevState) => [...prevState, doc.data()]);
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  const getInfo = () => {
+    getLessons().then((response) => {
+      setLessons(response);
+    });
+    getInstructors().then((response) => {
+      setInstructors(response);
+    });
   };
 
   const settings = {
@@ -70,8 +63,8 @@ export default function Explore() {
   };
 
   useEffect(() => {
+    getInfo();
     document.title = 'Explore - SEUS';
-    getLessons();
   }, []);
 
   return (

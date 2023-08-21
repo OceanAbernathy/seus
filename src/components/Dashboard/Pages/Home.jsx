@@ -14,7 +14,8 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../../Helper/Context';
 import { db } from '../../../config/firebaseConfig';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
+import { getLessons } from '../../../services/firebase';
 
 export default function Home() {
   const { user } = useContext(Context);
@@ -23,14 +24,11 @@ export default function Home() {
   const [userLessons, setUserLessons] = useState([]);
   const [achievements, setAchievements] = useState([]);
 
-  const getLessons = async () => {
-    try {
-      const lessonsList = await getDocs(collection(db, 'lessons'));
-      lessonsList.forEach((doc) => {
-        setLessons((prevState) => [...prevState, doc.data()]);
-      });
+  const getUserLessons = () => {
+    getLessons().then((response) => {
+      setLessons(response);
       setUserLessons(
-        lessons
+        response
           .filter(({ id }) => user.lessons.some((e) => e.id === id))
           .map((lesson, index) => {
             return {
@@ -39,9 +37,7 @@ export default function Home() {
             };
           })
       );
-    } catch (error) {
-      console.log(error);
-    }
+    });
   };
 
   const getAchievements = async () => {
@@ -55,7 +51,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getLessons();
+    getUserLessons();
     getAchievements();
     document.title = 'Dashboard - SEUS';
   }, [user]);

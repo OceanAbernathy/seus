@@ -61,7 +61,7 @@ export default function Profile() {
       setLevel(data.data().preferences.level);
       setStyle(data.data().preferences.style);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
@@ -80,7 +80,9 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    getProfile();
+    if (user) {
+      getProfile();
+    }
     document.title = 'Profile - SEUS';
   }, [user]);
 
