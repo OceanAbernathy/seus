@@ -34,18 +34,29 @@ import FunkLogo from '../../../images/Icons/Funk.png';
 import PopLogo from '../../../images/Icons/Pop.png';
 import Slider from 'react-slick';
 import { PlusCircle, Ruler } from '@phosphor-icons/react';
-import { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../../config/firebaseConfig';
+import { useContext, useEffect, useState } from 'react';
 import { getInstructors, getLessons } from '../../../services/firebase';
+import { Context } from '../../../Helper/Context';
 
 export default function Explore() {
+  const { user } = useContext(Context);
+
   const [lessons, setLessons] = useState([]);
   const [instructors, setInstructors] = useState([]);
+  const [userLessons, setUserLessons] = useState([]);
 
   const getInfo = () => {
     getLessons().then((response) => {
       setLessons(response);
+      setUserLessons(
+        response
+          .filter(({ id }) => user.lessons.some((e) => e.id === id))
+          .map((lesson, index) => {
+            return {
+              ...lesson,
+            };
+          })
+      );
     });
     getInstructors().then((response) => {
       setInstructors(response);
@@ -118,7 +129,11 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          variant='add'
+                          position='absolute'
+                          //  onClick={() => }
+                        >
                           <Icon as={PlusCircle} />
                         </Button>
                         <Image

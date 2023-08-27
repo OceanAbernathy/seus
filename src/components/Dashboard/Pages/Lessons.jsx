@@ -37,7 +37,9 @@ export default function Lessons() {
   };
 
   useEffect(() => {
-    getUserLessons();
+    if (user) {
+      getUserLessons();
+    }
     document.title = 'Lessons - SEUS';
   }, [user]);
 

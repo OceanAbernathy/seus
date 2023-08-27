@@ -51,8 +51,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getUserLessons();
-    getAchievements();
+    if (user) {
+      getUserLessons();
+      getAchievements();
+    }
     document.title = 'Dashboard - SEUS';
   }, [user]);
 

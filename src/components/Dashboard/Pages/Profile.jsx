@@ -30,6 +30,7 @@ import ProfileBackground from '../../../images/ProfileBackground.png';
 import { Context } from '../../../Helper/Context';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
+import { StyleList } from './StyleList';
 
 export default function Profile() {
   const { user } = useContext(Context);
@@ -39,13 +40,12 @@ export default function Profile() {
   const [level, setLevel] = useState('');
   const [style, setStyle] = useState([]);
 
-  const handleClick = () => {
+  const changeEditing = () => {
     setEditing(!editing);
   };
 
-  const handleChange = (e) => {
+  const handleEditing = (e) => {
     const { value, checked } = e.target;
-
     if (checked) {
       setStyle((style) => [...style, value]);
     } else {
@@ -116,7 +116,7 @@ export default function Profile() {
               transform='translate(-50%)'
             />
             <Button
-              onClick={handleClick}
+              onClick={changeEditing}
               width='fit-content'
               alignSelf='end'
               position='absolute'
@@ -205,90 +205,16 @@ export default function Profile() {
                       columnGap={5}
                       gridTemplateColumns='1fr 1fr 1fr'
                     >
-                      <Checkbox
-                        variant='profile'
-                        value='Blues'
-                        onChange={handleChange}
-                      >
-                        Blues
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Classical'
-                        onChange={handleChange}
-                      >
-                        Classical
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Metal'
-                        onChange={handleChange}
-                      >
-                        Metal
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Folk'
-                        onChange={handleChange}
-                      >
-                        Folk
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Jazz'
-                        onChange={handleChange}
-                      >
-                        Jazz
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Bluegrass'
-                        onChange={handleChange}
-                      >
-                        Bluegrass
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Rock'
-                        onChange={handleChange}
-                      >
-                        Rock
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Country'
-                        onChange={handleChange}
-                      >
-                        Country
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Reggae'
-                        onChange={handleChange}
-                      >
-                        Reggae
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Fusion'
-                        onChange={handleChange}
-                      >
-                        Fusion
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Funk'
-                        onChange={handleChange}
-                      >
-                        Funk
-                      </Checkbox>
-                      <Checkbox
-                        variant='profile'
-                        value='Pop'
-                        onChange={handleChange}
-                      >
-                        Pop
-                      </Checkbox>
+                      {StyleList.map((item, index) => (
+                        <Checkbox
+                          key={index}
+                          value={item}
+                          onChange={handleEditing}
+                          variant='profile'
+                        >
+                          {item}
+                        </Checkbox>
+                      ))}
                     </Grid>
                   </CheckboxGroup>
                 </Flex>
@@ -296,7 +222,7 @@ export default function Profile() {
               <Flex justifyContent='center' mt={3} gap={8}>
                 <IconButton
                   as={X}
-                  onClick={handleClick}
+                  onClick={changeEditing}
                   display={!editing ? 'none' : 'flex'}
                   weight='bold'
                   boxSize={12}
@@ -388,42 +314,11 @@ export default function Profile() {
                       columnGap={5}
                       gridTemplateColumns='1fr 1fr 1fr'
                     >
-                      <Checkbox variant='profile' value='Blues'>
-                        Blues
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Classical'>
-                        Classical
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Metal'>
-                        Metal
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Folk'>
-                        Folk
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Jazz'>
-                        Jazz
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Bluegrass'>
-                        Bluegrass
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Rock'>
-                        Rock
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Country'>
-                        Country
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Reggae'>
-                        Reggae
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Fusion'>
-                        Fusion
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Funk'>
-                        Funk
-                      </Checkbox>
-                      <Checkbox variant='profile' value='Pop'>
-                        Pop
-                      </Checkbox>
+                      {StyleList.map((item, index) => (
+                        <Checkbox key={index} value={item} variant='profile'>
+                          {item}
+                        </Checkbox>
+                      ))}
                     </Grid>
                   </CheckboxGroup>
                 </Flex>
