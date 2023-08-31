@@ -84,13 +84,11 @@ export default function ChooseYourStyle() {
           ))}
         </Grid>
         <Flex h='50px' alignItems='center' justifyContent='center'>
-          <Button onClick={updateProfile}>
-            <Flex
-              display={checkedList.length > 0 ? 'flex' : 'none'}
-              alignItems='center'
-              justifyContent='center'
-              gap='2'
-            >
+          <Button
+            display={checkedList.length > 0 ? 'flex' : 'none'}
+            onClick={updateProfile}
+          >
+            <Flex alignItems='center' justifyContent='center' gap='2'>
               <Text fontWeight='semibold'>Begin</Text>
               <ArrowRight size={28} color='#454545' />
             </Flex>

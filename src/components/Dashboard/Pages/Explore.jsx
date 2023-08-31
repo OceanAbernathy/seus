@@ -33,7 +33,7 @@ import FusionLogo from '../../../images/Icons/Fusion.png';
 import FunkLogo from '../../../images/Icons/Funk.png';
 import PopLogo from '../../../images/Icons/Pop.png';
 import Slider from 'react-slick';
-import { PlusCircle, Ruler } from '@phosphor-icons/react';
+import { MinusCircle, PlusCircle, Ruler } from '@phosphor-icons/react';
 import { useContext, useEffect, useState } from 'react';
 import { getInstructors, getLessons } from '../../../services/firebase';
 import { Context } from '../../../Helper/Context';
@@ -74,9 +74,11 @@ export default function Explore() {
   };
 
   useEffect(() => {
-    getInfo();
+    if (user) {
+      getInfo();
+    }
     document.title = 'Explore - SEUS';
-  }, []);
+  }, [user]);
 
   return (
     <Flex height='100vh' flexDirection='column'>
@@ -129,12 +131,14 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button
-                          variant='add'
-                          position='absolute'
-                          //  onClick={() => }
-                        >
-                          <Icon as={PlusCircle} />
+                        <Button variant='add' position='absolute'>
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -215,7 +219,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -300,7 +310,13 @@ export default function Explore() {
                     >
                       <Flex my={1} bgColor='whiteAlpha.600'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -510,7 +526,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -599,7 +621,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -688,7 +716,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -777,7 +811,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -866,7 +906,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -955,7 +1001,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -1044,7 +1096,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -1133,7 +1191,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -1222,7 +1286,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -1311,7 +1381,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -1400,7 +1476,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}
@@ -1489,7 +1571,13 @@ export default function Explore() {
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
                         <Button variant='add' position='absolute'>
-                          <Icon as={PlusCircle} />
+                          <Icon
+                            as={
+                              userLessons.find((item) => item.id === lesson.id)
+                                ? MinusCircle
+                                : PlusCircle
+                            }
+                          />
                         </Button>
                         <Image
                           src={lesson.image}

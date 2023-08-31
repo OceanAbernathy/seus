@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Background from '../../images/Background.png';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../config/firebaseConfig';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../Helper/Context';
 
 export default function Welcome() {
@@ -24,6 +24,10 @@ export default function Welcome() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    document.title = 'Lessons - SEUS';
+  }, [user]);
 
   return (
     <Flex
@@ -49,6 +53,7 @@ export default function Welcome() {
         {types.map((type) => (
           <Button
             key={type}
+            defaultValue={1}
             onClick={() => setSelected(type)}
             variant={selected === type ? 'solid1' : 'solid3'}
             fontWeight='medium'
@@ -59,13 +64,8 @@ export default function Welcome() {
           </Button>
         ))}
         <Flex h='50px' alignItems='center' justifyContent='center' mt='30'>
-          <Button onClick={updateProfile}>
-            <Flex
-              display={selected ? 'flex' : 'none'}
-              alignItems='center'
-              justifyContent='center'
-              gap='2'
-            >
+          <Button display={selected ? 'flex' : 'none'} onClick={updateProfile}>
+            <Flex alignItems='center' justifyContent='center' gap='2'>
               <Text fontWeight='semibold'>Next</Text>
               <ArrowRight size={28} color='#454545' />
             </Flex>
