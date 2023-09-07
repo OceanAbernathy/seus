@@ -17,7 +17,10 @@ export default function Welcome() {
     const userRef = doc(db, 'users', user.uid);
     try {
       await updateDoc(userRef, {
+        //enough time has passed that user doc now exists for a new user,
+        //  so we'll set the displayName here as well as setting the level
         'preferences.level': selected,
+        'personalInfo.displayName': user.personalInfo.displayName,
       });
       navigate('/ChooseYourStyle');
     } catch (error) {

@@ -18,6 +18,8 @@ import { validEmail, validPassword } from './Regex';
 
 export default function SignUp() {
   const {
+    user,
+    setUser,
     password,
     setPassword,
     confirmPassword,
@@ -55,15 +57,17 @@ export default function SignUp() {
 
   const signUp = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      let newUser = await createUserWithEmailAndPassword(auth, email, password);
+      // set user context with this information to be used at a later time
+      setUser({
+        uid: newUser.user.uid,
+        personalInfo: {
+          displayName: displayName,
+        },
+      });
       navigate('/Intro');
-    } catch (err) {
-      console.error(err);
-      setError(err.message);
-      setDisplayName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
+    } catch (error) {
+      console.log(error);
     }
   };
 
