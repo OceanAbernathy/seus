@@ -13,9 +13,9 @@ export default function Dashboard() {
   const { user, setUser } = useContext(Context);
 
   useEffect(() => {
-    // if user doesnt have email field in context that means it's a brand new user,
-    // so we need to get the user doc and set the user context with all the data
-    if (!user.email) {
+    if (user) {
+      // if there is a user signed in, get their info from the DB
+      // then navigate to the Dashboard
       getUser(user.uid);
     }
   }, []);

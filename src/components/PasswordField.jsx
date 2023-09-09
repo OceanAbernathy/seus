@@ -35,6 +35,7 @@ export const SinglePasswordField = forwardRef((props, ref) => {
         <InputGroup>
           <InputRightElement>
             <IconButton
+              tabIndex={-1}
               variant='link'
               aria-label={isOpen ? 'Mask password' : 'Reveal password'}
               icon={
@@ -100,6 +101,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
         <InputGroup>
           <InputRightElement>
             <IconButton
+              tabIndex={-1}
               variant='link'
               aria-label={isOpen ? 'Mask password' : 'Reveal password'}
               icon={
@@ -133,6 +135,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
         <InputGroup>
           <InputRightElement>
             <IconButton
+              tabIndex={-1}
               variant='link'
               aria-label={isOpen ? 'Mask password' : 'Reveal password'}
               icon={
@@ -184,6 +187,7 @@ export const CreateNewPasswordField = forwardRef((props, ref) => {
         <InputGroup>
           <InputRightElement>
             <IconButton
+              tabIndex={-1}
               variant='link'
               aria-label={isOpen ? 'Mask password' : 'Reveal password'}
               icon={
