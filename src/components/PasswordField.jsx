@@ -6,12 +6,20 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverBody,
+  PopoverArrow,
   Text,
   useDisclosure,
   useMergeRefs,
+  Icon,
+  Portal,
+  PopoverCloseButton,
 } from '@chakra-ui/react';
 import { forwardRef, useContext, useEffect, useRef } from 'react';
-import { Eye, EyeClosed } from '@phosphor-icons/react';
+import { Eye, EyeClosed, Question } from '@phosphor-icons/react';
 import { Context } from '../Helper/Context';
 
 export const SinglePasswordField = forwardRef((props, ref) => {
@@ -110,19 +118,51 @@ export const DoublePasswordField = forwardRef((props, ref) => {
               onClick={onClickReveal}
             />
           </InputRightElement>
-          <Text
-            width='fit-content'
-            position='absolute'
-            top={-4}
-            px={2}
-            ml='22px'
-            fontSize='lg'
-            bgColor='#B69ED9'
-            borderRadius={20}
-            zIndex={1}
-          >
-            Password
-          </Text>
+          <Flex>
+            <Flex
+              display='flex'
+              alignItems='center'
+              position='absolute'
+              width='fit-content'
+              top={-4}
+              gap={2}
+              px={2}
+              ml='22px'
+              fontSize='lg'
+              bgColor='#B69ED9'
+              borderRadius={20}
+              zIndex={1}
+            >
+              Password
+              <Popover closeOnBlur={false} placement='right'>
+                <PopoverTrigger>
+                  <Icon as={Question} boxSize={5} color='brand.primaryDark' />
+                </PopoverTrigger>
+                <Portal>
+                  <PopoverContent
+                    width={52}
+                    borderColor='brand.primary'
+                    borderWidth={2}
+                  >
+                    <PopoverArrow
+                      bgColor='brand.primary'
+                      shadow='-1px 1px 0 #8656CD'
+                    />
+                    <PopoverCloseButton color='gray.800' />
+                    <PopoverBody
+                      bgColor='brand.primary'
+                      color='white'
+                      fontSize='sm'
+                    >
+                      Password must have a minimum of 6 characters, at least 1
+                      uppercase letter, 1 lowercase letter, and 1 number with no
+                      spaces.
+                    </PopoverBody>
+                  </PopoverContent>
+                </Portal>
+              </Popover>
+            </Flex>
+          </Flex>
           <Input
             position='relative'
             onChange={({ target }) =>
@@ -137,7 +177,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             name='password'
             type={isOpen ? 'text' : 'password'}
             autoComplete='current-password'
-            placeholder='Enter your password...'
+            placeholder='enter your password...'
             required
             _focusVisible={{ outline: 'none' }}
             {...props}
@@ -185,7 +225,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             name='password-confirm'
             type={isOpen ? 'text' : 'password'}
             autoComplete='current-password'
-            placeholder='Confirm your password...'
+            placeholder='confirm passwords match...'
             required
             _focusVisible={{ outline: 'none' }}
             {...props}
