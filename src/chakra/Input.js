@@ -11,7 +11,7 @@ export const Input = defineStyleConfig({
         h: '60px',
         filter: 'drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25))',
         _placeholder: {
-          fontSize: '1.25rem',
+          fontSize: '1.15rem',
           textColor: 'brand.mediumGray',
           opacity: 1,
         },

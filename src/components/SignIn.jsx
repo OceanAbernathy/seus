@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import Background from '../images/Background3.png';
 import { SinglePasswordField as PasswordField } from './PasswordField';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Context } from '../Helper/Context';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
@@ -18,8 +18,6 @@ import { validEmail, validPassword } from './Regex';
 
 export default function SignIn() {
   const {
-    email,
-    setEmail,
     password,
     setPassword,
     error,
@@ -31,6 +29,8 @@ export default function SignIn() {
   } = useContext(Context);
 
   const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
 
   const isInvalid = email === '' || password.length < 6;
 

@@ -109,7 +109,21 @@ export default function SignUp() {
       >
         <FormControl>
           <FormLabel htmlFor='name' />
+          <Text
+            width='fit-content'
+            position='absolute'
+            top={-2}
+            px={2}
+            ml='22px'
+            fontSize='lg'
+            bgColor='#B69ED9'
+            borderRadius={20}
+            zIndex={1}
+          >
+            Full Name
+          </Text>
           <Input
+            position='relative'
             onChange={({ target }) =>
               setDisplayName(target.value) ||
               setEmailError('') ||
@@ -119,12 +133,26 @@ export default function SignUp() {
             value={displayName}
             id='name'
             type='name'
-            placeholder='Full Name'
+            placeholder='John Doe'
           />
         </FormControl>
         <FormControl>
           <FormLabel htmlFor='email' />
+          <Text
+            width='fit-content'
+            position='absolute'
+            top={-2}
+            px={2}
+            ml='22px'
+            fontSize='lg'
+            bgColor='#B69ED9'
+            borderRadius={20}
+            zIndex={1}
+          >
+            Email Address
+          </Text>
           <Input
+            position='relative'
             onChange={({ target }) =>
               setEmail(target.value) ||
               setEmailError('') ||
@@ -134,7 +162,7 @@ export default function SignUp() {
             value={email}
             id='email'
             type='email'
-            placeholder='Email'
+            placeholder='johndoe@gmail.com'
           />
         </FormControl>
         <PasswordField />

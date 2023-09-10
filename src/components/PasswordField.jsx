@@ -110,7 +110,21 @@ export const DoublePasswordField = forwardRef((props, ref) => {
               onClick={onClickReveal}
             />
           </InputRightElement>
+          <Text
+            width='fit-content'
+            position='absolute'
+            top={-4}
+            px={2}
+            ml='22px'
+            fontSize='lg'
+            bgColor='#B69ED9'
+            borderRadius={20}
+            zIndex={1}
+          >
+            Password
+          </Text>
           <Input
+            position='relative'
             onChange={({ target }) =>
               setPassword(target.value) ||
               setEmailError('') ||
@@ -123,7 +137,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             name='password'
             type={isOpen ? 'text' : 'password'}
             autoComplete='current-password'
-            placeholder='Password'
+            placeholder='Enter your password...'
             required
             _focusVisible={{ outline: 'none' }}
             {...props}
@@ -144,7 +158,21 @@ export const DoublePasswordField = forwardRef((props, ref) => {
               onClick={onClickReveal}
             />
           </InputRightElement>
+          <Text
+            width='fit-content'
+            position='absolute'
+            top={-4}
+            px={2}
+            ml='22px'
+            fontSize='lg'
+            bgColor='#B69ED9'
+            borderRadius={20}
+            zIndex={1}
+          >
+            Confirm Password
+          </Text>
           <Input
+            position='relative'
             onChange={({ target }) =>
               setConfirmPassword(target.value) ||
               setEmailError('') ||
@@ -157,7 +185,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             name='password-confirm'
             type={isOpen ? 'text' : 'password'}
             autoComplete='current-password'
-            placeholder='Confirm Password'
+            placeholder='Confirm your password...'
             required
             _focusVisible={{ outline: 'none' }}
             {...props}
