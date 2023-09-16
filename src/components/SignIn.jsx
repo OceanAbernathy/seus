@@ -60,6 +60,7 @@ export default function SignIn() {
   useEffect(() => {
     document.title = 'Sign In - SEUS';
     setError('');
+    setPasswordError('');
     setEmail('');
     setPassword('');
   }, []);

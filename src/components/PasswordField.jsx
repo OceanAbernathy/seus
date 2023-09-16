@@ -125,7 +125,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
               position='absolute'
               width='fit-content'
               top={-4}
-              gap={2}
+              gap={1.5}
               px={2}
               ml='22px'
               fontSize='lg'
@@ -177,7 +177,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             name='password'
             type={isOpen ? 'text' : 'password'}
             autoComplete='current-password'
-            placeholder='enter your password...'
+            placeholder='Enter a password'
             required
             _focusVisible={{ outline: 'none' }}
             {...props}
@@ -225,7 +225,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             name='password-confirm'
             type={isOpen ? 'text' : 'password'}
             autoComplete='current-password'
-            placeholder='confirm passwords match...'
+            placeholder='Confirm password'
             required
             _focusVisible={{ outline: 'none' }}
             {...props}

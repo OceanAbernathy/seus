@@ -74,6 +74,7 @@ export default function SignUp() {
   useEffect(() => {
     document.title = 'Sign Up - SEUS';
     setError('');
+    setPasswordError('');
     setDisplayName('');
     setEmail('');
     setPassword('');

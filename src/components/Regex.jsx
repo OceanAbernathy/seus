@@ -2,5 +2,5 @@ export const validEmail = new RegExp(
   '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
 );
 export const validPassword = new RegExp(
-  '^((?=S*?[A-Z])(?=S*?[a-z])(?=S*?[0-9]).{6,})S$'
+  '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})'
 );
