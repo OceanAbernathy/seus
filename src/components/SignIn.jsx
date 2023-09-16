@@ -14,8 +14,6 @@ import { Context } from '../Helper/Context';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 
-import { validEmail, validPassword } from './Regex';
-
 export default function SignIn() {
   const {
     password,
@@ -33,17 +31,6 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
 
   const isInvalid = email === '' || password.length < 6;
-
-  const validateForm = () => {
-    if (!validEmail.test(email)) {
-      setEmailError(true);
-    }
-    if (!validPassword.test(password)) {
-      setPasswordError(true);
-    } else {
-      signIn();
-    }
-  };
 
   const signIn = async () => {
     try {
@@ -150,7 +137,7 @@ export default function SignIn() {
         <Flex flexDirection='column' align='center' gap='20px'>
           <Button
             isDisabled={isInvalid}
-            onClick={validateForm}
+            onClick={signIn}
             variant='solid2'
             _hover={{ bgColor: '#00a078' }}
           >
