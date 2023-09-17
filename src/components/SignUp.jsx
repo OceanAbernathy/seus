@@ -66,8 +66,15 @@ export default function SignUp() {
         },
       });
       navigate('/Intro');
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      if (err.message === 'Firebase: Error (auth/email-already-in-use).') {
+        setError('Email already exists. Please sign in.');
+      } else if (err.message === 'Firebase: Error (auth/invalid-email).') {
+        setError('Invalid email. Please try again.');
+      } else {
+        setError(err.message);
+        console.log(err);
+      }
     }
   };
 
@@ -168,17 +175,6 @@ export default function SignUp() {
         </FormControl>
         <PasswordField />
         <Flex position='absolute' bottom={-12} flexWrap='wrap'>
-          {emailError && (
-            <Text
-              fontSize='sm'
-              fontWeight='medium'
-              letterSpacing={0.25}
-              color='red'
-              ml={4}
-            >
-              Your email is invalid.
-            </Text>
-          )}
           {passwordError && (
             <Text
               fontSize='sm'

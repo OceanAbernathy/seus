@@ -37,8 +37,16 @@ export default function SignIn() {
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/Dashboard');
     } catch (err) {
-      console.error(err);
-      setError(err.message);
+      if (err.message === 'Firebase: Error (auth/user-not-found).') {
+        setError('Invalid email or password. Please try again.');
+      } else if (err.message === 'Firebase: Error (auth/invalid-email).') {
+        setError('Invalid email or password. Please try again.');
+      } else if (err.message === 'Firebase: Error (auth/wrong-password).') {
+        setError('Invalid email or password. Please try again.');
+      } else {
+        setError(err.message);
+        console.log(err);
+      }
       setEmail('');
       setPassword('');
     }
