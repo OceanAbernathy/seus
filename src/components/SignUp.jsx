@@ -14,7 +14,7 @@ import { auth } from '../config/firebaseConfig';
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../Helper/Context';
 
-import { validEmail, validPassword } from './Regex';
+import { validPassword } from './Regex';
 
 export default function SignUp() {
   const {
@@ -24,16 +24,14 @@ export default function SignUp() {
     setPassword,
     confirmPassword,
     setConfirmPassword,
-    error,
-    setError,
-    emailError,
-    setEmailError,
     passwordError,
     setPasswordError,
   } = useContext(Context);
 
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const navigate = useNavigate();
 
@@ -45,9 +43,6 @@ export default function SignUp() {
     password !== confirmPassword;
 
   const validateForm = () => {
-    if (!validEmail.test(email)) {
-      setEmailError(true);
-    }
     if (!validPassword.test(password)) {
       setPasswordError(true);
     } else {
@@ -95,7 +90,7 @@ export default function SignUp() {
       backgroundSize='cover'
       flexDirection='column'
       justifyContent='center'
-      gap='55px'
+      gap='60px'
     >
       <Flex width='100vw' flexDirection='column' px='7'>
         <Text
@@ -174,7 +169,7 @@ export default function SignUp() {
           />
         </FormControl>
         <PasswordField />
-        <Flex position='absolute' bottom={-12} flexWrap='wrap'>
+        <Flex position='absolute' bottom={-10} flexWrap='wrap'>
           {passwordError && (
             <Text
               fontSize='sm'

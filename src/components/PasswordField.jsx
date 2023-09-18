@@ -25,6 +25,7 @@ import { Context } from '../Helper/Context';
 export const SinglePasswordField = forwardRef((props, ref) => {
   const { password, setPassword, setError, setEmailError, setPasswordError } =
     useContext(Context);
+
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
 

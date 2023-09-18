@@ -15,20 +15,12 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 
 export default function SignIn() {
-  const {
-    password,
-    setPassword,
-    error,
-    setError,
-    emailError,
-    setEmailError,
-    passwordError,
-    setPasswordError,
-  } = useContext(Context);
+  const { password, setPassword } = useContext(Context);
 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
 
   const isInvalid = email === '' || password.length < 6;
 
@@ -55,7 +47,6 @@ export default function SignIn() {
   useEffect(() => {
     document.title = 'Sign In - SEUS';
     setError('');
-    setPasswordError('');
     setEmail('');
     setPassword('');
   }, []);
@@ -91,12 +82,7 @@ export default function SignIn() {
         <FormControl>
           <FormLabel htmlFor='email' />
           <Input
-            onChange={({ target }) =>
-              setEmail(target.value) ||
-              setEmailError('') ||
-              setPasswordError('') ||
-              setError('')
-            }
+            onChange={({ target }) => setEmail(target.value) || setError('')}
             value={email}
             id='email'
             type='email'
@@ -104,29 +90,7 @@ export default function SignIn() {
           />
         </FormControl>
         <PasswordField />
-        <Flex position='absolute' bottom={-12} flexWrap='wrap'>
-          {emailError && (
-            <Text
-              fontSize='sm'
-              fontWeight='medium'
-              letterSpacing={0.25}
-              color='red'
-              ml={4}
-            >
-              Your email is invalid.
-            </Text>
-          )}
-          {passwordError && (
-            <Text
-              fontSize='sm'
-              fontWeight='medium'
-              letterSpacing={0.25}
-              color='red'
-              ml={4}
-            >
-              Your password is invalid.
-            </Text>
-          )}
+        <Flex position='absolute' bottom={-10} flexWrap='wrap'>
           {error && (
             <Text
               fontSize='sm'
