@@ -120,7 +120,9 @@ export default function Lessons() {
                         </Tag>
                       ))}
                     </Flex>
-                    <Text ml={1}>{lesson.description}</Text>
+                    <Text ml={1} noOfLines={4}>
+                      {lesson.description}
+                    </Text>
                     <SimpleGrid columns={4} alignItems='center'>
                       <GridItem colSpan={3}>
                         <Progress size='xs' value={lesson.progress} />

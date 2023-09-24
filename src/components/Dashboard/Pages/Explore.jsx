@@ -37,30 +37,52 @@ import { MinusCircle, PlusCircle, Ruler } from '@phosphor-icons/react';
 import { useContext, useEffect, useState } from 'react';
 import { getInstructors, getLessons } from '../../../services/firebase';
 import { Context } from '../../../Helper/Context';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../../config/firebaseConfig';
 
 export default function Explore() {
-  const { user } = useContext(Context);
+  const { user, setUser } = useContext(Context);
 
   const [lessons, setLessons] = useState([]);
   const [instructors, setInstructors] = useState([]);
-  const [userLessons, setUserLessons] = useState([]);
 
   const getInfo = () => {
     getLessons().then((response) => {
       setLessons(response);
-      setUserLessons(
-        response
-          .filter(({ id }) => user.lessons.some((e) => e.id === id))
-          .map((lesson, index) => {
-            return {
-              ...lesson,
-            };
-          })
-      );
     });
     getInstructors().then((response) => {
       setInstructors(response);
     });
+  };
+
+  const addLesson = async (id) => {
+    const userRef = doc(db, 'users', user.uid);
+    try {
+      await updateDoc(userRef, {
+        lessons: [...user.lessons, { id: id, progress: '0' }],
+      });
+      setUser({
+        ...user,
+        lessons: [...user.lessons, { id: id, progress: '0' }],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeLesson = async (id) => {
+    const userRef = doc(db, 'users', user.uid);
+    try {
+      await updateDoc(userRef, {
+        lessons: user.lessons.filter((lesson) => lesson.id !== id),
+      });
+      setUser({
+        ...user,
+        lessons: user.lessons.filter((lesson) => lesson.id !== id),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const settings = {
@@ -131,10 +153,18 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -221,7 +251,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -312,7 +342,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -528,7 +558,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -623,7 +653,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -718,7 +748,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -813,7 +843,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -908,7 +938,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -1003,7 +1033,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -1098,7 +1128,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -1193,7 +1223,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -1288,7 +1318,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -1383,7 +1413,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -1478,7 +1508,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }
@@ -1573,7 +1603,7 @@ export default function Explore() {
                         <Button variant='add' position='absolute'>
                           <Icon
                             as={
-                              userLessons.find((item) => item.id === lesson.id)
+                              user.lessons.find((item) => item.id === lesson.id)
                                 ? MinusCircle
                                 : PlusCircle
                             }

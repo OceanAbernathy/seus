@@ -6,8 +6,8 @@ const Root = lazy(() => import('./Root'));
 const Welcome = lazy(() => import('./Welcome'));
 const SignUp = lazy(() => import('./SignUp'));
 const SignIn = lazy(() => import('./SignIn'));
-// import ResetPassword from './PasswordReset/ResetPassword';
-// import CheckEmail from './PasswordReset/CheckEmail';
+const ResetPassword = lazy(() => import('./PasswordReset/ResetPassword'));
+const CheckEmail = lazy(() => import('./PasswordReset/CheckEmail'));
 // import CreateNewPassword from './PasswordReset/CreateNewPassword';
 const Intro = lazy(() => import('./Intro/Intro'));
 const PickYourLevel = lazy(() => import('./Intro/PickYourLevel'));
@@ -24,8 +24,8 @@ export default function SeusRouter() {
           <Route path='/Welcome' element={<Welcome />} />
           <Route path='/SignUp' element={<SignUp />} />
           <Route path='/SignIn' element={<SignIn />} />
-          {/* <Route path='/ResetPassword' element={<ResetPassword />} /> */}
-          {/* <Route path='/CheckEmail' element={<CheckEmail />} /> */}
+          <Route path='/ResetPassword' element={<ResetPassword />} />
+          <Route path='/CheckEmail' element={<CheckEmail />} />
           {/* <Route path='/CreateNewPassword' element={<CreateNewPassword />} /> */}
           <Route path='/Intro' element={<Intro />} />
           <Route path='/PickYourLevel' element={<PickYourLevel />} />

@@ -9,7 +9,7 @@ import {
 import { Link } from 'react-router-dom';
 import Background from '../../images/Background2.png';
 
-import { ArrowLeft, Question } from '@phosphor-icons/react';
+import { ArrowLeft } from '@phosphor-icons/react';
 
 export default function SignIn() {
   return (
@@ -31,11 +31,6 @@ export default function SignIn() {
           <Flex alignItems='center' gap='2'>
             <ArrowLeft size={32} color='#454545' />
             <Text fontWeight='semibold'>Back</Text>
-          </Flex>
-        </Link>
-        <Link>
-          <Flex>
-            <Question size={32} color='#454545' />
           </Flex>
         </Link>
       </Flex>
