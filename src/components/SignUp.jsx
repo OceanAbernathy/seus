@@ -24,14 +24,11 @@ export default function SignUp() {
     setPassword,
     confirmPassword,
     setConfirmPassword,
-    passwordError,
-    setPasswordError,
   } = useContext(Context);
 
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [emailError, setEmailError] = useState('');
 
   const navigate = useNavigate();
 
@@ -44,7 +41,7 @@ export default function SignUp() {
 
   const validateForm = () => {
     if (!validPassword.test(password)) {
-      setPasswordError(true);
+      setError('Your password is invalid.');
     } else {
       signUp();
     }
@@ -76,7 +73,6 @@ export default function SignUp() {
   useEffect(() => {
     document.title = 'Sign Up - SEUS';
     setError('');
-    setPasswordError('');
     setDisplayName('');
     setEmail('');
     setPassword('');
@@ -128,10 +124,7 @@ export default function SignUp() {
           <Input
             position='relative'
             onChange={({ target }) =>
-              setDisplayName(target.value) ||
-              setEmailError('') ||
-              setPasswordError('') ||
-              setError('')
+              setDisplayName(target.value) || setError('')
             }
             value={displayName}
             id='name'
@@ -156,12 +149,7 @@ export default function SignUp() {
           </Text>
           <Input
             position='relative'
-            onChange={({ target }) =>
-              setEmail(target.value) ||
-              setEmailError('') ||
-              setPasswordError('') ||
-              setError('')
-            }
+            onChange={({ target }) => setEmail(target.value) || setError('')}
             value={email}
             id='email'
             type='email'
@@ -170,17 +158,6 @@ export default function SignUp() {
         </FormControl>
         <PasswordField />
         <Flex position='absolute' bottom={-10} flexWrap='wrap'>
-          {passwordError && (
-            <Text
-              fontSize='sm'
-              fontWeight='medium'
-              letterSpacing={0.25}
-              color='red'
-              ml={4}
-            >
-              Your password is invalid.
-            </Text>
-          )}
           {error && (
             <Text
               fontSize='sm'

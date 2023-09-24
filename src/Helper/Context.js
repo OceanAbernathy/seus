@@ -6,8 +6,6 @@ export const ContextProvider = ({ children }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [navItems, setNavItems] = useState(0);
 
   return (
@@ -21,10 +19,6 @@ export const ContextProvider = ({ children }) => {
         setConfirmPassword,
         error,
         setError,
-        emailError,
-        setEmailError,
-        passwordError,
-        setPasswordError,
         navItems,
         setNavItems,
       }}

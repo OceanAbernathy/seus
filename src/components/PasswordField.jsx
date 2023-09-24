@@ -23,8 +23,7 @@ import { Eye, EyeClosed, Question } from '@phosphor-icons/react';
 import { Context } from '../Helper/Context';
 
 export const SinglePasswordField = forwardRef((props, ref) => {
-  const { password, setPassword, setError, setEmailError, setPasswordError } =
-    useContext(Context);
+  const { password, setPassword, setError } = useContext(Context);
 
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
@@ -54,12 +53,7 @@ export const SinglePasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
-            onChange={({ target }) =>
-              setPassword(target.value) ||
-              setEmailError('') ||
-              setPasswordError('') ||
-              setError('')
-            }
+            onChange={({ target }) => setPassword(target.value) || setError('')}
             value={password}
             id='password'
             ref={mergeRef}
@@ -84,8 +78,6 @@ export const DoublePasswordField = forwardRef((props, ref) => {
     confirmPassword,
     setConfirmPassword,
     setError,
-    setEmailError,
-    setPasswordError,
   } = useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
@@ -137,7 +129,12 @@ export const DoublePasswordField = forwardRef((props, ref) => {
               Password
               <Popover closeOnBlur={false} placement='right'>
                 <PopoverTrigger>
-                  <Icon as={Question} boxSize={5} color='brand.primaryDark' />
+                  <Icon
+                    as={Question}
+                    boxSize={5}
+                    color='brand.primaryDark'
+                    weight='bold'
+                  />
                 </PopoverTrigger>
                 <Portal>
                   <PopoverContent
@@ -166,12 +163,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
           </Flex>
           <Input
             position='relative'
-            onChange={({ target }) =>
-              setPassword(target.value) ||
-              setEmailError('') ||
-              setPasswordError('') ||
-              setError('')
-            }
+            onChange={({ target }) => setPassword(target.value) || setError('')}
             value={password}
             id='password'
             ref={mergeRef}
@@ -215,10 +207,7 @@ export const DoublePasswordField = forwardRef((props, ref) => {
           <Input
             position='relative'
             onChange={({ target }) =>
-              setConfirmPassword(target.value) ||
-              setEmailError('') ||
-              setPasswordError('') ||
-              setError('')
+              setConfirmPassword(target.value) || setError('')
             }
             value={confirmPassword}
             id='password-confirm'
