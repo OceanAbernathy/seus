@@ -11,7 +11,11 @@ import Background from '../images/Background3.png';
 import { SinglePasswordField as PasswordField } from './PasswordField';
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../Helper/Context';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 
 export default function SignIn() {
@@ -23,6 +27,12 @@ export default function SignIn() {
   const [error, setError] = useState('');
 
   const isInvalid = email === '' || password.length < 6;
+
+  const sessionPersistence = () => {
+    setPersistence(auth, browserSessionPersistence).then(() => {
+      return signIn();
+    });
+  };
 
   const signIn = async () => {
     try {
@@ -109,7 +119,7 @@ export default function SignIn() {
         <Flex flexDirection='column' align='center' gap='20px'>
           <Button
             isDisabled={isInvalid}
-            onClick={signIn}
+            onClick={sessionPersistence}
             variant='solid2'
             _hover={{ bgColor: '#00a078' }}
           >

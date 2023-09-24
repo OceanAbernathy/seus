@@ -20,7 +20,7 @@ export default function App() {
         // then navigate to the Dashboard
         getUser(user.uid);
         navigate('/Dashboard');
-      }
+      } else navigate('/');
     });
   }, []);
 
