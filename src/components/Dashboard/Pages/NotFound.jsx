@@ -3,9 +3,9 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import Background from '../../../images/Background3.png';
 
-export default function Welcome() {
+export default function NotFound() {
   useEffect(() => {
-    document.title = 'Not Found - Instagram';
+    document.title = 'Not Found - SEUS';
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Icon, Image, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SliderData as slides } from './SliderData';
 import { ArrowRight } from '@phosphor-icons/react';
@@ -50,6 +50,10 @@ export default function Intro() {
   };
 
   const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  useEffect(() => {
+    document.title = 'Introduction - SEUS';
+  }, []);
 
   return (
     <Flex

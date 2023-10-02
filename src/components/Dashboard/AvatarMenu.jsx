@@ -23,7 +23,7 @@ export default function AvatarMenu() {
   const logout = async () => {
     try {
       await signOut(auth);
-      navigate('/Welcome');
+      navigate('/');
     } catch (err) {
       console.error(err);
     }

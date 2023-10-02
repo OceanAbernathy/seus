@@ -29,7 +29,7 @@ export default function Welcome() {
   };
 
   useEffect(() => {
-    document.title = 'Lessons - SEUS';
+    document.title = 'Pick Your Level - SEUS';
   }, [user]);
 
   return (

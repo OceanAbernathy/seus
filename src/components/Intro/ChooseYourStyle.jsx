@@ -1,6 +1,6 @@
 import { Button, Checkbox, Flex, Grid, Text } from '@chakra-ui/react';
 import { ArrowRight } from '@phosphor-icons/react';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Background from '../../images/Background2.png';
 import { StyleData } from './StyleData';
@@ -24,6 +24,10 @@ export default function ChooseYourStyle() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    document.title = 'Choose Your Style - SEUS';
+  }, [user]);
 
   return (
     <Flex

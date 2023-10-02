@@ -19,8 +19,11 @@ export default function App() {
         // if there is a user signed in, get their info from the DB
         // then navigate to the Dashboard
         getUser(user.uid);
-        navigate('/Dashboard');
-      } else navigate('/');
+        // if there is a user signed in, don't let the user navigate outside the dashboard
+        // navigate('/Dashboard');
+      }
+      // if there is no user signed in, don't allow access to the dashboard
+      // else navigate('/');
     });
   }, []);
 

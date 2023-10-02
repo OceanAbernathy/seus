@@ -248,7 +248,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -339,7 +347,15 @@ export default function Explore() {
                       position='relative'
                     >
                       <Flex my={1} bgColor='whiteAlpha.600'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -555,7 +571,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -650,7 +674,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -745,7 +777,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -840,7 +880,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -935,7 +983,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -1030,7 +1086,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -1125,7 +1189,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -1220,7 +1292,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -1315,7 +1395,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -1410,7 +1498,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -1505,7 +1601,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)
@@ -1600,7 +1704,15 @@ export default function Explore() {
                   .map((lesson, index) => (
                     <Flex key={index} flexDirection='column'>
                       <Flex my={1} bgColor='whiteAlpha.600' position='relative'>
-                        <Button variant='add' position='absolute'>
+                        <Button
+                          onClick={() =>
+                            user.lessons.find((item) => item.id === lesson.id)
+                              ? removeLesson(lesson.id)
+                              : addLesson(lesson.id)
+                          }
+                          variant='add'
+                          position='absolute'
+                        >
                           <Icon
                             as={
                               user.lessons.find((item) => item.id === lesson.id)

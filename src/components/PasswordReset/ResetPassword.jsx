@@ -10,8 +10,13 @@ import { Link } from 'react-router-dom';
 import Background from '../../images/Background2.png';
 
 import { ArrowLeft } from '@phosphor-icons/react';
+import { useEffect } from 'react';
 
 export default function SignIn() {
+  useEffect(() => {
+    document.title = 'Reset Your Password - SEUS';
+  }, []);
+
   return (
     <Flex
       height='100vh'

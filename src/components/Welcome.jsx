@@ -2,8 +2,13 @@ import { Button, Flex, Image, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import Background from '../images/Background2.png';
 import GuitarVector from '../images/GuitarVector2.svg';
+import { useEffect } from 'react';
 
 export default function Welcome() {
+  useEffect(() => {
+    document.title = 'Welcome - SEUS';
+  }, []);
+
   return (
     <Flex
       h='100vh'
