@@ -6,13 +6,26 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { ArrowLeft } from '@phosphor-icons/react';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../../config/firebaseConfig';
 import Background from '../../images/Background2.png';
 
-import { ArrowLeft } from '@phosphor-icons/react';
-import { useEffect } from 'react';
+export default function ResetPassword() {
+  const [email, setEmail] = useState('');
 
-export default function SignIn() {
+  const navigate = useNavigate();
+
+  const isInvalid = email === '';
+
+  const triggerResetEmail = async () => {
+    await sendPasswordResetEmail(auth, email);
+    console.log('Password reset email sent');
+    navigate('/CheckEmail');
+  };
+
   useEffect(() => {
     document.title = 'Reset Your Password - SEUS';
   }, []);
@@ -65,13 +78,21 @@ export default function SignIn() {
         <Flex flexDirection='column' w='90vw' m='0 auto' gap='20px'>
           <FormControl>
             <FormLabel htmlFor='email' />
-            <Input id='email' type='email' placeholder='Email' />
+            <Input
+              onChange={({ target }) => setEmail(target.value)}
+              value={email}
+              id='email'
+              type='email'
+              placeholder='Email'
+            />
           </FormControl>
-          <Link to='/CheckEmail'>
-            <Button variant='solid1' _hover={{ bgColor: '#00a078' }}>
-              Send Instructions
-            </Button>
-          </Link>
+          <Button
+            isDisabled={isInvalid}
+            onClick={triggerResetEmail}
+            variant='solid1'
+          >
+            Send Instructions
+          </Button>
         </Flex>
       </Flex>
     </Flex>

@@ -121,16 +121,11 @@ export default function SignIn() {
             isDisabled={isInvalid}
             onClick={sessionPersistence}
             variant='solid2'
-            _hover={{ bgColor: '#00a078' }}
           >
             Sign In
           </Button>
           <Link to='/ResetPassword'>
-            <Text
-              fontSize='lg'
-              fontWeight='500'
-              _hover={{ textColor: 'white' }}
-            >
+            <Text fontSize='lg' fontWeight='500'>
               Forgot password?
             </Text>
           </Link>
@@ -141,11 +136,7 @@ export default function SignIn() {
             Don't have an account?
           </Text>
           <Link to='/SignUp'>
-            <Text
-              fontSize='lg'
-              fontWeight='500'
-              _hover={{ textColor: 'white' }}
-            >
+            <Text fontSize='lg' fontWeight='500'>
               Sign Up
             </Text>
           </Link>

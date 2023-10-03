@@ -4,8 +4,15 @@ import Background from '../../images/Background.png';
 import Background2 from '../../images/Background2.png';
 
 import { EnvelopeOpen } from '@phosphor-icons/react';
+import { useEffect, useState } from 'react';
 
 export default function SignIn() {
+  const [isInvalid, setIsInvalid] = useState(true);
+
+  useEffect(() => {
+    document.title = 'Check Your Mail - SEUS';
+  }, []);
+
   return (
     <Flex
       height='100vh'
@@ -13,7 +20,13 @@ export default function SignIn() {
       backgroundSize='cover'
       position='relative'
     >
-      <Flex flexDirection='column' justifyContent='center' gap='50px'>
+      <Flex
+        flexDirection='column'
+        justifyContent='center'
+        gap='50px'
+        position='absolute'
+        top={32}
+      >
         <Flex
           flexDirection='column'
           lineHeight='1.2'
@@ -45,29 +58,35 @@ export default function SignIn() {
           </Flex>
         </Flex>
 
-        <Flex flexDirection='column' gap='40px' alignItems='center'>
-          <Link to='/CreateNewPassword'>
+        <Flex flexDirection='column' gap='50px' alignItems='center'>
+          <Link to='https://gmail.com' target='_blank'>
             <Button
+              onClick={() => setIsInvalid(false)}
               variant='solid1'
-              w='max-content'
-              _hover={{ bgColor: '#00a078' }}
+              w='75vw'
             >
               <Text mx='10'>Open email app</Text>
             </Button>
           </Link>
           <Link to='/SignIn'>
-            <Text>Skip, I'll confirm later</Text>
+            <Button
+              isDisabled={isInvalid}
+              variant='solid1'
+              w='75vw'
+              bgColor='brand.secondary'
+            >
+              <Text mx='10'>Sign In</Text>
+            </Button>
           </Link>
         </Flex>
-
-        <Flex position='absolute' bottom='16' px='7'>
-          <Text textAlign='center'>
-            Did not receive the email? Check your spam filter, or{' '}
-            <Link to='/ResetPassword' style={{ color: '#8656CD' }}>
-              try another email address
-            </Link>
-          </Text>
-        </Flex>
+      </Flex>
+      <Flex position='absolute' bottom='16' px='7'>
+        <Text textAlign='center'>
+          Did not receive the email? Check your spam filter, or{' '}
+          <Link to='/ResetPassword' style={{ color: '#8656CD' }}>
+            try another email address
+          </Link>
+        </Text>
       </Flex>
     </Flex>
   );

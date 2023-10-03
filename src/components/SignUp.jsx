@@ -173,12 +173,7 @@ export default function SignUp() {
       </Flex>
 
       <Flex flexDirection='column' m='0 25px' gap='40px'>
-        <Button
-          isDisabled={isInvalid}
-          onClick={validateForm}
-          variant='solid1'
-          _hover={{ bgColor: '#6B44A4' }}
-        >
+        <Button isDisabled={isInvalid} onClick={validateForm} variant='solid1'>
           Sign Up
         </Button>
         <Flex w='100%' justifyContent='center' gap='15px'>
@@ -186,11 +181,7 @@ export default function SignUp() {
             Already have an account?
           </Text>
           <Link to='/SignIn'>
-            <Text
-              fontSize='lg'
-              fontWeight='500'
-              _hover={{ textColor: 'white' }}
-            >
+            <Text fontSize='lg' fontWeight='500'>
               Sign In
             </Text>
           </Link>

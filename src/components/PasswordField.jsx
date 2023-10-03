@@ -227,6 +227,13 @@ export const DoublePasswordField = forwardRef((props, ref) => {
 });
 
 export const CreateNewPasswordField = forwardRef((props, ref) => {
+  const {
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    setError,
+  } = useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
   const inputRef = useRef < HTMLInputElement > null;
 
@@ -237,6 +244,11 @@ export const CreateNewPasswordField = forwardRef((props, ref) => {
       inputRef.current.focus({ preventScroll: true });
     }
   };
+
+  useEffect(() => {
+    setPassword('');
+    setConfirmPassword('');
+  }, []);
 
   return (
     <Flex flexDirection='column' gap='2'>
@@ -255,12 +267,14 @@ export const CreateNewPasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
+            onChange={({ target }) => setPassword(target.value) || setError('')}
+            value={password}
             id='password'
             ref={mergeRef}
             name='password'
             type={isOpen ? 'text' : 'password'}
             autoComplete='current-password'
-            placeholder='Password'
+            placeholder='Enter a password'
             required
             _focusVisible={{ outline: 'none' }}
             {...props}
@@ -275,6 +289,7 @@ export const CreateNewPasswordField = forwardRef((props, ref) => {
         <InputGroup>
           <InputRightElement>
             <IconButton
+              tabIndex={-1}
               variant='link'
               aria-label={isOpen ? 'Mask password' : 'Reveal password'}
               icon={
@@ -284,12 +299,16 @@ export const CreateNewPasswordField = forwardRef((props, ref) => {
             />
           </InputRightElement>
           <Input
+            onChange={({ target }) =>
+              setConfirmPassword(target.value) || setError('')
+            }
+            value={confirmPassword}
             id='password-confirm'
             ref={mergeRef}
             name='password-confirm'
             type={isOpen ? 'text' : 'password'}
             autoComplete='current-password'
-            placeholder='Confirm Password'
+            placeholder='Confirm password'
             required
             _focusVisible={{ outline: 'none' }}
             {...props}
