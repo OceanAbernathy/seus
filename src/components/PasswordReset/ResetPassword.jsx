@@ -12,21 +12,43 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebaseConfig';
 import Background from '../../images/Background2.png';
+import { validEmail } from '../Regex';
 
 export default function ResetPassword() {
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
   const isInvalid = email === '';
 
+  const validateForm = () => {
+    if (!validEmail.test(email)) {
+      setError('Your password is invalid.');
+    } else {
+      triggerResetEmail();
+    }
+  };
+
   const triggerResetEmail = async () => {
-    await sendPasswordResetEmail(auth, email);
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (err) {
+      if (err.message === 'Firebase: Error (auth/user-not-found).') {
+        setError('Invalid email or password. Please try again.');
+      } else if (err.message === 'Firebase: Error (auth/invalid-email).') {
+        setError('Invalid email or password. Please try again.');
+      } else {
+        setError(err.message);
+        console.log(err);
+      }
+    }
     console.log('Password reset email sent');
     navigate('/CheckEmail');
   };
 
   useEffect(() => {
+    setError('');
     document.title = 'Reset Your Password - SEUS';
   }, []);
 
@@ -53,7 +75,13 @@ export default function ResetPassword() {
         </Link>
       </Flex>
 
-      <Flex h='100%' flexDirection='column' justifyContent='center' gap='60px'>
+      <Flex
+        h='100%'
+        flexDirection='column'
+        justifyContent='center'
+        gap='60px'
+        mt={40}
+      >
         <Flex
           width='100vw'
           flexDirection='column'
@@ -88,11 +116,24 @@ export default function ResetPassword() {
           </FormControl>
           <Button
             isDisabled={isInvalid}
-            onClick={triggerResetEmail}
+            onClick={validateForm}
             variant='solid1'
           >
             Send Instructions
           </Button>
+          <Flex flexWrap='wrap'>
+            {error && (
+              <Text
+                fontSize='sm'
+                fontWeight='medium'
+                letterSpacing={0.25}
+                color='red'
+                ml={4}
+              >
+                {error}
+              </Text>
+            )}
+          </Flex>
         </Flex>
       </Flex>
     </Flex>

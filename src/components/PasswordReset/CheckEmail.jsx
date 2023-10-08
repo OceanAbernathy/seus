@@ -25,7 +25,7 @@ export default function SignIn() {
         justifyContent='center'
         gap='50px'
         position='absolute'
-        top={32}
+        top={8}
       >
         <Flex
           flexDirection='column'
