@@ -26,7 +26,7 @@ import {
   X,
 } from '@phosphor-icons/react';
 import { useContext, useEffect, useState } from 'react';
-import ProfileBackground from '../../../images/ProfileBackground.png';
+import ProfileBackground from '../../../images/ProfileBackground2.png';
 import { Context } from '../../../Helper/Context';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../config/firebaseConfig';
@@ -88,10 +88,10 @@ export default function Profile() {
 
   return (
     user && (
-      <Flex height='100vh' flexDirection='column'>
+      <Flex minH='100dvh' flexDirection='column'>
         <Flex
-          pt={9}
-          pb={7}
+          pt={5}
+          pb={5}
           justifyContent='center'
           bgColor='brand.darkGray'
           position='relative'
@@ -103,15 +103,15 @@ export default function Profile() {
 
         <Flex flexDirection='column' height='82.5%' gap={16}>
           <Flex position='relative'>
-            <Image src={ProfileBackground} objectFit='cover' />
+            <Image src={ProfileBackground} objectFit='contain' />
             <Avatar
               // as={User}
               name={user.personalInfo.displayName}
               bgColor='brand.lightGray'
               color='brand.primary'
-              size='xl'
+              size='profile'
               position='absolute'
-              bottom={-10}
+              bottom={-9}
               left='50%'
               transform='translate(-50%)'
             />

@@ -26,12 +26,12 @@ export const SinglePasswordField = forwardRef((props, ref) => {
   const { password, setPassword, setError } = useContext(Context);
 
   const { isOpen, onToggle } = useDisclosure();
-  const inputRef = useRef < HTMLInputElement > null;
+  const inputRef = useRef(null);
 
   const mergeRef = useMergeRefs(inputRef, ref);
   const onClickReveal = () => {
     onToggle();
-    if (inputRef.current) {
+    if (inputRef.current != null) {
       inputRef.current.focus({ preventScroll: true });
     }
   };
@@ -80,12 +80,12 @@ export const DoublePasswordField = forwardRef((props, ref) => {
     setError,
   } = useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
-  const inputRef = useRef < HTMLInputElement > null;
+  const inputRef = useRef(null);
 
   const mergeRef = useMergeRefs(inputRef, ref);
   const onClickReveal = () => {
     onToggle();
-    if (inputRef.current) {
+    if (inputRef.current != null) {
       inputRef.current.focus({ preventScroll: true });
     }
   };
@@ -221,102 +221,6 @@ export const DoublePasswordField = forwardRef((props, ref) => {
             {...props}
           />
         </InputGroup>
-      </FormControl>
-    </Flex>
-  );
-});
-
-export const CreateNewPasswordField = forwardRef((props, ref) => {
-  const {
-    password,
-    setPassword,
-    confirmPassword,
-    setConfirmPassword,
-    setError,
-  } = useContext(Context);
-  const { isOpen, onToggle } = useDisclosure();
-  const inputRef = useRef < HTMLInputElement > null;
-
-  const mergeRef = useMergeRefs(inputRef, ref);
-  const onClickReveal = () => {
-    onToggle();
-    if (inputRef.current) {
-      inputRef.current.focus({ preventScroll: true });
-    }
-  };
-
-  useEffect(() => {
-    setPassword('');
-    setConfirmPassword('');
-  }, []);
-
-  return (
-    <Flex flexDirection='column' gap='2'>
-      <FormControl>
-        <FormLabel htmlFor='password' />
-        <InputGroup>
-          <InputRightElement>
-            <IconButton
-              tabIndex={-1}
-              variant='link'
-              aria-label={isOpen ? 'Mask password' : 'Reveal password'}
-              icon={
-                isOpen ? <EyeClosed weight='bold' /> : <Eye weight='bold' />
-              }
-              onClick={onClickReveal}
-            />
-          </InputRightElement>
-          <Input
-            onChange={({ target }) => setPassword(target.value) || setError('')}
-            value={password}
-            id='password'
-            ref={mergeRef}
-            name='password'
-            type={isOpen ? 'text' : 'password'}
-            autoComplete='current-password'
-            placeholder='Enter a password'
-            required
-            _focusVisible={{ outline: 'none' }}
-            {...props}
-          />
-        </InputGroup>
-        <Text px='5' pt='1'>
-          Must be at least 8 characters.
-        </Text>
-      </FormControl>
-      <FormControl>
-        <FormLabel htmlFor='password' />
-        <InputGroup>
-          <InputRightElement>
-            <IconButton
-              tabIndex={-1}
-              variant='link'
-              aria-label={isOpen ? 'Mask password' : 'Reveal password'}
-              icon={
-                isOpen ? <EyeClosed weight='bold' /> : <Eye weight='bold' />
-              }
-              onClick={onClickReveal}
-            />
-          </InputRightElement>
-          <Input
-            onChange={({ target }) =>
-              setConfirmPassword(target.value) || setError('')
-            }
-            value={confirmPassword}
-            id='password-confirm'
-            ref={mergeRef}
-            name='password-confirm'
-            type={isOpen ? 'text' : 'password'}
-            autoComplete='current-password'
-            placeholder='Confirm password'
-            required
-            _focusVisible={{ outline: 'none' }}
-            {...props}
-          />
-        </InputGroup>
-        <Text px='5' pt='1'>
-          Both passwords must match.
-        </Text>
       </FormControl>
     </Flex>
   );

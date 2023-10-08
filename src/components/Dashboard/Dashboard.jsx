@@ -28,7 +28,7 @@ export default function Dashboard() {
   return (
     <Flex
       width='100vw'
-      height='100vh'
+      maxH='100dvh'
       position='relative'
       flexDirection='column'
       bgImage={Background}

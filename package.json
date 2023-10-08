@@ -1,6 +1,7 @@
 {
   "name": "seus",
   "version": "0.1.0",
+  "homepage": "http://oceanabernathy.com/SEUS/",
   "private": true,
   "dependencies": {
     "@chakra-ui/popover": "^2.2.1",

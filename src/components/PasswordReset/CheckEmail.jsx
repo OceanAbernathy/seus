@@ -15,7 +15,7 @@ export default function SignIn() {
 
   return (
     <Flex
-      height='100vh'
+      minH='100dvh'
       bgImage={Background}
       backgroundSize='cover'
       position='relative'

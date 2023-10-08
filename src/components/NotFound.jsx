@@ -10,7 +10,7 @@ export default function NotFound() {
 
   return (
     <Flex
-      h='100vh'
+      minH='100dvh'
       bgImage={Background}
       backgroundSize='cover'
       flexDirection='column'
@@ -22,7 +22,7 @@ export default function NotFound() {
       <Text fontSize='4xl' fontWeight='semibold'>
         Page Not Found!
       </Text>
-      <Link to='/Welcome'>
+      <Link to='/'>
         <Button px={8} fontSize='lg'>
           Return
         </Button>

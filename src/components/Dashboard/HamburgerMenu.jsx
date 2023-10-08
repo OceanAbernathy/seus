@@ -23,7 +23,7 @@ export default function HamburgerMenu() {
 
   return (
     <>
-      <Flex position='fixed' top='36px' right='16px' align='center'>
+      <Flex position='fixed' top={4} right={6} align='center'>
         <IconButton
           aria-label='Open Menu'
           size='lg'

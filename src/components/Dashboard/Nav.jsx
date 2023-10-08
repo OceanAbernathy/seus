@@ -14,7 +14,7 @@ export default function Nav() {
       position='absolute'
       width='100%'
       justifyContent='space-evenly'
-      pb={7}
+      pb={2}
       bgColor='brand.darkGray'
     >
       {NavData.map((item) => (

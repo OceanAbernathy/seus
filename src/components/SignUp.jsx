@@ -81,7 +81,7 @@ export default function SignUp() {
 
   return (
     <Flex
-      h='100vh'
+      minH='100dvh'
       bgImage={Background}
       backgroundSize='cover'
       flexDirection='column'
@@ -90,7 +90,7 @@ export default function SignUp() {
     >
       <Flex width='100vw' flexDirection='column' px='7'>
         <Text
-          fontSize='4rem'
+          fontSize='3.5rem'
           fontWeight={600}
           textShadow='0 4px 4px rgba(0, 0, 0, .25)'
           textTransform='uppercase'

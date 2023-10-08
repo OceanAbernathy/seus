@@ -32,7 +32,7 @@ export default function ResetPassword() {
 
   return (
     <Flex
-      height='100vh'
+      minH='100dvh'
       bgImage={Background}
       backgroundSize='cover'
       position='relative'

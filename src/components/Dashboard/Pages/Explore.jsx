@@ -103,10 +103,10 @@ export default function Explore() {
   }, [user]);
 
   return (
-    <Flex height='100vh' flexDirection='column'>
+    <Flex minH='100dvh' flexDirection='column'>
       <Flex
-        pt={9}
-        pb={7}
+        pt={5}
+        pb={5}
         justifyContent='center'
         bgColor='brand.darkGray'
         position='relative'

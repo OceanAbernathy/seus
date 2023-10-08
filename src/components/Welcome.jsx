@@ -11,12 +11,12 @@ export default function Welcome() {
 
   return (
     <Flex
-      h='100vh'
+      minH='100dvh'
       bgImage={Background}
       backgroundSize='cover'
       flexDirection='column'
       justifyContent='center'
-      gap='40px'
+      gap='30px'
       letterSpacing='widest'
     >
       <Flex width='100vw' flexDirection='column' lineHeight='1.2' px='7'>

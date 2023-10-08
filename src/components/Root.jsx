@@ -5,15 +5,21 @@ import GuitarVector from '../images/GuitarVector1.svg';
 import Logo from '../images/Logo.svg';
 
 export default function Root() {
+  const documentHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+  };
+  window.addEventListener('resize', documentHeight);
+  documentHeight();
+
   return (
     <Flex
-      h='100vh'
+      minH='100dvh'
       bgImage={Background}
       backgroundSize='cover'
       flexDirection='column'
       justifyContent='center'
       letterSpacing='wider'
-      pt='15px'
     >
       <Flex
         w='100vw'
@@ -38,14 +44,14 @@ export default function Root() {
         </Text>
       </Flex>
 
-      <Flex justifyContent='end' mb='25px'>
+      <Flex justifyContent='end'>
         <Image
           src={GuitarVector}
           filter='drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25))'
         />
       </Flex>
 
-      <Flex flexDirection='column' m='0 25px' gap='50px'>
+      <Flex flexDirection='column' m='10px 25px 0' gap='25px'>
         <Text fontSize='2xl' fontWeight={300} color='brand.darkGray' px='10px'>
           Online guitar courses made simple and affordable. The stage awaits!
         </Text>

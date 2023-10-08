@@ -31,7 +31,7 @@ export default function AvatarMenu() {
 
   return (
     user && (
-      <Flex position='fixed' top={9} left={6} align='center'>
+      <Flex position='fixed' top={4} left={6} align='center'>
         <Menu position='absolute'>
           {({ isOpen }) => (
             <>
@@ -47,7 +47,10 @@ export default function AvatarMenu() {
                     cursor='pointer'
                   />
                 ) : (
-                  <Avatar name={user.personalInfo.displayName} size='profile' />
+                  <Avatar
+                    name={user.personalInfo.displayName}
+                    size='profilePill'
+                  />
                 )}
               </MenuButton>
               <MenuList>
