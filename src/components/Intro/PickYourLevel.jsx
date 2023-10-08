@@ -34,12 +34,12 @@ export default function Welcome() {
 
   return (
     <Flex
-      h='100vh'
+      minH='100dvh'
       bgImage={Background}
       backgroundSize='cover'
       flexDirection='column'
-      justifyContent='center'
-      gap='120'
+      gap={20}
+      pt={8}
       letterSpacing='widest'
     >
       <Flex width='100vw' lineHeight='1.2' px='35px'>

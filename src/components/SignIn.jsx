@@ -68,7 +68,7 @@ export default function SignIn() {
       backgroundSize='cover'
       flexDirection='column'
       justifyContent='center'
-      gap='60px'
+      gap='40px'
       pt='20px'
     >
       <Flex width='100vw' flexDirection='column' lineHeight='1.2' px='7'>

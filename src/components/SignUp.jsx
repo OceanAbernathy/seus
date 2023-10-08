@@ -86,7 +86,7 @@ export default function SignUp() {
       backgroundSize='cover'
       flexDirection='column'
       justifyContent='center'
-      gap='60px'
+      gap='40px'
     >
       <Flex width='100vw' flexDirection='column' px='7'>
         <Text
@@ -172,7 +172,7 @@ export default function SignUp() {
         </Flex>
       </Flex>
 
-      <Flex flexDirection='column' m='0 25px' gap='40px'>
+      <Flex flexDirection='column' m='0 25px' gap='30px'>
         <Button isDisabled={isInvalid} onClick={validateForm} variant='solid1'>
           Sign Up
         </Button>

@@ -47,11 +47,12 @@ export default function Root() {
       <Flex justifyContent='end'>
         <Image
           src={GuitarVector}
+          width={148}
           filter='drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25))'
         />
       </Flex>
 
-      <Flex flexDirection='column' m='10px 25px 0' gap='25px'>
+      <Flex flexDirection='column' m='20px 25px 0' gap='30px'>
         <Text fontSize='2xl' fontWeight={300} color='brand.darkGray' px='10px'>
           Online guitar courses made simple and affordable. The stage awaits!
         </Text>

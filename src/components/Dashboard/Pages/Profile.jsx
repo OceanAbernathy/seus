@@ -101,7 +101,7 @@ export default function Profile() {
           </Text>
         </Flex>
 
-        <Flex flexDirection='column' height='82.5%' gap={16}>
+        <Flex flexDirection='column' height='82.5%' gap={12}>
           <Flex position='relative'>
             <Image src={ProfileBackground} objectFit='contain' />
             <Avatar
@@ -132,10 +132,38 @@ export default function Profile() {
               </Text>
               <Icon weight='fill' boxSize={3} as={PencilLine} />
             </Button>
+
+            <Flex
+              position='absolute'
+              top='70px'
+              right='4'
+              gap={4}
+              display={editing ? 'flex' : 'none'}
+            >
+              <IconButton
+                as={X}
+                onClick={changeEditing}
+                weight='bold'
+                boxSize={12}
+                p={3}
+                bgColor='brand.primary'
+                cursor='pointer'
+              />
+              <IconButton
+                as={Check}
+                onClick={updateProfile}
+                display={!editing ? 'none' : 'flex'}
+                weight='bold'
+                boxSize={12}
+                p={3}
+                bgColor='brand.secondary'
+                cursor='pointer'
+              />
+            </Flex>
           </Flex>
 
           {editing ? (
-            <Flex flexDirection='column' mx={6} gap={3}>
+            <Flex flexDirection='column' mx={6} gap={2}>
               <FormControl display='flex' alignItems='center' mb={1}>
                 <Icon
                   boxSize={8}
@@ -219,31 +247,9 @@ export default function Profile() {
                   </CheckboxGroup>
                 </Flex>
               </FormControl>
-              <Flex justifyContent='center' mt={3} gap={8}>
-                <IconButton
-                  as={X}
-                  onClick={changeEditing}
-                  display={!editing ? 'none' : 'flex'}
-                  weight='bold'
-                  boxSize={12}
-                  p={3}
-                  bgColor='brand.primary'
-                  cursor='pointer'
-                />
-                <IconButton
-                  as={Check}
-                  onClick={updateProfile}
-                  display={!editing ? 'none' : 'flex'}
-                  weight='bold'
-                  boxSize={12}
-                  p={3}
-                  bgColor='brand.secondary'
-                  cursor='pointer'
-                />
-              </Flex>
             </Flex>
           ) : (
-            <Flex flexDirection='column' mx={6} gap={3}>
+            <Flex flexDirection='column' mx={6} gap={2}>
               <FormControl
                 isDisabled={true}
                 display='flex'

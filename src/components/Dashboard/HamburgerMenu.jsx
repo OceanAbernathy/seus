@@ -23,7 +23,7 @@ export default function HamburgerMenu() {
 
   return (
     <>
-      <Flex position='fixed' top={4} right={6} align='center'>
+      <Flex position='fixed' top='18px' right={6} align='center'>
         <IconButton
           aria-label='Open Menu'
           size='lg'
@@ -35,11 +35,11 @@ export default function HamburgerMenu() {
       <Slide direction='top' in={isOpen}>
         <Flex
           height='100vh'
-          justifyContent='space-between'
           alignItems='center'
           flexDirection='column'
-          py={20}
           position='relative'
+          gap={20}
+          pt={16}
           bgColor='brand.lightGray'
           _before={{
             content: `''`,
@@ -54,14 +54,9 @@ export default function HamburgerMenu() {
           }}
         >
           {NavData.map((item) => (
-            <Flex
-              key={item.id}
-              flexDirection='column'
-              gap={20}
-              alignItems='center'
-            >
+            <Flex key={item.id} flexDirection='column' alignItems='center'>
               <Link to={item.path} onClick={() => toggle(item)}>
-                <Button aria-label={item.label} variant='ghost' p={5}>
+                <Button aria-label={item.label} variant='ghost' p={4}>
                   {item.label}
                 </Button>
               </Link>

@@ -39,6 +39,7 @@ export default function Welcome() {
       <Flex mb='20px'>
         <Image
           src={GuitarVector}
+          width={148}
           filter='drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25))'
         />
       </Flex>

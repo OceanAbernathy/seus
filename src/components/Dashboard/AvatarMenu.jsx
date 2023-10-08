@@ -31,7 +31,7 @@ export default function AvatarMenu() {
 
   return (
     user && (
-      <Flex position='fixed' top={4} left={6} align='center'>
+      <Flex position='fixed' top='18px' left={6} align='center'>
         <Menu position='absolute'>
           {({ isOpen }) => (
             <>

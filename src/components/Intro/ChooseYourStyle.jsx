@@ -31,11 +31,10 @@ export default function ChooseYourStyle() {
 
   return (
     <Flex
-      h='100vh'
+      minH='100dvh'
       bgImage={Background}
       backgroundSize='cover'
       flexDirection='column'
-      justifyContent='center'
       letterSpacing='widest'
       pt={4}
     >
@@ -44,7 +43,7 @@ export default function ChooseYourStyle() {
         flexDirection='column'
         lineHeight='1.2'
         px='35px'
-        gap={10}
+        gap={7}
       >
         <Text
           fontSize='5xl'
@@ -59,8 +58,7 @@ export default function ChooseYourStyle() {
         <Grid
           w='100%'
           templateColumns='repeat(2, 1fr)'
-          gap={6}
-          mt='4'
+          gap={4}
           justifyItems='center'
           alignContent='center'
         >

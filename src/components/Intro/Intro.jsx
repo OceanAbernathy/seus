@@ -58,7 +58,7 @@ export default function Intro() {
   return (
     <Flex
       w='100vw'
-      height='100vh'
+      minH='100dvh'
       bgColor='#ACDED2'
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
@@ -73,7 +73,7 @@ export default function Intro() {
                 w='100vw'
                 justifyContent='center'
                 alignItems='center'
-                gap={75}
+                gap={8}
                 mt={42}
               >
                 <Image src={slide.image} w='max-content' h='auto' />
@@ -114,7 +114,7 @@ export default function Intro() {
                 w='100vw'
                 justifyContent='center'
                 alignItems='center'
-                gap={75}
+                gap={8}
                 mt={42}
               >
                 <Image src={slide.image} w='max-content' h='auto' />
@@ -145,7 +145,7 @@ export default function Intro() {
                   ))}
                   <Flex
                     position='absolute'
-                    bottom='-20px'
+                    bottom='-15px'
                     left='50%'
                     transform='translate(-50%)'
                   >
@@ -155,7 +155,8 @@ export default function Intro() {
                         color='brand.darkGray'
                         fontSize='lg'
                         fontWeight='semibold'
-                        p={6}
+                        py={6}
+                        px={7}
                       >
                         <Text>Next</Text>
                         <Icon
