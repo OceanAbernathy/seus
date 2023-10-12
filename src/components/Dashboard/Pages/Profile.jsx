@@ -33,7 +33,7 @@ import { db } from '../../../config/firebaseConfig';
 import { StyleList } from './StyleList';
 
 export default function Profile() {
-  const { user } = useContext(Context);
+  const { user, setUser } = useContext(Context);
 
   const [displayName, setDisplayName] = useState('');
   const [editing, setEditing] = useState(false);
@@ -74,6 +74,11 @@ export default function Profile() {
         'preferences.style': style,
       });
       setEditing(!editing);
+      setUser({
+        ...user,
+        preferences: { level: level, style: style },
+        personalInfo: { displayName: displayName },
+      });
     } catch (error) {
       console.log(error);
     }
