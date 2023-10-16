@@ -3,7 +3,7 @@
 <br />
 
 <div align="center">
-  <a href="http://oceanabernathy.com/seus">
+  <a href="https://oceanabernathy.com/seus">
     <img src="src/images/Logo.svg" alt="Logo" width="150">
   </a>
 
@@ -28,7 +28,7 @@ SEUS is a mockup mobile web app created using React, Chakra UI and Firebase. Thi
 [![ChakraUI][ChakraUI]][ChakraUI-url]
 [![Firebase][Firebase]][Firebase-url]
 
-<a href="http://oceanabernathy.com/seus">
+<a href="https://oceanabernathy.com/seus">
   <img src="src/images/product-screenshot.png" alt="Logo" width='300'>
 </a>
 
