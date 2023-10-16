@@ -12,7 +12,7 @@
   <p align="center">
     A mobile web app created with React
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>View Demo »</strong></a>
+    <a href="https://www.oceanabernathy.com/SEUS/"><strong>View Demo »</strong></a>
   </p>
 </div>
 
