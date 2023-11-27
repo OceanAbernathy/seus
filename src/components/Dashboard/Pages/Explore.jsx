@@ -119,10 +119,10 @@ export default function Explore() {
       <Flex
         flexDirection='column'
         pt={3}
-        pb={24}
+        pb={4}
         px={3}
         overflow='scroll'
-        height='82.5%'
+        height='80vh'
       >
         <Accordion allowToggle defaultIndex={[0]}>
           <Flex flexDirection='column' gap={3}>

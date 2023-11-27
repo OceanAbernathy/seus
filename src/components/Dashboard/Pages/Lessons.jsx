@@ -60,10 +60,10 @@ export default function Lessons() {
         <Flex
           flexDirection='column'
           pt={3}
-          pb={24}
+          pb={4}
           px={3}
           overflow='scroll'
-          height='82.5%'
+          height='80vh'
           gap={3}
         >
           <Flex flexDirection='column' bgColor='blackAlpha.300' py={2} px={3}>
