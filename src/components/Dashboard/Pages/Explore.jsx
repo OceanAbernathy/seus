@@ -119,7 +119,7 @@ export default function Explore() {
       <Flex
         flexDirection='column'
         pt={3}
-        pb={20}
+        pb={24}
         px={3}
         overflow='scroll'
         height='82.5%'
