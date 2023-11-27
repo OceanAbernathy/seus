@@ -20,7 +20,7 @@
 
 ## About The Project
 
-SEUS is a mockup mobile web app created using React, Chakra UI and Firebase. This application is focussed on providing guitar lessons tailored to the user's preferences. After signing up and completing the introduction section, the user is able to browse the available lessons which are categorized based on level and style.
+SEUS is a mockup mobile web app created using React, Chakra UI and Firebase. This application is focused on providing guitar lessons tailored to the user's preferences. After signing up and completing the introduction section, the user is able to browse the available lessons which are categorized based on level and style.
 
 ### Built With
 
